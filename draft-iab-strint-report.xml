@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <!DOCTYPE rfc PUBLIC "-//IETF//DTD RFC 2629//EN"
   "http://xml.resource.org/authoring/rfc2629.dtd" [
-<!ENTITY RFC3552 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3552.xml">
 <!ENTITY RFC3261 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3261.xml">
+<!ENTITY RFC3365 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3365.xml">
+<!ENTITY RFC3552 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3552.xml">
+<!ENTITY RFC4322 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4322.xml">
+<!ENTITY RFC6817 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6817.xml">
 <!ENTITY RFC6962 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6962.xml">
 <!ENTITY I-D.barnes-pervasive-problem SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.barnes-pervasive-problem.xml">
 <!ENTITY I-D.kent-opportunistic-security SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.kent-opportunistic-security.xml">
@@ -1052,8 +1055,11 @@ target="https://community.qualys.com/blogs/securitylabs/2012/09/14/crime
         </t>  
       </list>
     </t>
+
   </section>
+
       <section anchor="client" title="Break-out 2 &ndash; clients">
+
 	<t>Browsers are the first clients one thinks of when talking
 	about encrypted connections, authentication and certificates,
 	but there are many others.</t>
@@ -1091,43 +1097,180 @@ target="https://community.qualys.com/blogs/securitylabs/2012/09/14/crime
 	in the error message and provide an easy way to verify the
 	certificate (by e-mail, over the phone or some other channel)
 	and import it.</t>
+
       </section>
+
       <section anchor="on-by-default" title="Break-out 3 &ndash; on by default">
+
 	<t>One step in improving security is to require the relevant
 	features, in particular encryption and authentication, to be
 	implemented in compliant products: The features are labelled as
-	MUST in the standard rather than MAY. (This is sometimes
-	referred to as MTI, Mandatory To Implement.)</t>
+	MUST in the standard rather than MAY. This is sometimes
+	referred to as MTI, Mandatory To Implement and is 
+	the current practice for IETF protocols. <xref target="RFC3365"/> </t>
 
-	<t>But that is not enough. It may be that the features are
+	<t>But that may not be enough to counter PM. It may be that the features are
 	there, but not used, because only very knowledgeable users or
-	sysadmins turn them on. Thus such features should also be on
-	by default.</t>
+	sysadmins turn them on. Or it may be that implementations do not
+	actually follow the MTI parts of specifications. Or it may be
+	that some security features are implemented but interoperability
+	for those doesn't really work. Or, even worse, it may be that
+	protocol designers have only followed the letter of the MTI best 
+	practice and not its spirit, with the result that security
+	features are hard to use or make deployment harder.
+	One can thus argue that such features should be defined 
+	to be on by default.</t>
 
-	<t>And sometimes the features should not even be options,
-	i.e., there should be no way to turn them off. (This is
-	sometimes called MTU, Mandatory To Use.)</t>
+	<t>Going further one might argue that these features should not even be options,
+	i.e., there should be no way to turn them off. This is
+	sometimes called MTU, Mandatory To Use.</t>
 
-	<t>The question is for what protocols on-by-default is
+	<t>The question raised at this session was for what protocols on-by-default is
 	appropriate, and how to explain to the developers of such
-	protocols that it is needed.</t>
+	protocols that it is needed?</t>
 
-	<t>There may be resistance to mandatory encryption from
-	companies that practice deep packet inspection (DPI) and also
-	from some governments. On the other hand, there may also be
+	<t>There would of course be resistance to MTU security from
+	implemeters and deployments that practice deep packet inspection (DPI) and also
+	perhaps from some governments. On the other hand, there may also be
 	governments that outlaw protocols <spanx
-	style="emph">without</spanx> proper encryption. E.g., can
-	IPSec become mandatory at some point?</t>
+	style="emph">without</spanx> proper encryption. 
+	</t>
+
+	<t>This break-out concluded that there could be value in
+	attempting to document a new Best Current Practice for the
+	IETF that moves from the current MTI position to one
+	where security features are on-by-default. Some of the 
+	workshop participants expressed interest in authoring
+	a draft for such a new BCP and progressing that through
+	the IETF consensus process. (Where it would no doubt be
+	controversial.) </t>
+	
+
       </section>
-      <section anchor="measure" title="Break-out 4 &ndash; measure">
-	<t><cref anchor="break-out-4" source="Bert">Who has a summary
-	for the break-out on measuring</cref></t>
+
+      <section anchor="measure" title="Break-out 4 &ndash; measurement">
+
+	<t>There was a small break-out on the idea of measurement as
+	a way to encourage or gamify the increased use of security
+	mechanisms. [[We don't currently have notes from that.]]</t>
+
       </section>
+
+
       <section anchor="opportunistic" title="Break-out 5 &ndash; opportunistic">
-	<t><cref anchor="break-out-5" source="Bert">Who has a summary
-	for the break out on opportunistic encryption?</cref></t>
+
+
+	<t>This break out considered the use of the term "opportunistic" as
+	it applies to crytpgraphic security and attempted to progress the
+	work towards arriving at an agreed definition for use of that 
+	term, at it applies to IETF and W3C work.</t>
+
+	<t>While various terms had been used, with many people talking
+	about opportunistic encryption, that usage was felt to be 
+	problematic both because it conflicted with the use of the
+	same term in <xref target="RFC4322"/> and because it was
+	being used differently in different parts of the community.</t>
+
+	<t>At the session it was felt that the term "opportunistic 
+	keying" was better, but as explained above subsequent list
+	discussion resulted in a move to the term "Opportunistic
+	Security" (OS). </t>
+
+	<t>Aside from terminology, disussion focused on the use
+	of Diffie-Hellman (D-H) key exchange as the preferred mechanism
+	of OS, with fall back to cleartext if D-H doesn't succeed
+	as a counter for passive attacks.</t>
+
+	<t>There was also of course the desire to be able to
+	easily escalate from countering passive attacks to
+	also handling endpoint authentication and thereby 
+	also countering MITM attacks.</t>
+
+	<t>Making OS visible to users was again considered to
+	be undesirable, as users could not be expected to 
+	distinguish between cleartext, OS and (one-sided or
+	mutal) endpoint authentication.</t>
+
+	<t>Finally, it was noted that it may take some 
+	effort to establish how middleboxes might affect OS at different layers
+	and that OS really is not suitable as the only migitation
+	to use for high-sensitivity sessions such as financial
+	transactions.</t>
+
       </section>
+
+	<section title="Unofficial Transport/Routing Break-out">
+
+	
+<t>
+Some routing and transport area directors felt a little left
+out by all the application layer break-outs:-) So they had their own
+brainstorm about what
+could be done at the Transport and Routing layers from which
+these notes resulted.</t>
+
+<t>
+The LEDBAT <xref target="RFC6817"/> 
+protocol was targeted towards a
+bulk-transfer service that is reordering and delay insensitive.  Use of
+LDEBAT could offer the following benefits for an application:
+<list style="letters">
+<t>
+    Because it is reordering insensitive, traffic can be sprayed across
+a large number of forwarding paths.  Assuming such different paths exist,
+this would make it more challenging to capture and analyze a full
+interaction.
+</t>
+<t>
+    The application can vary the paths by indicating per packet a
+different microflow.  In IPv6, this can be done via different IPv6 flow
+labels.  For IPv4, this can be done by encapsulating the IP packet into UDP
+and varying the UDP src port.
+</t>
+<t>
+    Since LEDBAT is delay insensitive and applications using it would
+need to be as well, it would be possible to obfuscate the application
+signatures by varying the packet lengths and frequency.
+</t>
+<t>
+    This can also hide the transport header (for IP in UDP).
+</t>
+<t>
+    If we could fix the reverse SPF check problem, perhaps the source
+could be hidden - but that has assumptions on trusted perimeters.
+</t>
+<t>
+    The use of LEDBAT is orthogonal to the use of encryption and provides
+different benefits (harder to intercept the whole conversation, ability to
+obfuscate the traffic analysis), and also has different costs (longer latency, new
+transport protocol usage) to its users.
+</t>
+</list>
+</t>
+
+<t>
+We also discussed the idea of encrypting traffic from CE to CE as part of a
+L3VPN or such.  This could allow hiding of addresses, including source, and
+headers.  From my further conversation with Ron Bonica, some customers
+already do encryption (though not hiding the source address) like this.
+ So, I'm not sure this is very practically useful as an enhancement except
+for encouraging deployment and use.
+</t>
+
+<t>
+Finally, we discussed whether it would be useful to have a means of
+communicating where and what layers are doing encryption on an
+application's traffic path.  The initial idea of augmenting ICMP has some
+issues (not visible to application, ICMP packets frequently filtered) as
+well as potential work (determining how to trust the report of encryption).
+ It would be interesting to understand if such communication is actually
+needed and what the requirements would be.
+</t>
+
+	</section>
+
     </section>
+
     <section anchor="after" title="After the workshop">
       <t>Holding the workshop just before the IETF had the intended
       effect: a number of people went to both the workshop and the
@@ -1169,6 +1312,10 @@ target="https://community.qualys.com/blogs/securitylabs/2012/09/14/crime
       Surveillance, Censorship and Servers&rdquo; <xref
       target="draft-pouwelse-perpass-shadow-internet"/></t>
     </section>
+
+	<!-- 
+	SF: This is all (I think) in the summary so no point repeating it.
+ 
     <section anchor="conclusions" title="Conclusions and recommendations">
       <t>The main conclusions from the workshop are the following:
 	<list style="numbers">
@@ -1251,8 +1398,13 @@ target="https://community.qualys.com/blogs/securitylabs/2012/09/14/crime
 	  enough.</t>
 	</list></t>
     </section>
+	-->
+
+    <section anchor="iana" title="IANA considerations">
+	<t>There are none. We hope the RFC editor deletes this section.</t>
+	</section>
     <section anchor="Security" title="Security considerations">
-      <t>This document does not define a technology.</t>
+      <t>This document does not define a technology but is all about security and privacy.</t>
 
       <figure>
 	<preamble>Plenary.</preamble>
@@ -1270,8 +1422,11 @@ target="https://community.qualys.com/blogs/securitylabs/2012/09/14/crime
   <back>
     <references title="Informative references">
 
-	&RFC3552;
 	&RFC3261;
+	&RFC3365;
+	&RFC3552;
+	&RFC4322;
+	&RFC6817;
 	&RFC6962;
 	&I-D.barnes-pervasive-problem;
 	&I-D.kent-opportunistic-security;

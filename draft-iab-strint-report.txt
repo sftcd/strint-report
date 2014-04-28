@@ -75,16 +75,16 @@ Table of Contents
    3.  Workshop goals  . . . . . . . . . . . . . . . . . . . . . . .   4
    4.  Workshop structure  . . . . . . . . . . . . . . . . . . . . .   5
    5.  Topics  . . . . . . . . . . . . . . . . . . . . . . . . . . .   5
-   6.  After the workshop  . . . . . . . . . . . . . . . . . . . . .  18
-   7.  Conclusions and recommendations . . . . . . . . . . . . . . .  19
-   8.  Security considerations . . . . . . . . . . . . . . . . . . .  20
+   6.  After the workshop  . . . . . . . . . . . . . . . . . . . . .  20
+   7.  IANA considerations . . . . . . . . . . . . . . . . . . . . .  21
+   8.  Security considerations . . . . . . . . . . . . . . . . . . .  21
    9.  Informative references  . . . . . . . . . . . . . . . . . . .  21
-   Appendix A.  Logistics  . . . . . . . . . . . . . . . . . . . . .  22
-   Appendix B.  Agenda . . . . . . . . . . . . . . . . . . . . . . .  23
-   Appendix C.  The submitted papers . . . . . . . . . . . . . . . .  26
-   Appendix D.  Workshop chairs & program committee  . . . . . . . .  43
-   Appendix E.  Participants . . . . . . . . . . . . . . . . . . . .  43
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  48
+   Appendix A.  Logistics  . . . . . . . . . . . . . . . . . . . . .  23
+   Appendix B.  Agenda . . . . . . . . . . . . . . . . . . . . . . .  24
+   Appendix C.  The submitted papers . . . . . . . . . . . . . . . .  27
+   Appendix D.  Workshop chairs & program committee  . . . . . . . .  44
+   Appendix E.  Participants . . . . . . . . . . . . . . . . . . . .  45
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  49
 
 1.  Context
 
@@ -875,19 +875,19 @@ Internet-Draft           STRINT workshop report               April 2014
 
 5.8.  Break-out 1 - research
 
-   [[: break-out-1Who has a summary for the session of the challenge of
-   connecting academics and standards bodies]]
-
    Despite some requests earlier in the workshop, the research break-out
-   did not discuss about clean-slate approaches.  The challenge was
-   rather that the relation between security research and
-   standardisation needs improvement.  Research on linkability is not
-   yet well known in the IETF.  But the other side of the medal needs
-   improvement too: While doing protocol design, standardisation should
-   indicate what specific problems are in need of more research.
+   did not discuss clean-slate approaches.  The challenge was rather
+   that the relation between security research and standardisation needs
+   improvement.  Research on linkability is not yet well known in the
+   IETF.  But the other side of the coin needs improvement too: While
+   doing protocol design, standardisation should indicate what specific
+   problems are in need of more research.
 
    The break-out then made a non exclusive list of topics that are in
    need of further research:
+
+   o  The interaction of compression and encryption as demonstrated by
+      the CRIME SSL/TLS vulnerability [13]
 
 
 
@@ -897,9 +897,6 @@ Farrell, et al.         Expires October 30, 2014               [Page 16]
 
 Internet-Draft           STRINT workshop report               April 2014
 
-
-   o  The interaction of compression and encryption as demonstrated by
-      the CRIME SSL/TLS vulnerability [13]
 
    o  A more proactive deprecation of algorithms based on research
       results.
@@ -946,6 +943,9 @@ Internet-Draft           STRINT workshop report               April 2014
    verify the certificate (by e-mail, over the phone or some other
    channel) and import it.
 
+5.10.  Break-out 3 - on by default
+
+
 
 
 
@@ -954,54 +954,54 @@ Farrell, et al.         Expires October 30, 2014               [Page 17]
 Internet-Draft           STRINT workshop report               April 2014
 
 
-5.10.  Break-out 3 - on by default
-
    One step in improving security is to require the relevant features,
    in particular encryption and authentication, to be implemented in
    compliant products: The features are labelled as MUST in the standard
-   rather than MAY.  (This is sometimes referred to as MTI, Mandatory To
-   Implement.)
+   rather than MAY.  This is sometimes referred to as MTI, Mandatory To
+   Implement and is the current practice for IETF protocols.  [RFC3365]
 
-   But that is not enough.  It may be that the features are there, but
-   not used, because only very knowledgeable users or sysadmins turn
-   them on.  Thus such features should also be on by default.
+   But that may not be enough to counter PM.  It may be that the
+   features are there, but not used, because only very knowledgeable
+   users or sysadmins turn them on.  Or it may be that implementations
+   do not actually follow the MTI parts of specifications.  Or it may be
+   that some security features are implemented but interoperability for
+   those doesn't really work.  Or, even worse, it may be that protocol
+   designers have only followed the letter of the MTI best practice and
+   not its spirit, with the result that security features are hard to
+   use or make deployment harder.  One can thus argue that such features
+   should be defined to be on by default.
 
-   And sometimes the features should not even be options, i.e., there
-   should be no way to turn them off.  (This is sometimes called MTU,
-   Mandatory To Use.)
+   Going further one might argue that these features should not even be
+   options, i.e., there should be no way to turn them off.  This is
+   sometimes called MTU, Mandatory To Use.
 
-   The question is for what protocols on-by-default is appropriate, and
-   how to explain to the developers of such protocols that it is needed.
+   The question raised at this session was for what protocols on-by-
+   default is appropriate, and how to explain to the developers of such
+   protocols that it is needed?
 
-   There may be resistance to mandatory encryption from companies that
-   practice deep packet inspection (DPI) and also from some governments.
-   On the other hand, there may also be governments that outlaw
-   protocols _without_ proper encryption.  E.g., can IPSec become
-   mandatory at some point?
+   There would of course be resistance to MTU security from implemeters
+   and deployments that practice deep packet inspection (DPI) and also
+   perhaps from some governments.  On the other hand, there may also be
+   governments that outlaw protocols _without_ proper encryption.
 
-5.11.  Break-out 4 - measure
+   This break-out concluded that there could be value in attempting to
+   document a new Best Current Practice for the IETF that moves from the
+   current MTI position to one where security features are on-by-
+   default.  Some of the workshop participants expressed interest in
+   authoring a draft for such a new BCP and progressing that through the
+   IETF consensus process.  (Where it would no doubt be controversial.)
 
-   [[: break-out-4Who has a summary for the break-out on measuring]]
+5.11.  Break-out 4 - measurement
 
-5.12.  Break-out 5 - opportunistic
+   There was a small break-out on the idea of measurement as a way to
+   encourage or gamify the increased use of security mechanisms.  [[We
+   don't currently have notes from that.]]
 
-   [[: break-out-5Who has a summary for the break out on opportunistic
-   encryption?]]
 
-6.  After the workshop
 
-   Holding the workshop just before the IETF had the intended effect: a
-   number of people went to both the workshop and the IETF.  And they
-   took the opportunity of being together at the IETF to continue the
-   discussions.
 
-   Working groups of the IETF who met in London took the recommendations
-   from the workshop into account.  It was even the first item in the
-   report about the IETF meeting by the IETF chair, Jari Arkko:
 
-      _"Strengthening the security and privacy of the Internet continued
-      to draw a lot of attention.  The STRINT workshop organised by the
-      IAB and W3C just before the IETF attracted 100 participants and
+
 
 
 
@@ -1010,6 +1010,125 @@ Farrell, et al.         Expires October 30, 2014               [Page 18]
 Internet-Draft           STRINT workshop report               April 2014
 
 
+5.12.  Break-out 5 - opportunistic
+
+   This break out considered the use of the term "opportunistic" as it
+   applies to crytpgraphic security and attempted to progress the work
+   towards arriving at an agreed definition for use of that term, at it
+   applies to IETF and W3C work.
+
+   While various terms had been used, with many people talking about
+   opportunistic encryption, that usage was felt to be problematic both
+   because it conflicted with the use of the same term in [RFC4322] and
+   because it was being used differently in different parts of the
+   community.
+
+   At the session it was felt that the term "opportunistic keying" was
+   better, but as explained above subsequent list discussion resulted in
+   a move to the term "Opportunistic Security" (OS).
+
+   Aside from terminology, disussion focused on the use of Diffie-
+   Hellman (D-H) key exchange as the preferred mechanism of OS, with
+   fall back to cleartext if D-H doesn't succeed as a counter for
+   passive attacks.
+
+   There was also of course the desire to be able to easily escalate
+   from countering passive attacks to also handling endpoint
+   authentication and thereby also countering MITM attacks.
+
+   Making OS visible to users was again considered to be undesirable, as
+   users could not be expected to distinguish between cleartext, OS and
+   (one-sided or mutal) endpoint authentication.
+
+   Finally, it was noted that it may take some effort to establish how
+   middleboxes might affect OS at different layers and that OS really is
+   not suitable as the only migitation to use for high-sensitivity
+   sessions such as financial transactions.
+
+5.13.  Unofficial Transport/Routing Break-out
+
+   Some routing and transport area directors felt a little left out by
+   all the application layer break-outs:-) So they had their own
+   brainstorm about what could be done at the Transport and Routing
+   layers from which these notes resulted.
+
+   The LEDBAT [RFC6817] protocol was targeted towards a bulk-transfer
+   service that is reordering and delay insensitive.  Use of LDEBAT
+   could offer the following benefits for an application:
+
+   a.  Because it is reordering insensitive, traffic can be sprayed
+       across a large number of forwarding paths.  Assuming such
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 19]
+
+Internet-Draft           STRINT workshop report               April 2014
+
+
+       different paths exist, this would make it more challenging to
+       capture and analyze a full interaction.
+
+   b.  The application can vary the paths by indicating per packet a
+       different microflow.  In IPv6, this can be done via different
+       IPv6 flow labels.  For IPv4, this can be done by encapsulating
+       the IP packet into UDP and varying the UDP src port.
+
+   c.  Since LEDBAT is delay insensitive and applications using it would
+       need to be as well, it would be possible to obfuscate the
+       application signatures by varying the packet lengths and
+       frequency.
+
+   d.  This can also hide the transport header (for IP in UDP).
+
+   e.  If we could fix the reverse SPF check problem, perhaps the source
+       could be hidden - but that has assumptions on trusted perimeters.
+
+   f.  The use of LEDBAT is orthogonal to the use of encryption and
+       provides different benefits (harder to intercept the whole
+       conversation, ability to obfuscate the traffic analysis), and
+       also has different costs (longer latency, new transport protocol
+       usage) to its users.
+
+   We also discussed the idea of encrypting traffic from CE to CE as
+   part of a L3VPN or such.  This could allow hiding of addresses,
+   including source, and headers.  From my further conversation with Ron
+   Bonica, some customers already do encryption (though not hiding the
+   source address) like this.  So, I'm not sure this is very practically
+   useful as an enhancement except for encouraging deployment and use.
+
+   Finally, we discussed whether it would be useful to have a means of
+   communicating where and what layers are doing encryption on an
+   application's traffic path.  The initial idea of augmenting ICMP has
+   some issues (not visible to application, ICMP packets frequently
+   filtered) as well as potential work (determining how to trust the
+   report of encryption).  It would be interesting to understand if such
+   communication is actually needed and what the requirements would be.
+
+6.  After the workshop
+
+   Holding the workshop just before the IETF had the intended effect: a
+   number of people went to both the workshop and the IETF.  And they
+   took the opportunity of being together at the IETF to continue the
+   discussions.
+
+
+
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 20]
+
+Internet-Draft           STRINT workshop report               April 2014
+
+
+   Working groups of the IETF who met in London took the recommendations
+   from the workshop into account.  It was even the first item in the
+   report about the IETF meeting by the IETF chair, Jari Arkko:
+
+      _"Strengthening the security and privacy of the Internet continued
+      to draw a lot of attention.  The STRINT workshop organised by the
+      IAB and W3C just before the IETF attracted 100 participants and
       over 60 papers.  Even more people would have joined us, but there
       was no space.  During the IETF meeting, we continued discussing
       the topic at various working groups.  A while ago we created the
@@ -1031,105 +1150,33 @@ Internet-Draft           STRINT workshop report               April 2014
    Pouwelse, "The Shadow Internet: liberation from Surveillance,
    Censorship and Servers" [draft-pouwelse-perpass-shadow-internet]
 
-7.  Conclusions and recommendations
+7.  IANA considerations
 
-   The main conclusions from the workshop are the following:
-
-   1.  Encryption works and needs to be used more, despite its cost
-       (which is steadily going down anyway).
-
-   2.  Data minimisation is worthwhile, too, but difficult: Traffic
-       analysis research and protocol development need to work together.
-
-   3.  The threat models discussed in the workshop should be written up
-       in an RFC (either separately or as an update to BCP 72 [14]).
-
-   4.  "Opportunistic Encryption" could benefit from a cookbook-like
-       explanation for developers.  (The term itself may also be
-       confusing.  Best effort encryption or opportunistic keying were
-       suggested as alternatives.)
-
-   5.  The technical community can do better in explaining the issues of
-       Pervasive Monitoring to policy makers.
-
-   6.  Similarly, user interfaces could be better.  (Some people even
-       argue that certain dangerous choices should simply not be offered
-       anymore.  But that requires concertation among software makers,
-       otherwise some will be considered "broken" by users.)  How to
-       integrate UI issues into the processes of IETF and W3C needs
-       further discussion.
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 19]
-
-Internet-Draft           STRINT workshop report               April 2014
-
-
-   7.  Examples of good software configurations, guidelines for
-       developers, cut-and-paste configurations for popular software,
-       etc., can help.  This is not standards work, but maybe the
-       standards organisations can still help.
-
-   8.  Software makers can do more to make the default ("out-of-the-
-       box") settings better for protecting privacy.
-
-   9.  Captive portals, [15] (and some firewalls, too) can and should be
-       distinguished from real man-in-the-middle attacks.  Maybe this
-       just needs establishing common conventions with makers of such
-       proxies, but maybe also new protocols.
-
-   Some recommendations also emerged from the discussions.  Some are
-   meant for the developers of standards, some do not have a clear
-   target yet:
-
-   a.  Lack of interoperability generally reduces security.  Standards
-       organisations should do everything they can to improve
-       interoperability.
-
-   b.  The hierarchical certificate system used by TLS has some problems
-       that may be solvable e.g., with Certificate Transparency (CT).
-
-   c.  Standards organisations should investigate the possibility of a
-       permanent committee that reviews proposed standards in the light
-       of privacy protection.
-
-   d.  Developers of standards should do more to get the expertise that
-       is available from academics, such as in traffic analysis and user
-       interfaces.
-
-   e.  Create example configurations, standard profiles and cut-and-
-       paste solutions to help sysadmins deploy correctly configured
-       secure systems.
-
-   f.  Develop an upgrade path from current, insecure systems to secure
-       systems, without hindrance to users.
-
-   g.  Technical solutions for increased security will have difficulty
-       being deployed unless they are socially and legally accepted, or
-       better still: demanded.  Educating people within the technical
-       community only is thus not enough.
+   There are none.  We hope the RFC editor deletes this section.
 
 8.  Security considerations
 
-   This document does not define a technology.
-
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 20]
-
-Internet-Draft           STRINT workshop report               April 2014
-
+   This document does not define a technology but is all about security
+   and privacy.
 
    Plenary.
 
-   (C) Stonehouse Photographic [16]
+   (C) Stonehouse Photographic [14]
 
 9.  Informative references
 
    [Arkko1]   Arkko, J., "IETF-89 Summary", March 2014,
               <http://www.ietf.org/blog/2014/03/ietf-89-summary/>.
+
+
+
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 21]
+
+Internet-Draft           STRINT workshop report               April 2014
+
 
    [Arkko2]   Arkko, J., "Privacy and Networking Functions", March 2014,
               <http://www.arkko.com/ietf/strint/draft-arkko-strint-
@@ -1158,6 +1205,10 @@ Internet-Draft           STRINT workshop report               April 2014
               Schooler, "SIP: Session Initiation Protocol", RFC 3261,
               June 2002.
 
+   [RFC3365]  Schiller, J., "Strong Security Requirements for Internet
+              Engineering Task Force Standard Protocols", BCP 61, RFC
+              3365, August 2002.
+
    [RFC3552]  Rescorla, E. and B. Korver, "Guidelines for Writing RFC
               Text on Security Considerations", BCP 72, RFC 3552, July
               2003.
@@ -1165,18 +1216,26 @@ Internet-Draft           STRINT workshop report               April 2014
    [RFC4252]  Ylonen, T. and C. Lonvick, "The Secure Shell (SSH)
               Authentication Protocol", RFC 4252, January 2006.
 
+   [RFC4322]  Richardson, M. and D. Redelmeier, "Opportunistic
+              Encryption using the Internet Key Exchange (IKE)", RFC
+              4322, December 2005.
+
    [RFC6585]  Nottingham, M. and R. Fielding, "Additional HTTP Status
               Codes", RFC 6585, April 2012.
 
-   [RFC6962]  Laurie, B., Langley, A., and E. Kasper, "Certificate
-              Transparency", RFC 6962, June 2013.
+   [RFC6817]  Shalunov, S., Hazel, G., Iyengar, J., and M. Kuehlewind,
+              "Low Extra Delay Background Transport (LEDBAT)", RFC 6817,
+              December 2012.
 
 
 
-Farrell, et al.         Expires October 30, 2014               [Page 21]
+Farrell, et al.         Expires October 30, 2014               [Page 22]
 
 Internet-Draft           STRINT workshop report               April 2014
 
+
+   [RFC6962]  Laurie, B., Langley, A., and E. Kasper, "Certificate
+              Transparency", RFC 6962, June 2013.
 
    [draft-ietf-websec-key-pinning]
               Evans, C., Palmer, C., and R. Sleevi, "Public Key Pinning
@@ -1207,32 +1266,34 @@ Internet-Draft           STRINT workshop report               April 2014
 
 Appendix A.  Logistics
 
-   The workshop was organised by the STREWS [17] project (a research
+   The workshop was organised by the STREWS [15] project (a research
    project funded under the European Union's 7th Framework Programme
-   [18]), as the first of two workshops in its work plan.  The
+   [16]), as the first of two workshops in its work plan.  The
    organisers were supported by the IAB and W3C, and, for the local
-   organisation, by Telefonica Digital. [19]
+   organisation, by Telefonica Digital. [17]
 
    One of the suggestions in the project description of the STREWS
    project was to attach the first workshop to an IETF meeting.  The
-   best opportunity was IETF 89 [20] in London, which would begin on
+   best opportunity was IETF 89 [18] in London, which would begin on
    Sunday March 2, 2014.  Telefonica Digital offered meeting rooms at
    its offices in central London for the preceding Friday and Saturday,
    just minutes away from the IETF's location.
+
+
+
+
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 23]
+
+Internet-Draft           STRINT workshop report               April 2014
+
 
    The room held 100 people, which was thought to be sufficient.  There
    turned out to be more interest than expected and we could have filled
    a larger room, but 100 people is probably an upper limit for good
    discussions anyway.
-
-
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 22]
-
-Internet-Draft           STRINT workshop report               April 2014
-
 
    Apart from the usual equipment in the room (projector, white boards,
    microphones, coffee...), we also set up some extra communication
@@ -1241,7 +1302,7 @@ Internet-Draft           STRINT workshop report               April 2014
    o  A mailing list where participants could discuss the agenda and the
       published papers about three weeks in advance of the workshop
       itself.  (Only participants were allowed to write to the mailing
-      list, but the archive [21] is public.)
+      list, but the archive [19] is public.)
 
    o  Publicly advertised streaming audio (one-way only).  At some
       point, no less than 165 people were listening.
@@ -1257,7 +1318,7 @@ Internet-Draft           STRINT workshop report               April 2014
       report (Appendix C).)
 
    o  A "Twitter hashtag" (#strint).  Four weeks after the workshop,
-      there were still a few new messages [22] about events related to
+      there were still a few new messages [20] about events related to
       workshop topics.
 
 Appendix B.  Agenda
@@ -1269,29 +1330,28 @@ Appendix B.  Agenda
 
 B.1.  Friday 28 February
 
-   (minutes [23])
+   (minutes [21])
 
    13:00  Registration, Coffee, play with n/w, power, find seat
 
    14:00  Workshop starts, welcome, logistics, opening/overview [slides]
-      [24]
+      [22]
 
       *  Goal is to plan how we respond to PM threats
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 24]
+
+Internet-Draft           STRINT workshop report               April 2014
+
 
       *  Specific questions to be discussed in sessions
 
       *  Outcomes are actions for IETF, W3C, IRTF, etc.
 
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 23]
-
-Internet-Draft           STRINT workshop report               April 2014
-
-
    14:30  I. Threats - What problem are we trying to solve?  (Presenter:
-      Richard Barnes; Moderator: Cullen Jennings) [slides] [25]
+      Richard Barnes; Moderator: Cullen Jennings) [slides] [23]
 
       *  What attacks have been described?  (Attack taxonomy)
 
@@ -1305,7 +1365,7 @@ Internet-Draft           STRINT workshop report               April 2014
 
    16:00  II.  COMSEC 1 - How can we increase usage of current COMSEC
       tools?  (Presenter: Hannes Tschofenig; Moderator: Leif Johansson)
-      [slides] [26]
+      [slides] [24]
 
       *  Whirlwind catalog of current tools
 
@@ -1320,7 +1380,7 @@ Internet-Draft           STRINT workshop report               April 2014
 
    17:45  III.  Policy - What policy / legal/ other issues need to be
       taken into account?  (Presenter: Christine Runnegar; Moderator:
-      Rigo Wenning) [slides] [27]
+      Rigo Wenning) [slides] [25]
 
       *  What non-technical activities do we need to be aware of?
 
@@ -1333,28 +1393,28 @@ Internet-Draft           STRINT workshop report               April 2014
 
    19:00  Social event
 
-   Break out.
-
-   (C) Stonehouse Photographic [28]
 
 
 
 
-
-Farrell, et al.         Expires October 30, 2014               [Page 24]
+Farrell, et al.         Expires October 30, 2014               [Page 25]
 
 Internet-Draft           STRINT workshop report               April 2014
 
 
+   Break out.
+
+   (C) Stonehouse Photographic [26]
+
 B.2.  Saturday 1 March
 
-   (minutes [29])
+   (minutes [27])
 
    09:00  Welcome again, logistics
 
    09:15  IV.  COMSEC 2 - What improvements to COMSEC tools are
       needed?(Presenter: Mark Nottingham; Moderator: Steve Bellovin)
-      [slides] [30]
+      [slides] [28]
 
       *  Opportunistic encryption - what is it and where it might apply
 
@@ -1364,8 +1424,8 @@ B.2.  Saturday 1 March
    10:30  Break
 
    10:45  V. Metadata - How can we reduce the metadata that protocols
-      expose?  (Presenter: Alfredo Pironti [slides] [31] / Ted Hardie
-      [slides] [32]; Moderator: Alissa Cooper [slides] [33])
+      expose?  (Presenter: Alfredo Pironti [slides] [29] / Ted Hardie
+      [slides] [30]; Moderator: Alissa Cooper [slides] [31])
 
       *  Meta-data, fingerprinting, minimisation
 
@@ -1377,7 +1437,7 @@ B.2.  Saturday 1 March
 
    13:00  VI.  Deployment - How can we address PM in deployment /
       operations?  (Presenter: Eliot Lear; Moderator: Barry Leiba)
-      [slides] [34]
+      [slides] [32]
 
       *  "Mega"-commercial services (clouds, large scale email & SN,
          SIP, WebRTC...)
@@ -1391,16 +1451,16 @@ B.2.  Saturday 1 March
    15:00  VII. 3 x Break-out Sessions / Bar-Camp style (Hannes
       Tschofenig)
 
-      *  Content to be defined during meeting, as topics come up
-
-      *  Sum up at the end to gather conclusions for report
 
 
-
-Farrell, et al.         Expires October 30, 2014               [Page 25]
+Farrell, et al.         Expires October 30, 2014               [Page 26]
 
 Internet-Draft           STRINT workshop report               April 2014
 
+
+      *  Content to be defined during meeting, as topics come up
+
+      *  Sum up at the end to gather conclusions for report
 
    15:00  Break-outs:
 
@@ -1423,7 +1483,7 @@ Internet-Draft           STRINT workshop report               April 2014
       5.  opportunistic
 
    16:15  VIII.  Break-out reports, Open mic & Conclusions - What are we
-      going to do to address PM? [slides] [35]
+      going to do to address PM? [slides] [33]
 
       *  Gather conclusions / recommendations / goals from earlier
          sessions
@@ -1432,7 +1492,7 @@ Internet-Draft           STRINT workshop report               April 2014
 
    Whiteboard notes.
 
-   (C) Stonehouse Photographic [36]
+   (C) Stonehouse Photographic [34]
 
 Appendix C.  The submitted papers
 
@@ -1440,24 +1500,24 @@ Appendix C.  The submitted papers
 
    The following papers were submitted to the workshop.  The abstracts
    were provided by the authors themselves.  (We set up an editable page
-   ("Etherpad") [37] where the authors could insert them.)
+   ("Etherpad") [35] where the authors could insert them.)
 
 C.1.  Privacy Protected Email - Phillip Hallam-Baker
 
-   01.pdf [38] - This proposal is two things: First it shows that with
+   01.pdf [36] - This proposal is two things: First it shows that with
    some small adjustments to S/MIME and PGP we can merge two competing
-   end-to-end security proposals that are too hard for people to use
-   into one scheme that provides a useful degree of security with no
-   thought from the user.  In cases where the user has security concerns
-   they can easily determine that they are met.  The second part of the
 
 
 
-Farrell, et al.         Expires October 30, 2014               [Page 26]
+Farrell, et al.         Expires October 30, 2014               [Page 27]
 
 Internet-Draft           STRINT workshop report               April 2014
 
 
+   end-to-end security proposals that are too hard for people to use
+   into one scheme that provides a useful degree of security with no
+   thought from the user.  In cases where the user has security concerns
+   they can easily determine that they are met.  The second part of the
    proposal is that it the Trust set deployed to secure email encryption
    can be leveraged to solve pretty much every other end-to-end security
    requirement.  If people generate keys for their email we can secure
@@ -1466,7 +1526,7 @@ Internet-Draft           STRINT workshop report               April 2014
 C.2.  Opportunistic Encryption for MPLS - Stephen Farrell, Adrian
       Farrrell
 
-   02.pdf [39] - This is an early proposal for a way to do open-channel
+   02.pdf [37] - This is an early proposal for a way to do open-channel
    D-H key agreement and encryption in MPLS.  Two things are maybe
    interesting: a) its an example of trying to add confidentiality to an
    existing protocol with making PM harder as a specific goal and b)
@@ -1480,7 +1540,7 @@ C.2.  Opportunistic Encryption for MPLS - Stephen Farrell, Adrian
 C.3.  Overcoming the Friend-or-Foe Paradigm in Secure Communication -
       Sebastian Gajek, Jan Seedorf, Marc Fischlin, Oezguer Dagdalen
 
-   03.pdf [40] - Essentially, our point is that with the existing end-
+   03.pdf [38] - Essentially, our point is that with the existing end-
    to-end client-server security paradigm, e.g. as instantiated in TLS,
    the "good guys" often actually have to mount attacks in order for
    middleboxes (which are on the path between client ans server being
@@ -1496,7 +1556,21 @@ C.3.  Overcoming the Friend-or-Foe Paradigm in Secure Communication -
 
 C.4.  Flows and Pervasive Monitoring - Ted Hardie
 
-   04.pdf [41] - This document describes methods that may hinder a
+
+
+
+
+
+
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 28]
+
+Internet-Draft           STRINT workshop report               April 2014
+
+
+   04.pdf [39] - This document describes methods that may hinder a
    pervasive monitor's efforts to derive metadata from flows.  There are
    three main methods discussed in the paper: aggregation, contraflow,
    and multipath.  These are largely side-effects of other efforts at
@@ -1507,14 +1581,7 @@ C.4.  Flows and Pervasive Monitoring - Ted Hardie
 C.5.  BetterCrypto.org Applied Crypto Hardening - Aaron Zauner, L. Aaron
       Kaplan
 
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 27]
-
-Internet-Draft           STRINT workshop report               April 2014
-
-
-   05.pdf [42] - BetterCrypto is a community-driven project where
+   05.pdf [40] - BetterCrypto is a community-driven project where
    admins, engineers, cryptographers, security researchers alike
    participate in finding well researched best-practices for commonly
    deployed networked applications and infrastructure.  We try to
@@ -1528,7 +1595,7 @@ C.6.  A Complimentary Analysis (The Danger Of The New Internet Choke
       Points) - Andrei Robachevsky, Christine Runnegar, Karen
       O'Donoghue, Mat Ford
 
-   06.pdf [43] - The ongoing disclosures of pervasive surveillance of
+   06.pdf [41] - The ongoing disclosures of pervasive surveillance of
    Internet users' communications and data by national signals
    intelligence agencies have prompted protocol designers, software and
    hardware vendors, as well as Internet service and content providers,
@@ -1545,30 +1612,22 @@ C.6.  A Complimentary Analysis (The Danger Of The New Internet Choke
    need to be considered if the Internet is to evolve to reduce such
    vulnerabilities.  Finally, we identify some significant areas of
    tension or trade-offs, and we consider possible areas for additional
-   efforts.  Also: danger-new-internet-choke-points [44] and
-   mind_the_step_function [45]
+   efforts.  Also: danger-new-internet-choke-points [42] and
+   mind_the_step_function [43]
 
 C.7.  Trust Issues with Opportunistic Encryption - Scott Rose, Stephen
       Nightingale, Doug Montgomery
 
-   07.pdf [46] - "Once is happenstance.  Twice is coincidence.  Three
-   times is enemy action"
 
 
 
-
-
-
-
-
-
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 28]
+Farrell, et al.         Expires October 30, 2014               [Page 29]
 
 Internet-Draft           STRINT workshop report               April 2014
 
+
+   07.pdf [44] - "Once is happenstance.  Twice is coincidence.  Three
+   times is enemy action"
 
    The lack of authentication in opportunistic encryption could have the
    perverse affect of putting more end users at risk: thinking that they
@@ -1583,7 +1642,7 @@ Internet-Draft           STRINT workshop report               April 2014
 C.8.  Challenges with End-to-End Email Encryption - Jiangshan Yu,
       Vincent Cheval, Mark Ryan
 
-   08.pdf [47] - In this paper we show how the use of an extended
+   08.pdf [45] - In this paper we show how the use of an extended
    certificate transparency can build a secure end-to-end email or
    messaging system using PKI without requiring trusted parties nor
    complex p2p key-signing arrangements such as PGP.  This makes end-to-
@@ -1595,7 +1654,7 @@ C.8.  Challenges with End-to-End Email Encryption - Jiangshan Yu,
 C.9.  Strengthening the path and strengthening the end-points - Xavier
       Marjou, Emile Stephan, Jean-Michel Combes, Iuniana Oprescu
 
-   09.pdf [48] - Internet data is more and more subject to pervasive
+   09.pdf [46] - Internet data is more and more subject to pervasive
    monitoring.  This paper investigates ways of enhancing this situation
    depending on where such pervasive monitoring may occur.  There are
    two different locations to secure: the endpoints and the path between
@@ -1606,7 +1665,7 @@ C.9.  Strengthening the path and strengthening the end-points - Xavier
 
 C.10.  SIP is Difficult - Jon Peterson
 
-   10.pdf [49] - While SIP is widely used as a protocol for real-time
+   10.pdf [47] - While SIP is widely used as a protocol for real-time
    communications, it is very difficult to secure from pervasive
    monitoring.  In fact, one could argue that SIP's susceptibility to
    mass surveillance was essential to its success in the marketplace.
@@ -1616,16 +1675,15 @@ C.10.  SIP is Difficult - Jon Peterson
 C.11.  Thoughts of Strengthening Network Devices in the Face of
        Pervasive Surveillance - Dacheng Zhang, Fuyou Miao
 
-   11.pdf [50] - The material released by Edward Snowden has raised
-   serious concerns about pervasive surveillance.  People worry that
 
 
-
-Farrell, et al.         Expires October 30, 2014               [Page 29]
+Farrell, et al.         Expires October 30, 2014               [Page 30]
 
 Internet-Draft           STRINT workshop report               April 2014
 
 
+   11.pdf [48] - The material released by Edward Snowden has raised
+   serious concerns about pervasive surveillance.  People worry that
    their privacy is not properly protected when they are using the
    Internet.  Network product vendors also encounter the doubts on the
    security of their products (e.g., routers, switches, firewalls).
@@ -1637,7 +1695,7 @@ Internet-Draft           STRINT workshop report               April 2014
 
 C.12.  Opportunistic Encryption for HTTP URIs - Mark Nottingham
 
-   12.pdf [51] - This is a proposed method for using TLS with http://
+   12.pdf [49] - This is a proposed method for using TLS with http://
    URIs under discussion in the HTTPbis WG, in particular for HTTP/2 but
    also applicable to HTTP/1.  One of the biggest decisions to make is
    whether or not to require the certs to validate in this scenario.
@@ -1645,12 +1703,12 @@ C.12.  Opportunistic Encryption for HTTP URIs - Mark Nottingham
 C.13.  Cyberdefense-Oriented Multilayer Threat Analysis - Yuji Sekiya,
        Daisuke Miyamoto, Hajime Tazaki
 
-   13.pdf [52]
+   13.pdf [50]
 
 C.14.  A Threat Model for Pervasive Passive Surveillance - Brian
        Trammell, Daniel Borkmann, Christian Huitema
 
-   14.pdf [53] - This document elaborates a threat model for pervasive
+   14.pdf [51] - This document elaborates a threat model for pervasive
    surveillance, assuming an adversary with an interest in
    indiscriminate eavesdropping that can passively observe network
    traffic at every layer at every point in the network between the
@@ -1665,23 +1723,28 @@ C.14.  A Threat Model for Pervasive Passive Surveillance - Brian
 C.15.  Why Provable Transparency is Useful Against Surveillance - Ben
        Laurie
 
-   15.pdf [54]
+   15.pdf [52]
+
+
+
+
+
+
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 31]
+
+Internet-Draft           STRINT workshop report               April 2014
+
 
 C.16.  Withheld
 
 C.17.  Monitoring message size to break privacy - Current issues and
        proposed solutions - Alfredo Pironti
 
-   17.pdf [55] - One of the Internet traffic features that can be easily
+   17.pdf [53] - One of the Internet traffic features that can be easily
    collected by passive pervasive monitoring is the size of the
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 30]
-
-Internet-Draft           STRINT workshop report               April 2014
-
-
    exchanged messages, or the total bandwidth used by a conversation.
    Several works have showed that careful analysis of this data can
    break users' expected privacy, even for encrypted traffic.  Despite
@@ -1701,7 +1764,7 @@ C.18.  Withheld
 C.19.  Making The Internet Secure By Default - Michael H. Behringer, Max
        Pritkin, Steinthor Bjarnason
 
-   19.pdf [56] - Pervasive monitoring on the Internet is enabled by the
+   19.pdf [54] - Pervasive monitoring on the Internet is enabled by the
    lack of general, fundamental security.  In his presentation at the
    88th IETF Bruce Schneier called for ubiquitous use of security
    technologies to make pervasive monitoring too expensive and thus
@@ -1721,41 +1784,42 @@ C.19.  Making The Internet Secure By Default - Michael H. Behringer, Max
 C.20.  Increasing HTTP Transport Confidentiality with TLS Based
        Alternate Services - Patrick McManus
 
-   20.pdf [57]
-
-C.21.  Balance - Societal security versus individual liberty - Scott
-       Cadzow
-
-   21.pdf [58]
-
-C.22.  Strengthening the Extensible Messaging and Presence Protocol
-       (XMPP) - Peter Saint-Andre
+   20.pdf [55]
 
 
 
-Farrell, et al.         Expires October 30, 2014               [Page 31]
+
+Farrell, et al.         Expires October 30, 2014               [Page 32]
 
 Internet-Draft           STRINT workshop report               April 2014
 
 
-   22.pdf [59] - This document describes existing and potential future
+C.21.  Balance - Societal security versus individual liberty - Scott
+       Cadzow
+
+   21.pdf [56]
+
+C.22.  Strengthening the Extensible Messaging and Presence Protocol
+       (XMPP) - Peter Saint-Andre
+
+   22.pdf [57] - This document describes existing and potential future
    efforts at strengthening the Extensible Messaging and Presence
    Protocol (XMPP), for discussion at the W3C/IAB workshop on
    Strengthening the Internet Against Pervasive Monitoring (STRINT).
 
 C.23.  The Internet We Want or the Internet We Deserve? - David Rogers
 
-   23.pdf [60]
+   23.pdf [58]
 
 C.24.  Beyond Encrypt Everything: Passive Monitoring - Mark Donnelly,
        Sam Hartman
 
-   24.pdf [61]
+   24.pdf [59]
 
 C.25.  Examining Proxies to Mitigate Pervasive Surveillance - Eliot
        Lear, Barbara Fraser
 
-   25.pdf [62] - The notion of pervasive surveillance assumes that it is
+   25.pdf [60] - The notion of pervasive surveillance assumes that it is
    possible for an attacker to have access to all links and devices
    between end points, as well as end points themselves.  We examine
    this threat is some detail with an eye toward whether trusted
@@ -1769,7 +1833,7 @@ C.25.  Examining Proxies to Mitigate Pervasive Surveillance - Eliot
 C.26.  Spontaneous Wireless Networking to Counter Pervasive Monitoring -
        Emmanuel Baccelli, Oliver Hahm, Matthias Waehlisch
 
-   26.pdf [63] - Several approaches can be employed to counter pervasive
+   26.pdf [61] - Several approaches can be employed to counter pervasive
    monitoring at large scale on the Internet.  One category of
    approaches aims to harden the current Internet architecture and to
    increase the security of high profile targets (data centers, exchange
@@ -1778,6 +1842,14 @@ C.26.  Spontaneous Wireless Networking to Counter Pervasive Monitoring -
    elimination of existing vantage points, thus forcing surveillance
    efforts to be more specific and personalized.  This paper argues how
    networking approaches that do not rely on central entities - but
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 33]
+
+Internet-Draft           STRINT workshop report               April 2014
+
+
    rather on spontaneous interaction, as locally as possible, between
    autonomous peer entities - can help realize target dispersal and thus
    counter pervasive monitoring.
@@ -1785,16 +1857,7 @@ C.26.  Spontaneous Wireless Networking to Counter Pervasive Monitoring -
 C.27.  Is Opportunistic Encryption the Answer?  Practical Benefits and
        Disadvantages - John Mattsson
 
-
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 32]
-
-Internet-Draft           STRINT workshop report               April 2014
-
-
-   27.pdf [64] - In this paper, we give an overview of various
+   27.pdf [62] - In this paper, we give an overview of various
    opportunistic and unauthenticated encryption techniques, and discuss
    their benefits, limits, and disadvantages.  We recommend the Internet
    community to clearly define the term "opportunistic encryption" or to
@@ -1807,7 +1870,7 @@ Internet-Draft           STRINT workshop report               April 2014
 C.28.  Clearing off the Cloud over the Internet of Things - Carsten
        Bormann, Stefanie Gerdes, Olaf Bergmann
 
-   28.pdf [65] - As was foreshadowed by product introductions in 2013,
+   28.pdf [63] - As was foreshadowed by product introductions in 2013,
    the Consumer Electronics Show 2014 has seen the introduction of a
    large number of "Internet of Things" (IoT) innovations.  Almost all
    of these have in common that they are meant to operate via Cloud-
@@ -1823,11 +1886,11 @@ C.29.  Withheld
 C.30.  The Trust-to-Trust Model of Cloud Services - Alissa Cooper,
        Cullen Jennings
 
-   30.pdf [66]
+   30.pdf [64]
 
 C.31.  Linkability Considered Harmful - Leif Johansson
 
-   31.pdf [67] - Current debate on pervasive monitoring often focus on
+   31.pdf [65] - Current debate on pervasive monitoring often focus on
    passive attacks on the protocol and transport layers but even if
    these issues were eliminated through the judicious use of encryption,
    roughly the same information would still be available to an attacker
@@ -1835,21 +1898,21 @@ C.31.  Linkability Considered Harmful - Leif Johansson
    sets which are being maintained by large content and service
    providers.
 
-C.32.  Simple Opportunistic Encryption - Andrea Bittau, Michael Hamburg,
-       Mark Handley, David Mazieres, Dan Boneh
-
-   32.pdf [68] - Network traffic encryption is becoming a requirement,
-   not an option.  Enabling encryption will be a communal effort so a
-   solution that gives partial benefits until fully deployed is needed.
-   A solution that requires little changes to existing infrastructure
 
 
 
-Farrell, et al.         Expires October 30, 2014               [Page 33]
+Farrell, et al.         Expires October 30, 2014               [Page 34]
 
 Internet-Draft           STRINT workshop report               April 2014
 
 
+C.32.  Simple Opportunistic Encryption - Andrea Bittau, Michael Hamburg,
+       Mark Handley, David Mazieres, Dan Boneh
+
+   32.pdf [66] - Network traffic encryption is becoming a requirement,
+   not an option.  Enabling encryption will be a communal effort so a
+   solution that gives partial benefits until fully deployed is needed.
+   A solution that requires little changes to existing infrastructure
    will also help as it can be quickly deployed to give immediate short-
    term benefits.  We argue that tcpcrypt, a TCP option for
    opportunistic encryption is the path of least-resistance for a
@@ -1866,7 +1929,7 @@ Internet-Draft           STRINT workshop report               April 2014
 C.33.  An Architecture for a Secure Cloud Collaboration System - Cullen
        Jennings, Suhas Nandakumar
 
-   33.pdf [69] - The Internet technical community is looking at ways to
+   33.pdf [67] - The Internet technical community is looking at ways to
    address pervasive attacks as described in several other internet
    drafts.  [I-D.barnes-pervasive-problem] describes threat model to
    characterize various pervasive attacks on the Internet
@@ -1883,12 +1946,26 @@ C.33.  An Architecture for a Secure Cloud Collaboration System - Cullen
 
 C.34.  Security and Simplicity - Steven Bellovin
 
-   34.pdf [70]
+   34.pdf [68]
+
+
+
+
+
+
+
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 35]
+
+Internet-Draft           STRINT workshop report               April 2014
+
 
 C.35.  Privacy at the Link Layer - Piers O'Hanlon, Joss Wright, Ian
        Brown
 
-   35.pdf [71] - This paper gives an overview of the privacy issues
+   35.pdf [69] - This paper gives an overview of the privacy issues
    around the use of link layer identifiers and associated protocols.
    Whilst the IETF generally specifies IP level protocols it does also
    address the link layer in protocols such as address resolution,
@@ -1898,14 +1975,6 @@ C.35.  Privacy at the Link Layer - Piers O'Hanlon, Joss Wright, Ian
    effectively personal identifier, allows for unregulated and broad-
    scale tracking of individuals via their personal devices, whether or
    not those devices have made use of a particular service or not.
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 34]
-
-Internet-Draft           STRINT workshop report               April 2014
-
-
    These addresses typically remain unchanged for the lifetime of a
    device, creating a persistent, lifelong tracking capability.  The
    collation of such addresses, primarily WiFi and Bluetooth, has been
@@ -1925,7 +1994,7 @@ Internet-Draft           STRINT workshop report               April 2014
 
 C.36.  Erosion of the moral authority of middleboxes - Joe Hildebrand
 
-   36.pdf [72] - Many middleboxes on the Internet attempt to add value
+   36.pdf [70] - Many middleboxes on the Internet attempt to add value
    to the connections that traverse that point on the network.  Problems
    in their implementations erode the moral authority that otherwise
    might accrue to the legitimate value that they add.
@@ -1933,7 +2002,7 @@ C.36.  Erosion of the moral authority of middleboxes - Joe Hildebrand
 C.37.  Policy Responses, Implications and Opportunities - Joseph Lorenzo
        Hall & Runa Sandvik
 
-   37.pdf [73] - We raise issues for discussion that lie in the
+   37.pdf [71] - We raise issues for discussion that lie in the
    interface between policy and technology.  Specifically, we discuss 1)
    routing, processing and data localization policy mandates (i.e., new
    laws that may affect how data flows through the 'net; 2) the
@@ -1941,6 +2010,14 @@ C.37.  Policy Responses, Implications and Opportunities - Joseph Lorenzo
    given what we've seen with NIST after NSA-coziness allegations; 3)
    the claim that strenghtening the internet and web will "help the bad
    guys" and the dubious need for "lawful intercept" funcationality; and
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 36]
+
+Internet-Draft           STRINT workshop report               April 2014
+
+
    3) abusive content, cryptography as a controlled export technology,
    and the need to standardize more anonymity primitives (onion routing,
    pluggable transport protocols).  We also highlight our own work in
@@ -1950,19 +2027,12 @@ C.37.  Policy Responses, Implications and Opportunities - Joseph Lorenzo
 
 C.38.  Is it time to bring back the hosts file? - Peter Eckersley
 
-   38.pdf [74]
+   38.pdf [72]
 
 C.39.  Metaphors matter; application-layer; distribute more - Larry
        Masinter
 
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 35]
-
-Internet-Draft           STRINT workshop report               April 2014
-
-
-   39.pdf [75] -
+   39.pdf [73] -
 
    1.  Dont say Attack: IETF should stay away from political theatre:
        changing protocols or workflows not because the change works but
@@ -1977,7 +2047,7 @@ Internet-Draft           STRINT workshop report               April 2014
 C.40.  Levels of Opportunistic Privacy Protection for Messaging-Oriented
        Architectures - Dave Crocker, Pete Resnick
 
-   40.pdf [76] - Messaging protection against pervasive monitoring (PM)
+   40.pdf [74] - Messaging protection against pervasive monitoring (PM)
    needs to cover primary payload, descriptive meta-data, and traffic-
    related analysis.  Complete protection against PM, for traffic
    through complex handling sequences, has not yet been achieved
@@ -1989,7 +2059,7 @@ C.40.  Levels of Opportunistic Privacy Protection for Messaging-Oriented
 
 C.41.  Fingerprinting Guidance for Web Specification Authors - Nick Doty
 
-   41.pdf [77] - http://w3c.github.io/fingerprinting-guidance/ [78] -
+   41.pdf [75] - http://w3c.github.io/fingerprinting-guidance/ [76] -
    Exposure of settings and characteristics of browsers can impact user
    privacy by allowing for browser fingerprinting.  This document
    defines different types of fingerprinting, considers distinct levels
@@ -1997,10 +2067,17 @@ C.41.  Fingerprinting Guidance for Web Specification Authors - Nick Doty
    Web specification authors on how to balance these concerns when
    designing new Web features.
 
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 37]
+
+Internet-Draft           STRINT workshop report               April 2014
+
+
 C.42.  Eradicating Bearer Tokens for Session Management - Philippe De
        Ryck, Lieven Desmet, Frank Piessens, Wouter Joosen
 
-   42.pdf [79] - Session management is a crucial component in every
+   42.pdf [77] - Session management is a crucial component in every
    modern web application.  It links multiple requests and temporary
    stateful information together, enabling a rich and interactive user
    experience.  The de facto cookie-based session management mechanism
@@ -2010,14 +2087,6 @@ C.42.  Eradicating Bearer Tokens for Session Management - Philippe De
    sover ession, allowing him to impersonate the user to the target
    application and perform transactions in the user's name.  While
    several alternatives for secure session management exist, they fail
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 36]
-
-Internet-Draft           STRINT workshop report               April 2014
-
-
    to be adopted due to the introduction of additional roundtrips and
    overhead, as well as incompatibility with current Web technologies,
    such as third-party authentication providers, or widely deployed
@@ -2040,17 +2109,31 @@ Internet-Draft           STRINT workshop report               April 2014
 C.43.  STREWS Web-platform security guide: security assessment of the
        Web ecosystem - Martin Johns, Lieven Desmet
 
-   43.pdf [80] - In this document, we report on the Web-platform
+   43.pdf [78] - In this document, we report on the Web-platform
    security guide, which has been developed within the EC-FP7 project
    STREWS.  Based on their research, the STREWS consortium argues that
    in order to strengthening the Internet (e.g. against pervasive
    monitoring), it is crucial to also strengthen the web application
    ecosystem, the de-facto Internet application platform.
 
+
+
+
+
+
+
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 38]
+
+Internet-Draft           STRINT workshop report               April 2014
+
+
 C.44.  Pervasive Attack: A Threat Model and Problem Statement - Richard
        Barnes, Bruce Schneier, Cullen Jennings, Ted Hardie
 
-   44.pdf [81] - Documents published in 2013 have revealed several
+   44.pdf [79] - Documents published in 2013 have revealed several
    classes of "pervasive" attack on Internet communications.  In this
    document, we review the main attacks that have been published, and
    develop a threat model that describes these pervasive attacks.  Based
@@ -2061,25 +2144,17 @@ C.44.  Pervasive Attack: A Threat Model and Problem Statement - Richard
 C.45.  Cryptech - Building a More Assured HSM with a More Assured Tool-
        Chain - Randy Bush
 
-   45.pdf [82]
+   45.pdf [80]
 
 C.46.  Replacing passwords on the Internet AKA post-Snowden
        Opportunistic Encryption - Ben Laurie, Ian Goldberg
 
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 37]
-
-Internet-Draft           STRINT workshop report               April 2014
-
-
-   46.pdf [83]
+   46.pdf [81]
 
 C.47.  End-User Concerns about Pervasive Internet Monitoring: Principles
        and Practice - Tara Whalen, Stuart Cheshire, David Singer
 
-   47.pdf [84] - This position paper will discuss pervasive monitoring
+   47.pdf [82] - This position paper will discuss pervasive monitoring
    on the Internet from the perspective of end users: what are
    overarching concerns around pervasive monitoring, and what are some
    steps that could be taken to address those concerns?  We begin by
@@ -2096,7 +2171,22 @@ C.47.  End-User Concerns about Pervasive Internet Monitoring: Principles
 
 C.48.  Developer-Resistant Cryptography - Kelsey Cairns, Graham Steel
 
-   48.pdf [85] - "Properly implemented strong crypto systems are one of
+
+
+
+
+
+
+
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 39]
+
+Internet-Draft           STRINT workshop report               April 2014
+
+
+   48.pdf [83] - "Properly implemented strong crypto systems are one of
    the few things that you can rely on" - Edward Snowden.  So why is
    mass surveillance so successful?  One (big) problem is endpoint
    security.  Another is that strong crypto systems are sufficiently
@@ -2108,29 +2198,7 @@ C.48.  Developer-Resistant Cryptography - Kelsey Cairns, Graham Steel
 C.49.  Improving the reliability of key ownership assertions - Kai
        Engert
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 38]
-
-Internet-Draft           STRINT workshop report               April 2014
-
-
-   49.pdf [86] - A majority of today's secure Internet connections rely
+   49.pdf [84] - A majority of today's secure Internet connections rely
    on Certificate Authorities not being abused for issueing false
    certificates (key ownership assertions), which might get abused for
    interception purposes, despite the risk of detection.  I suggest to
@@ -2148,12 +2216,12 @@ Internet-Draft           STRINT workshop report               April 2014
 
 C.50.  Mike O'Neill's Position Paper - Mike O'Neill
 
-   50.pdf [87]
+   50.pdf [85]
 
 C.51.  Detecting MITM Attacks on Ephemeral Diffie-Hellman without
        Relying on a PKI in Real-Time Communications - Alan Johnston
 
-   51.pdf [88] - With the recent revelations about pervasive
+   51.pdf [86] - With the recent revelations about pervasive
    surveillance on the Internet, there is renewed interest in techniques
    that protect against passive eavesdropping without relying on a
    Public Key Infrastructure (PKI).  An ephemeral Diffie-Hellman (DH)
@@ -2166,6 +2234,14 @@ C.51.  Detecting MITM Attacks on Ephemeral Diffie-Hellman without
    other real-time communication services.  This paper describes the
    techniques used by ZRTP to detect MitM attacks, and explores whether
    these techniques could be used to develop a general MitM detection
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 40]
+
+Internet-Draft           STRINT workshop report               April 2014
+
+
    protocol to be used by other non-real-time communication protocols.
    An example of how ZRTP can provide MitM detection for another
    protocol, DTLS-SRTP, Datagram Transport Layer Security - Secure Real-
@@ -2174,18 +2250,10 @@ C.51.  Detecting MITM Attacks on Ephemeral Diffie-Hellman without
 C.52.  Trust & Usability on the Web, a Social/Legal perspective - Rigo
        Wenning, Bert Bos
 
-   52.pdf [89] - (1) The browsers' UIs for security are very technical
+   52.pdf [87] - (1) The browsers' UIs for security are very technical
    and seem to avoid saying anything useful, maybe so that the browsers
    and CAs cannot be held responsible. (2) A user wanting to configure
    security has difficulty finding the UI and then often discovers that
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 39]
-
-Internet-Draft           STRINT workshop report               April 2014
-
-
    settings are hard-coded or unclear. (3) The security model is based
    on trusting a few commercial entities and mistrusting the user, who
    ends up without control over his software if one of those entities is
@@ -2197,7 +2265,7 @@ Internet-Draft           STRINT workshop report               April 2014
 C.53.  Hardening Operations and Management Against Passive Eavesdropping
        - Bernard Aboba
 
-   53.pdf [90] - Today within service providers protocols used for
+   53.pdf [88] - Today within service providers protocols used for
    operations and management frequently send data in the clear, enabling
    the data to be collected by passive eavesdroppers.  Examples of
    operations and management protocols include Authentication,
@@ -2214,12 +2282,26 @@ C.53.  Hardening Operations and Management Against Passive Eavesdropping
 
 C.54.  A few theses regarding privacy and security - Andreas Kuckartz
 
-   54.pdf [91]
+   54.pdf [89]
+
+
+
+
+
+
+
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 41]
+
+Internet-Draft           STRINT workshop report               April 2014
+
 
 C.55.  Meet the new threat model, same as the old threat model - Eric
        Rescorla
 
-   55.pdf [92] - The Internet environment has a fairly well understood
+   55.pdf [90] - The Internet environment has a fairly well understood
    threat model.  In general, we assume that the end-systems engaging in
    a protocol exchange have not themselves been compromised.  Protecting
    against an attack when one of the end-systems has been compromised is
@@ -2234,21 +2316,13 @@ C.55.  Meet the new threat model, same as the old threat model - Eric
    onto the wire.  This includes being able to generate packets that
    appear to be from a trusted machine.  Thus, even if the end-system
    with which you wish to communicate is itself secure, the Internet
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 40]
-
-Internet-Draft           STRINT workshop report               April 2014
-
-
    environment provides no assurance that packets which claim to be from
    that system in fact are. - [RFC3552]
 
 C.56.  It's Time for Application-Centric Security - Yuan Gu, Harold
        Johnson
 
-   56.pdf [93] - An 'application' is an organized data/executable-code
+   56.pdf [91] - An 'application' is an organized data/executable-code
    compound performing a specific function or service.  We hold that
    applications should be protected intrinsically (by obfuscated,
    tamper-resistant code and data), as well as extrinsically (by
@@ -2267,44 +2341,39 @@ C.56.  It's Time for Application-Centric Security - Yuan Gu, Harold
 
 C.57.  Sabatini Monatesti position paper - Sabatine Monatesti
 
-   57.pdf [94]
+   57.pdf [92]
 
 C.58.  Trust problems in pervasive monitoring - Melinda Shore, Karen
        O'Donoghue
 
-   58.pdf [95]
-
-C.59.  Beyond "Just TLS Everywhere": From Client-encrypted Messaging to
-       Defending the Social Graph - Harry Halpin, George Danezis
-
-   59.pdf [96]
-
-C.60.  Network Security as a Public Good - Wendy Seltzer
-
-   60.pdf [97] - Network security depends on cooperation of multiple
-   actors in the Internet ecosystem.  Standards consortia should support
-   and help coordinate activity to protect the commons.
 
 
 
-
-
-
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 41]
+Farrell, et al.         Expires October 30, 2014               [Page 42]
 
 Internet-Draft           STRINT workshop report               April 2014
 
 
+   58.pdf [93]
+
+C.59.  Beyond "Just TLS Everywhere": From Client-encrypted Messaging to
+       Defending the Social Graph - Harry Halpin, George Danezis
+
+   59.pdf [94]
+
+C.60.  Network Security as a Public Good - Wendy Seltzer
+
+   60.pdf [95] - Network security depends on cooperation of multiple
+   actors in the Internet ecosystem.  Standards consortia should support
+   and help coordinate activity to protect the commons.
+
 C.61.  Statement of Interest on behalf of the W3C TAG - Dan Appelquist
 
-   61.pdf [98]
+   61.pdf [96]
 
 C.62.  Improving Security on the Internet - Hannes Tschofenig
 
-   62.pdf [99] - Securing the Internet has been an on-going activity
+   62.pdf [97] - Securing the Internet has been an on-going activity
    since the early days of the IETF and a variety of technical
    specifications have been standardized.  Someone reading through IETF
    RFCs might easily get the impression that the Internet should be very
@@ -2320,12 +2389,12 @@ C.62.  Improving Security on the Internet - Hannes Tschofenig
 
 C.63.  Protecting customer data from government snooping - Orit Levin
 
-   63.pdf [100]
+   63.pdf [98]
 
 C.64.  Privacy Aware Internet Development Initiative 2014 - Achim
        Klabunde
 
-   64.pdf [101] - Protecting privacy on the Internet requires more than
+   64.pdf [99] - Protecting privacy on the Internet requires more than
    using encryption.  Protocols, implementations and applications must
    minimise the amount of personal data that is distributed and
    collected.  Work is required to develop and disseminate privacy aware
@@ -2333,10 +2402,18 @@ C.64.  Privacy Aware Internet Development Initiative 2014 - Achim
    paper is a call for interest for an initiative aiming to address this
    need, supported by privacy and technology experts.
 
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 43]
+
+Internet-Draft           STRINT workshop report               April 2014
+
+
 C.65.  The Internet is Broken: Idealistic Ideas for Building a NEWGNU
        Network - Christian Grothoff, Bartlomiej Polot, Carlo von Loesch
 
-   65.pdf [102] - This paper describes issues for security and privacy
+   65.pdf [100] - This paper describes issues for security and privacy
    at all layers of the Internet stack and proposes radical changes to
    the architecture to build a network that offers strong security and
    privacy by default.
@@ -2344,16 +2421,8 @@ C.65.  The Internet is Broken: Idealistic Ideas for Building a NEWGNU
 C.66.  Opportunistic Keying as a Countermeasure to Pervasive Monitoring
        - Stephen Kent
 
-   66.pdf [103] - This document was prepared as part of the IETF
+   66.pdf [101] - This document was prepared as part of the IETF
    response to concerns about "pervasive monitoring" as articulated in
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 42]
-
-Internet-Draft           STRINT workshop report               April 2014
-
-
    [draft-farrell-perpass-attack].  It begins by exploring terminology
    that has been used in IETF standards (and in academic publications)
    to describe encryption and key management techniques, with a focus on
@@ -2370,9 +2439,9 @@ Internet-Draft           STRINT workshop report               April 2014
 
 Appendix D.  Workshop chairs & program committee
 
-   The workshop chairs were three: Stephen Farrell [104] (TCD) and Rigo
-   Wenning [105] (W3C) from the STREWS project, and Hannes Tschofenig
-   [106] (ARM) from the STREWS Interest Group.
+   The workshop chairs were three: Stephen Farrell [102] (TCD) and Rigo
+   Wenning [103] (W3C) from the STREWS project, and Hannes Tschofenig
+   [104] (ARM) from the STREWS Interest Group.
 
    A program committee (PC) was charged with evaluating the submitted
    papers.  It was made up of the members of the STREWS project, the
@@ -2383,6 +2452,19 @@ Appendix D.  Workshop chairs & program committee
    Ben Laurie (Google), Eliot Lear (Cisco), Kenny Paterson (Royal
    Holloway), Eric Rescorla (RTFM), Wendy Seltzer (W3C), Dave Thaler
    (Microsoft) and Sean Turner (IECA).
+
+
+
+
+
+
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 44]
+
+Internet-Draft           STRINT workshop report               April 2014
+
 
 Appendix E.  Participants
 
@@ -2401,14 +2483,6 @@ Appendix E.  Participants
    o  *Emmanuel Baccelli* (INRIA)
 
    o  *Mary Barnes*
-
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 43]
-
-Internet-Draft           STRINT workshop report               April 2014
-
 
    o  *Richard Barnes* (Mozilla)
 
@@ -2440,6 +2514,14 @@ Internet-Draft           STRINT workshop report               April 2014
 
    o  *Dave Crocker* (Brandenburg InternetWorking)
 
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 45]
+
+Internet-Draft           STRINT workshop report               April 2014
+
+
    o  *Leslie Daigle* (Internet Society)
 
    o  *George Danezis* (University College London)
@@ -2457,14 +2539,6 @@ Internet-Draft           STRINT workshop report               April 2014
    o  *Lars Eggert* (NetApp)
 
    o  *Kai Engert* (Red Hat)
-
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 44]
-
-Internet-Draft           STRINT workshop report               April 2014
-
 
    o  *Monika Ermert*
 
@@ -2496,6 +2570,14 @@ Internet-Draft           STRINT workshop report               April 2014
 
    o  *Russ Housley* (Vigil Security, LLC)
 
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 46]
+
+Internet-Draft           STRINT workshop report               April 2014
+
+
    o  *Cullen Jennings* (CISCO)
 
    o  *Leif Johansson* (SUNET)
@@ -2513,14 +2595,6 @@ Internet-Draft           STRINT workshop report               April 2014
    o  *Hans Kuhn* (NOC)
 
    o  *Christian de Larrinaga*
-
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 45]
-
-Internet-Draft           STRINT workshop report               April 2014
-
 
    o  *Ben Laurie* (Google)
 
@@ -2552,6 +2626,14 @@ Internet-Draft           STRINT workshop report               April 2014
 
    o  *Linh Nguyen* (ERCIM/W3C)
 
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 47]
+
+Internet-Draft           STRINT workshop report               April 2014
+
+
    o  *Linus Nordberg* (NORDUnet)
 
    o  *Mark Nottingham*
@@ -2569,14 +2651,6 @@ Internet-Draft           STRINT workshop report               April 2014
    o  *Alfredo Pironti* (INRIA)
 
    o  *Dana Polatin-Reuben* (University of Oxford)
-
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 46]
-
-Internet-Draft           STRINT workshop report               April 2014
-
 
    o  *Prof. Johan Pouwelse* (Delft University of Technology)
 
@@ -2608,6 +2682,14 @@ Internet-Draft           STRINT workshop report               April 2014
 
    o  *Wendy Seltzer* (W3C)
 
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 48]
+
+Internet-Draft           STRINT workshop report               April 2014
+
+
    o  *Melinda Shore* (No Mountain Software)
 
    o  *Dave Thaler* (Microsoft)
@@ -2625,14 +2707,6 @@ Internet-Draft           STRINT workshop report               April 2014
    o  *Rigo Wenning* (W3C)
 
    o  *Tara Whalen* (Apple Inc.)
-
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 47]
-
-Internet-Draft           STRINT workshop report               April 2014
-
 
    o  *Greg Wood* (Internet Society)
 
@@ -2664,6 +2738,14 @@ Authors' Addresses
    Email: rigo@w3.org
 
 
+
+
+
+Farrell, et al.         Expires October 30, 2014               [Page 49]
+
+Internet-Draft           STRINT workshop report               April 2014
+
+
    Bert Bos
    World Wide Web Consortium
    2004, route des Lucioles
@@ -2682,12 +2764,6 @@ Authors' Addresses
 
    Email: Marc.Blanchet@viagenie.ca
    URI:   http://viagenie.ca
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 48]
-
-Internet-Draft           STRINT workshop report               April 2014
 
 
    Hannes Tschofenig
@@ -2721,24 +2797,4 @@ Internet-Draft           STRINT workshop report               April 2014
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Farrell, et al.         Expires October 30, 2014               [Page 49]
+Farrell, et al.         Expires October 30, 2014               [Page 50]
