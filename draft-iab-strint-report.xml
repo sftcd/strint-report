@@ -222,7 +222,7 @@ postamble if the artwork cannot be shown... -->
 	  cookbook-like set of related protocol techniques for developers. 
 		Since the workshop, the IETF's security area has taken up
 		this work, most recently favouring the generic term "Opportunistic
-		Security" <xref target="I-D.kent-opportunistic-security"/>.
+		Security" (OS) <xref target="I-D.kent-opportunistic-security"/>.
 	  </t>
 
 	  <t>The technical community could do better in explaining the
@@ -676,32 +676,35 @@ postamble if the artwork cannot be shown... -->
       <section anchor="comsec-improvements" title="Improving the tools">
 
 	<t>An earlier session discussed why existing COMSEC tools
-	weren't used more. One of the reasons was that they had
-	problems. This second session on COMSEC therefore discussed
-	what improvements were needed.</t>
+	weren't used more. 
+	This second session on COMSEC therefore discussed
+	what improvements and/or new tools were needed.</t>
 
-	<t>An important meta-tool for improving existing security
-	technology is Opportunistic Encryption (OE). The idea behind it is
-	that software is enhanced with a module that tries to encrypt
-	communications when it detects that the other end also has the
-	same module and otherwise just leaves the communication
-	continue in the old way. Similarly, when it has a public key
-	for the server at the other end, it authenticates it,
-	otherwise just encrypts without authentication. It does all
-	this automatically, i.e., no configuration is needed.</t>
+	<t>Discussion at the workshop indicated that an important meta-tool for
+improving existing security technology could be 
+Opportunistic Security (OS).  <xref target="I-D.kent-opportunistic-security"/>.
+The idea is that software is enhanced
+with a module that tries to encrypt communications when it detects that the
+other end also has the same capablility but otherwise leaves the communication
+continue in the old way. The detailed definition of OS is now being
+discussed by the IETF security area. <xref target="saag"/>
+</t>
 
-	<t>Encryption protects against a passive eavesdropper and
-	authentication against an active one (a MITM). As OE spreads,
-	more and more communications will be encrypted (and hopefully
+	<t>OS would protect against a passive eavesdropper but should
+	also allow for endpoint
+	authentication to protect against an active attacker (a MITM). As OS spreads,
+	more and more communications would be encrypted (and hopefully
 	authenticated) and thus there is less and less for an
 	eavesdropper to collect.</t>
 
-	<t>Of course, this can give a false sense of security as well:
-	some connections are encrypted, some are not. A user may see
-	something like the padlock icon in browsers, but it is not
-	sure people actually look at that.</t>
+	<t>Of course, an implementation of OS could give a false sense of security as well:
+	some connections are encrypted, some are not. A user might see
+	something like a padlock icon in browsers, but there was
+	agreement at the workshop that such user interface features
+	ought not be changed because OS is being used.
+	</t>
 
-	<t>And there is the possibility that a MITM intercepts the
+	<t>There is also the possibility that a MITM intercepts the
 	reply from a server that says &ldquo;yes, I can do encryption&rdquo; and
 	removes it, causing the client to fall back to an unencrypted
 	protocol. Mitigations against this can be to have other
@@ -709,7 +712,7 @@ postamble if the artwork cannot be shown... -->
 	remembering that a server could do encryption previously.</t>
 
 	<t>There is also, again, a terminology problem. The technical
-	descriptions of OE talk about &ldquo;silent fail&rdquo; when a connection
+	descriptions of OS talk about &ldquo;silent fail&rdquo; when a connection
 	couldn't be encrypted and has to fall back to the old,
 	unencrypted protocol. Actually, it's not a fail, it's no worse
 	then it was before. A successful encryption would rather be a
@@ -744,12 +747,18 @@ postamble if the artwork cannot be shown... -->
 
 	<t>Encryption and authentication have a cost, in terms of
 	setting them up, but also in terms of the time it takes for
-	software to do the calculations. The setting-up cost can be
-	diminished with sensible defaults, predefined profiles and
-	cut-and-paste configurations. The cost of authentication
-	could, if necessary, be diminished by authenticating only a
+	software to do the calculations. The set-up cost can be
+	reduced with sensible defaults, predefined profiles and
+	cut-and-paste configurations. 
+	
+	<!--
+	SF: I don't remember this and doubt it could work - a MITM would detect it.
+	The cost of authentication
+	could, if necessary, perhaps be diminished by authenticating only a
 	random sample of connections. It is less secure, but still
-	makes things harder for an eavesdropper. And for some
+	makes things harder for an eavesdropper. 
+	-->
+	And for some
 	connections, authentication without encryption could be
 	enough, in the case that the data doesn't need to be kept
 	secret, but it is important to know that it is the real
@@ -764,7 +773,9 @@ postamble if the artwork cannot be shown... -->
 	<t>And it also has to be kept in mind that encrypting only the
 	&ldquo;sensitive&rdquo; data and not the rest decreases the cost for an
 	attacker, too: It becomes easy to know which connections are
-	worth attacking.</t>
+	worth attacking. Selective field confidentiality is also
+	more prone to lead to developer error, as not all developers
+	will know the provenance of values to be processed.</t>
 
 	<t>One problem with the <xref pageno="true" format="none" target="tofu"
 	>TOFU model</xref> as used by SSH (see explanation above) is
@@ -777,12 +788,10 @@ postamble if the artwork cannot be shown... -->
 	improvement in the SSH protocol could thus be a way to
 	transfer a new key to a client in a safe way.</t>
 
-	<t>OE is a way to upgrade old protocols, but it is not a good
-	model for new protocols. New protocols should be designed with
-	the new attack models in mind, and thus with encryption and
-	authentication from the start.</t>
       </section>
+
       <section anchor="metadata" title="Hiding metadata">
+
 	<t>Encryption and authentication help protect the content of
 	messages. Correctly implemented encryption is very hard to
 	crack. (To get the content, an attacker would rather attempt
@@ -860,15 +869,15 @@ postamble if the artwork cannot be shown... -->
 	lower layer than the application layer is difficult. The
 	applications themselves need to pass less data, e.g., use
 	anonymous temporary handles instead of permanent
-	identities. There is often no real need for people to use the
-	same identity on different computers (smartphone, desktop,
+	identifiers. There is often no real need for people to use the
+	same identifier on different computers (smartphone, desktop,
 	etc.) other than that the application they use was designed
 	that way.</t>
 
 	<t>One thing that can be done relatively easily in the short
-	term is going through existing protocols and check what data
-	they send that isn't really necessary. One candidate for such
-	a study is SNMP.</t>
+	term is going through existing protocols to check what data
+	they send that isn't really necessary. One candidate mentioned for such
+	a study was XMPP.</t>
 
 	<t><spanx style="emph">Fingerprinting</spanx> is the process
 	of distinguishing different senders of messages based on
@@ -908,27 +917,26 @@ postamble if the artwork cannot be shown... -->
 	well, and not actually make messages easier to recognise
 	rather than harder.</t>
 
-	<t>The practice of protocol design is already changing to give
-	security equal priority to bandwidth and latency.</t>
-
 	<t>Different users in different contexts may have different
 	security needs, so maybe the priority can be a user
 	choice. (If that can be done without making high-security
 	users stand out from other users.) Although many people would
 	not understand what their choices are, some do, such as
 	political activists or journalists.</t>
+
       </section>
+
       <section anchor="deployment"
 	title="Deployment, intermediaries and middleboxes">
+
 	<t>Secure protocols have often been designed in the past for
 	end-to-end security: Intermediaries cannot read or modify the
-	messages. This is the model behind TLS and IPSec, e.g.</t>
+	messages. This is the model behind TLS for example.</t>
 
 	<t>But in practice people have more or less valid reasons to
 	insist on intermediaries: companies filtering incoming and
 	outgoing traffic for viruses or other reasons, giving priority
-	to certain communications, caching to reduce bandwidth,
-	etc.</t>
+	to certain communications or caching to reduce bandwidth.</t>
 
 	<t>In the presence of end-to-end encryption and
 	authentication, these intermediaries have two choices: using
@@ -947,19 +955,20 @@ postamble if the artwork cannot be shown... -->
 	format="none" target="collaborator" >collaborator</xref>.</t>
 
 	<t>The way Web communication with TLS typically works is that
-	the client authenticates the server, but the server not the
-	client. (If the client needs to be identified, that is rather
+	the client authenticates the server, but the server does not 
+	authenticate the
+	client at the TLS layer. (If the client needs to be identified, that is mainly
 	done at the application layer via passwords or cookies.) Thus
-	the presence of a MITM (middlebox) can be detected by the
+	the presence of a MITM (middlebox) could be detected by the
 	client (because of the incorrect certificate), but not by the
 	server. If the client doesn't immediately close the
-	connection, the server may thus disclose information that the
-	client would rather not have disclosed.</t>
+	connection, (which they do not in many cases), the server may thus disclose information that the
+	user would rather not have disclosed.</t>
 
 	<t>One widespread example of middleboxes is captive portals,
 	as found on the wifi hotspots in hotels, airports, etc. Even
-	the ones that are free often still intercept communications
-	and try to redirect them to a login page.</t>
+	the hotspots offering free access often intercept communications
+	to redirect the user to a login or policy page.</t>
 
 	<t>When the communication they intercept is, e.g., the
 	automatic update of your calendar program or a chat session,
@@ -967,10 +976,10 @@ postamble if the artwork cannot be shown... -->
 	know how to display a Web page. With the increasing use of
 	apps, it may be a while before the user actually opens a
 	browser. The flood of error messages may also have as a result
-	that the user no longer reads them, allowing an actual,
+	that the user no longer reads the errors, allowing an actual
 	malicious attack to go unnoticed.</t>
 
-	<t>Some operating systems, such as those from Apple, now come
+	<t>Some operating systems now come
 	with heuristics that try to recognise captive portals and
 	either automatically login or show their login page in a
 	separate application. (But some hotspot providers apparently
@@ -997,17 +1006,24 @@ postamble if the artwork cannot be shown... -->
 	This is typically because the owner doesn't know how to
 	reconfigure the hotspot, but he does know how to change the
 	price in his cash register&hellip;</t>
+
       </section>
+
+
       <section anchor="research" title="Break-out 1 &ndash; research">
+
+	<!--
 	<t><cref anchor="break-out-1" source="Bert">Who has a summary
 	for the session of the challenge of connecting academics and
 	standards bodies</cref></t>
+	-->
+
     <t>
       Despite some requests earlier in the workshop, the research 
-      break-out did not discuss about clean-slate approaches. The 
+      break-out did not discuss clean-slate approaches. The 
       challenge was rather that the relation between security research
       and standardisation needs improvement. Research on linkability is 
-      not yet well known in the IETF. But the other side of the medal 
+      not yet well known in the IETF. But the other side of the coin 
       needs improvement too: While doing protocol design, 
       standardisation should indicate what specific problems are in 
       need of more research. 
@@ -1361,6 +1377,15 @@ target="https://community.qualys.com/blogs/securitylabs/2012/09/14/crime
       </reference>
 	
 
+      <reference anchor="saag"
+	target="https://www.ietf.org/mail-archive/web/saag/current/maillist.html">
+	<front>
+	  <title>IETF Security Area mailing list</title>
+	  <author initials="S." surname="Area" fullname="Security Area">
+	  </author>
+	  <date day="10" month="March" year="2014"/>
+	</front>
+      </reference>
 
       <reference anchor="Arkko1"
 	target="http://www.ietf.org/blog/2014/03/ietf-89-summary/">

@@ -59,7 +59,7 @@
 <li><a href="#after"><span class="secno">6. </span>After the workshop</a></li>
 <li><a href="#conclusions"><span class="secno">7. </span>Conclusions and recommendations</a></li>
 <li><a href="#Security"><span class="secno">8. </span>Security considerations</a></li>
-<li><a href="#idm3993120"><span class="secno">9. </span>Informative references</a></li>
+<li><a href="#idm3991136"><span class="secno">9. </span>Informative references</a></li>
 <li><a href="#logistics"><span class="secno">Appendix A. </span>Logistics</a></li>
 <li><a href="#agenda"><span class="secno">Appendix B. </span>Agenda</a></li>
 <li><a href="#papers"><span class="secno">Appendix C. </span>The submitted papers</a></li>
@@ -143,7 +143,7 @@
 	  cookbook-like set of related protocol techniques for developers. 
 		Since the workshop, the IETF's security area has taken up
 		this work, most recently favouring the generic term "Opportunistic
-		Security" <a href="#I-D.kent-opportunistic-security">[I-D.kent-opportunistic-security]</a>.
+		Security" (OS) <a href="#I-D.kent-opportunistic-security">[I-D.kent-opportunistic-security]</a>.
 	  </li>
 <li>The technical community could do better in explaining the
 	  real technical downsides related to PM in terms that policy makers
@@ -461,35 +461,37 @@
 <h3>
 <span class="secno">5.5. </span>Improving the tools</h3>
 <p>An earlier session discussed why existing COMSEC tools
-	weren't used more. One of the reasons was that they had
-	problems. This second session on COMSEC therefore discussed
-	what improvements were needed.</p>
-<p>An important meta-tool for improving existing security
-	technology is Opportunistic Encryption (OE). The idea behind it is
-	that software is enhanced with a module that tries to encrypt
-	communications when it detects that the other end also has the
-	same module and otherwise just leaves the communication
-	continue in the old way. Similarly, when it has a public key
-	for the server at the other end, it authenticates it,
-	otherwise just encrypts without authentication. It does all
-	this automatically, i.e., no configuration is needed.</p>
-<p>Encryption protects against a passive eavesdropper and
-	authentication against an active one (a MITM). As OE spreads,
-	more and more communications will be encrypted (and hopefully
+	weren't used more. 
+	This second session on COMSEC therefore discussed
+	what improvements and/or new tools were needed.</p>
+<p>Discussion at the workshop indicated that an important meta-tool for
+improving existing security technology could be 
+Opportunistic Security (OS).  <a href="#I-D.kent-opportunistic-security">[I-D.kent-opportunistic-security]</a>.
+The idea is that software is enhanced
+with a module that tries to encrypt communications when it detects that the
+other end also has the same capablility but otherwise leaves the communication
+continue in the old way. The detailed definition of OS is now being
+discussed by the IETF security area. <a href="#saag">[saag]</a></p>
+<p>OS would protect against a passive eavesdropper but should
+	also allow for endpoint
+	authentication to protect against an active attacker (a MITM). As OS spreads,
+	more and more communications would be encrypted (and hopefully
 	authenticated) and thus there is less and less for an
 	eavesdropper to collect.</p>
-<p>Of course, this can give a false sense of security as well:
-	some connections are encrypted, some are not. A user may see
-	something like the padlock icon in browsers, but it is not
-	sure people actually look at that.</p>
-<p>And there is the possibility that a MITM intercepts the
+<p>Of course, an implementation of OS could give a false sense of security as well:
+	some connections are encrypted, some are not. A user might see
+	something like a padlock icon in browsers, but there was
+	agreement at the workshop that such user interface features
+	ought not be changed because OS is being used.
+	</p>
+<p>There is also the possibility that a MITM intercepts the
 	reply from a server that says “yes, I can do encryption” and
 	removes it, causing the client to fall back to an unencrypted
 	protocol. Mitigations against this can be to have other
 	channels of finding out a server's capabilities and
 	remembering that a server could do encryption previously.</p>
 <p>There is also, again, a terminology problem. The technical
-	descriptions of OE talk about “silent fail” when a connection
+	descriptions of OS talk about “silent fail” when a connection
 	couldn't be encrypted and has to fall back to the old,
 	unencrypted protocol. Actually, it's not a fail, it's no worse
 	then it was before. A successful encryption would rather be a
@@ -520,12 +522,12 @@
 	on the other hand, could actually solve the problem.</p>
 <p>Encryption and authentication have a cost, in terms of
 	setting them up, but also in terms of the time it takes for
-	software to do the calculations. The setting-up cost can be
-	diminished with sensible defaults, predefined profiles and
-	cut-and-paste configurations. The cost of authentication
-	could, if necessary, be diminished by authenticating only a
-	random sample of connections. It is less secure, but still
-	makes things harder for an eavesdropper. And for some
+	software to do the calculations. The set-up cost can be
+	reduced with sensible defaults, predefined profiles and
+	cut-and-paste configurations. 
+	
+	
+	And for some
 	connections, authentication without encryption could be
 	enough, in the case that the data doesn't need to be kept
 	secret, but it is important to know that it is the real
@@ -538,7 +540,9 @@
 <p>And it also has to be kept in mind that encrypting only the
 	“sensitive” data and not the rest decreases the cost for an
 	attacker, too: It becomes easy to know which connections are
-	worth attacking.</p>
+	worth attacking. Selective field confidentiality is also
+	more prone to lead to developer error, as not all developers
+	will know the provenance of values to be processed.</p>
 <p>One problem with the <a href="#tofu" class="pageno">TOFU model</a> as used by SSH (see explanation above) is
 	that it lacks a solution for key continuity: When a key is
 	changed (which can happen e.g., when a server is replaced or
@@ -548,10 +552,6 @@
 	that doesn't scale and doesn't always happen either.) An
 	improvement in the SSH protocol could thus be a way to
 	transfer a new key to a client in a safe way.</p>
-<p>OE is a way to upgrade old protocols, but it is not a good
-	model for new protocols. New protocols should be designed with
-	the new attack models in mind, and thus with encryption and
-	authentication from the start.</p>
 </div>
 <div id="metadata" class="section">
 <h3>
@@ -624,14 +624,14 @@
 	lower layer than the application layer is difficult. The
 	applications themselves need to pass less data, e.g., use
 	anonymous temporary handles instead of permanent
-	identities. There is often no real need for people to use the
-	same identity on different computers (smartphone, desktop,
+	identifiers. There is often no real need for people to use the
+	same identifier on different computers (smartphone, desktop,
 	etc.) other than that the application they use was designed
 	that way.</p>
 <p>One thing that can be done relatively easily in the short
-	term is going through existing protocols and check what data
-	they send that isn't really necessary. One candidate for such
-	a study is SNMP.</p>
+	term is going through existing protocols to check what data
+	they send that isn't really necessary. One candidate mentioned for such
+	a study was XMPP.</p>
 <p><em>Fingerprinting</em> is the process
 	of distinguishing different senders of messages based on
 	metadata: Clients can be recognised (or at least grouped)
@@ -663,8 +663,6 @@
 	mechanism. However, it is not so easy to use these techniques
 	well, and not actually make messages easier to recognise
 	rather than harder.</p>
-<p>The practice of protocol design is already changing to give
-	security equal priority to bandwidth and latency.</p>
 <p>Different users in different contexts may have different
 	security needs, so maybe the priority can be a user
 	choice. (If that can be done without making high-security
@@ -677,12 +675,11 @@
 <span class="secno">5.7. </span>Deployment, intermediaries and middleboxes</h3>
 <p>Secure protocols have often been designed in the past for
 	end-to-end security: Intermediaries cannot read or modify the
-	messages. This is the model behind TLS and IPSec, e.g.</p>
+	messages. This is the model behind TLS for example.</p>
 <p>But in practice people have more or less valid reasons to
 	insist on intermediaries: companies filtering incoming and
 	outgoing traffic for viruses or other reasons, giving priority
-	to certain communications, caching to reduce bandwidth,
-	etc.</p>
+	to certain communications or caching to reduce bandwidth.</p>
 <p>In the presence of end-to-end encryption and
 	authentication, these intermediaries have two choices: using
 	fake certificates to impersonate the endpoints or having
@@ -697,27 +694,28 @@
 	not concentrated physically in one place, but is under control
 	of a single legal entity that can be made into a <a href="#collaborator" class="pageno">collaborator</a>.</p>
 <p>The way Web communication with TLS typically works is that
-	the client authenticates the server, but the server not the
-	client. (If the client needs to be identified, that is rather
+	the client authenticates the server, but the server does not 
+	authenticate the
+	client at the TLS layer. (If the client needs to be identified, that is mainly
 	done at the application layer via passwords or cookies.) Thus
-	the presence of a MITM (middlebox) can be detected by the
+	the presence of a MITM (middlebox) could be detected by the
 	client (because of the incorrect certificate), but not by the
 	server. If the client doesn't immediately close the
-	connection, the server may thus disclose information that the
-	client would rather not have disclosed.</p>
+	connection, (which they do not in many cases), the server may thus disclose information that the
+	user would rather not have disclosed.</p>
 <p>One widespread example of middleboxes is captive portals,
 	as found on the wifi hotspots in hotels, airports, etc. Even
-	the ones that are free often still intercept communications
-	and try to redirect them to a login page.</p>
+	the hotspots offering free access often intercept communications
+	to redirect the user to a login or policy page.</p>
 <p>When the communication they intercept is, e.g., the
 	automatic update of your calendar program or a chat session,
 	the redirect obviously doesn't work: these applications don't
 	know how to display a Web page. With the increasing use of
 	apps, it may be a while before the user actually opens a
 	browser. The flood of error messages may also have as a result
-	that the user no longer reads them, allowing an actual,
+	that the user no longer reads the errors, allowing an actual
 	malicious attack to go unnoticed.</p>
-<p>Some operating systems, such as those from Apple, now come
+<p>Some operating systems now come
 	with heuristics that try to recognise captive portals and
 	either automatically login or show their login page in a
 	separate application. (But some hotspot providers apparently
@@ -969,13 +967,13 @@
 <h2>
 <span class="secno">8. </span>Security considerations</h2>
 <p>This document does not define a technology.</p>
-<div id="idm3999600" class="figure">
+<div id="idm3997616" class="figure">
 <p><img src="https://www.w3.org/2014/strint/lib/workshop-6" alt="(foto: view from the back of the room)"><span class="credit"><a href="http://www.stonehousephotographic.com/">©
 	Stonehouse Photographic</a></span></p>
 <p>Plenary.</p>
 </div>
 </div>
-<div class="section" id="idm3993120">
+<div class="section" id="idm3991136">
 <h2>
 <span class="secno">9. </span>Informative references</h2>
 <dl>
@@ -1009,6 +1007,8 @@
 <dd>Chris Evans, Chris Palmer, Ryan Sleevi, <a><em>Public Key Pinning Extension for HTTP.</em></a> 8 February 2014. <a href="http://tools.ietf.org/html/draft-ietf-websec-key-pinning-11">TXT</a> (Work in progress.)</dd>
 <dt id="w3c-geo-api">[w3c-geo-api]</dt>
 <dd>Andrei Popescu, <a href="http://www.w3.org/TR/geolocation-API/"><em>Geolocation API Specification.</em></a> 24 October 2013. </dd>
+<dt id="saag">[saag]</dt>
+<dd>Security Area, <a href="https://www.ietf.org/mail-archive/web/saag/current/maillist.html"><em>IETF Security Area mailing list.</em></a> 10 March 2014. </dd>
 <dt id="Arkko1">[Arkko1]</dt>
 <dd>Jari Arkko, <a href="http://www.ietf.org/blog/2014/03/ietf-89-summary/"><em>IETF-89 Summary.</em></a> 10 March 2014. </dd>
 <dt id="draft-pouwelse-perpass-shadow-internet">[draft-pouwelse-perpass-shadow-internet]</dt>
@@ -1131,7 +1131,7 @@
 <dt>19:00</dt>
 <dd>Social event</dd>
 </dl>
-<div id="idm3758624" class="figure">
+<div id="idm3752400" class="figure">
 <p><img src="https://www.w3.org/2014/strint/lib/workshop-4" alt="(foto: people around a big table)"><span class="credit"><a href="http://www.stonehousephotographic.com/">©
 	  Stonehouse Photographic</a></span></p>
 <p>Break out.</p>
@@ -1216,7 +1216,7 @@
 <dt>17:15</dt>
 <dd>End</dd>
 </dl>
-<div id="idm3724448" class="figure">
+<div id="idm3718208" class="figure">
 <p><img src="https://www.w3.org/2014/strint/lib/workshop-5" alt="(foto: the back of somebody looking    at a whiteboard full of text and arrows)"><span class="credit"><a href="http://www.stonehousephotographic.com/">©
 	  Stonehouse Photographic</a></span></p>
 <p>Whiteboard notes.</p>
@@ -1232,7 +1232,7 @@
       abstracts were provided by the authors themselves. (We set up an
       <a href="https://strint.pads.ccc.de/1">editable page
       (“Etherpad”)</a> where the authors could insert them.)</p>
-<div id="idm3714528" class="section">
+<div id="idm3708240" class="section">
 <h3>
 <span class="secno">Appendix C.1. </span>Privacy Protected Email – Phillip Hallam-Baker</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/01.pdf">01.pdf</a> –
@@ -1248,7 +1248,7 @@
 	people generate keys for their email we can secure chat,
 	video, 2-factor authentication as well.</p>
 </div>
-<div id="idm3711984" class="section">
+<div id="idm3705696" class="section">
 <h3>
 <span class="secno">Appendix C.2. </span>Opportunistic Encryption for MPLS – Stephen Farrell, Adrian Farrrell</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/02.pdf">02.pdf</a> –
@@ -1264,7 +1264,7 @@
 	I'd be interested in whether or not (b) is tractable (I'm not
 	sure).</p>
 </div>
-<div id="idm3709296" class="section">
+<div id="idm3703008" class="section">
 <h3>
 <span class="secno">Appendix C.3. </span>Overcoming the Friend-or-Foe Paradigm in Secure Communication – Sebastian Gajek, Jan Seedorf, Marc Fischlin, Oezguer Dagdalen</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/03.pdf">03.pdf</a> –
@@ -1283,7 +1283,7 @@
 	Communication” exists and we think it is feasible to extend
 	TLS in this way in a reasonable timeframe.</p>
 </div>
-<div id="idm3706224" class="section">
+<div id="idm3699936" class="section">
 <h3>
 <span class="secno">Appendix C.4. </span>Flows and Pervasive Monitoring – Ted Hardie</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/04.pdf">04.pdf</a> –
@@ -1296,7 +1296,7 @@
 	pervasive monitoring and the related consequences for network
 	operations.</p>
 </div>
-<div id="idm3703840" class="section">
+<div id="idm3697552" class="section">
 <h3>
 <span class="secno">Appendix C.5. </span>BetterCrypto.org Applied Crypto Hardening – Aaron Zauner, L. Aaron Kaplan</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/05.pdf">05.pdf</a> –
@@ -1311,7 +1311,7 @@
 	operations community that needs to deploy sound security on
 	the public internet. Our focus group: sysadmins / ops.</p>
 </div>
-<div id="idm3701152" class="section">
+<div id="idm3694864" class="section">
 <h3>
 <span class="secno">Appendix C.6. </span>A Complimentary Analysis (The Danger Of The New Internet Choke Points) – Andrei Robachevsky, Christine Runnegar, Karen O'Donoghue, Mat Ford</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/06.pdf">06.pdf</a> –
@@ -1335,7 +1335,7 @@
 	some significant areas of tension or trade-offs, and we
 	consider possible areas for additional efforts.  Also: <a href="http://www.internetsociety.org/blog/tech-matters/2014/02/danger-new-internet-choke-points">danger-new-internet-choke-points</a> and <a href="http://www.circleid.com/posts/20140218_mind_the_step_function_are_we_really_less_secure_than_a_year_ago/">mind_the_step_function</a></p>
 </div>
-<div id="idm3696560" class="section">
+<div id="idm3690272" class="section">
 <h3>
 <span class="secno">Appendix C.7. </span>Trust Issues with Opportunistic Encryption – Scott Rose, Stephen Nightingale, Doug Montgomery</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/07.pdf">07.pdf</a> –
@@ -1352,7 +1352,7 @@
 	while opportunistic encryption can solve one set of problems,
 	authentication is often desired by end users.</p>
 </div>
-<div id="idm3693504" class="section">
+<div id="idm3687216" class="section">
 <h3>
 <span class="secno">Appendix C.8. </span>Challenges with End-to-End Email Encryption – Jiangshan Yu, Vincent Cheval, Mark Ryan</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/08.pdf">08.pdf</a> –
@@ -1366,7 +1366,7 @@
 	concerns i.e. metadata protection, key loss mitigation, spam
 	detection, and the security of webmail.</p>
 </div>
-<div id="idm3690928" class="section">
+<div id="idm3684640" class="section">
 <h3>
 <span class="secno">Appendix C.9. </span>Strengthening the path and strengthening the end-points – Xavier Marjou, Emile Stephan, Jean-Michel Combes, Iuniana Oprescu</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/09.pdf">09.pdf</a> –
@@ -1380,7 +1380,7 @@
 	contradict security's two other pillars, which are
 	availability and integrity.</p>
 </div>
-<div id="idm3688496" class="section">
+<div id="idm3682208" class="section">
 <h3>
 <span class="secno">Appendix C.10. </span>SIP is Difficult – Jon Peterson</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/10.pdf">10.pdf</a> –
@@ -1392,7 +1392,7 @@
 	open for eavesdropping, and what lessons RTCWeb could learn
 	from this.</p>
 </div>
-<div id="idm3686064" class="section">
+<div id="idm3679776" class="section">
 <h3>
 <span class="secno">Appendix C.11. </span>Thoughts of Strengthening Network Devices in  the Face of Pervasive Surveillance – Dacheng Zhang, Fuyou  Miao</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/11.pdf">11.pdf</a> –
@@ -1408,7 +1408,7 @@
 	organization can do to help vendors address these security
 	concerns.</p>
 </div>
-<div id="idm3683536" class="section">
+<div id="idm3677248" class="section">
 <h3>
 <span class="secno">Appendix C.12. </span>Opportunistic Encryption for HTTP URIs –  Mark Nottingham</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/12.pdf">12.pdf</a> –
@@ -1418,12 +1418,12 @@
 	make is whether or not to require the certs to validate in
 	this scenario.</p>
 </div>
-<div id="idm3681184" class="section">
+<div id="idm3674896" class="section">
 <h3>
 <span class="secno">Appendix C.13. </span>Cyberdefense-Oriented Multilayer Threat  Analysis – Yuji Sekiya, Daisuke Miyamoto, Hajime Tazaki</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/13.pdf">13.pdf</a></p>
 </div>
-<div id="idm3679360" class="section">
+<div id="idm3673072" class="section">
 <h3>
 <span class="secno">Appendix C.14. </span>A Threat Model for Pervasive Passive  Surveillance – Brian Trammell, Daniel Borkmann, Christian  Huitema</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/14.pdf">14.pdf</a> –
@@ -1441,14 +1441,14 @@
 	identifiers can increase protocol-level resistance to
 	pervasive surveillance.</p>
 </div>
-<div id="idm3676704" class="section">
+<div id="idm3670416" class="section">
 <h3>
 <span class="secno">Appendix C.15. </span>Why Provable Transparency is Useful Against  Surveillance – Ben Laurie</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/15.pdf">15.pdf</a></p>
 </div>
-<div id="idm3675040" class="section"><h3>
+<div id="idm3668752" class="section"><h3>
 <span class="secno">Appendix C.16. </span>Withheld</h3></div>
-<div id="idm3673888" class="section">
+<div id="idm3667600" class="section">
 <h3>
 <span class="secno">Appendix C.17. </span>Monitoring message size to break privacy –  Current issues and proposed solutions – Alfredo Pironti</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/17.pdf">17.pdf</a> –
@@ -1469,9 +1469,9 @@
 	such as required developer awareness, ease of deployment,
 	efficiency, and interaction with other countermeasures.</p>
 </div>
-<div id="idm3670736" class="section"><h3>
+<div id="idm3664448" class="section"><h3>
 <span class="secno">Appendix C.18. </span>Withheld</h3></div>
-<div id="idm3669648" class="section">
+<div id="idm3663360" class="section">
 <h3>
 <span class="secno">Appendix C.19. </span>Making The Internet Secure By Default –  Michael H. Behringer, Max Pritkin, Steinthor Bjarnason</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/19.pdf">19.pdf</a> –
@@ -1494,17 +1494,17 @@
 	proposal is evolutionary and allows a smooth migration from
 	today's Internet technology, device by device.</p>
 </div>
-<div id="idm3666496" class="section">
+<div id="idm3659120" class="section">
 <h3>
 <span class="secno">Appendix C.20. </span>Increasing HTTP Transport Confidentiality  with TLS Based Alternate Services – Patrick McManus</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/20.pdf">20.pdf</a></p>
 </div>
-<div id="idm3664528" class="section">
+<div id="idm3657152" class="section">
 <h3>
 <span class="secno">Appendix C.21. </span>Balance – Societal security versus  individual liberty – Scott Cadzow</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/21.pdf">21.pdf</a></p>
 </div>
-<div id="idm3662464" class="section">
+<div id="idm3655088" class="section">
 <h3>
 <span class="secno">Appendix C.22. </span>Strengthening the Extensible Messaging and  Presence Protocol (XMPP) – Peter Saint-Andre</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/22.pdf">22.pdf</a> –
@@ -1514,17 +1514,17 @@
 	Strengthening the Internet Against Pervasive Monitoring
 	(STRINT).</p>
 </div>
-<div id="idm3660144" class="section">
+<div id="idm3652768" class="section">
 <h3>
 <span class="secno">Appendix C.23. </span>The Internet We Want or the Internet We  Deserve? – David Rogers</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/23.pdf">23.pdf</a></p>
 </div>
-<div id="idm3658128" class="section">
+<div id="idm3650752" class="section">
 <h3>
 <span class="secno">Appendix C.24. </span>Beyond Encrypt Everything: Passive  Monitoring – Mark Donnelly, Sam Hartman</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/24.pdf">24.pdf</a></p>
 </div>
-<div id="idm3656032" class="section">
+<div id="idm3648656" class="section">
 <h3>
 <span class="secno">Appendix C.25. </span>Examining Proxies to Mitigate Pervasive  Surveillance – Eliot Lear, Barbara Fraser</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/25.pdf">25.pdf</a> – The notion of pervasive surveillance
@@ -1539,7 +1539,7 @@
 	one threat analysis. Finally we summarize in a set of four
 	principles that should be considered in future work.</p>
 </div>
-<div id="idm3653232" class="section">
+<div id="idm3645856" class="section">
 <h3>
 <span class="secno">Appendix C.26. </span>Spontaneous Wireless Networking to Counter  Pervasive Monitoring – Emmanuel Baccelli, Oliver Hahm,  Matthias Waehlisch</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/26.pdf">26.pdf</a> – Several approaches can be employed to
@@ -1557,7 +1557,7 @@
 	entities – can help realize target dispersal and thus counter
 	pervasive monitoring.</p>
 </div>
-<div id="idm3650432" class="section">
+<div id="idm3643056" class="section">
 <h3>
 <span class="secno">Appendix C.27. </span>Is Opportunistic Encryption the Answer?  Practical Benefits and Disadvantages – John Mattsson</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/27.pdf">27.pdf</a> –
@@ -1572,7 +1572,7 @@
 	encryption is not an effective way to thwart pervasive
 	monitoring.</p>
 </div>
-<div id="idm3647872" class="section">
+<div id="idm3640496" class="section">
 <h3>
 <span class="secno">Appendix C.28. </span>Clearing off the Cloud over the Internet of  Things – Carsten Bormann, Stefanie Gerdes, Olaf Bergmann</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/28.pdf">28.pdf</a> –
@@ -1588,14 +1588,14 @@
 	of principles as a program to improve the long-term
 	outlook.</p>
 </div>
-<div id="idm3645472" class="section"><h3>
+<div id="idm3638096" class="section"><h3>
 <span class="secno">Appendix C.29. </span>Withheld</h3></div>
-<div id="idm3644496" class="section">
+<div id="idm3637120" class="section">
 <h3>
 <span class="secno">Appendix C.30. </span>The Trust-to-Trust Model of Cloud Services –  Alissa Cooper, Cullen Jennings</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/30.pdf">30.pdf</a></p>
 </div>
-<div id="idm3642400" class="section">
+<div id="idm3635024" class="section">
 <h3>
 <span class="secno">Appendix C.31. </span>Linkability Considered Harmful – Leif  Johansson</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/31.pdf">31.pdf</a> –
@@ -1607,7 +1607,7 @@
 	obtain access to linked data sets which are being maintained
 	by large content and service providers.</p>
 </div>
-<div id="idm3639856" class="section">
+<div id="idm3632480" class="section">
 <h3>
 <span class="secno">Appendix C.32. </span>Simple Opportunistic Encryption – Andrea  Bittau, Michael Hamburg, Mark Handley, David Mazieres, Dan  Boneh</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/32.pdf">32.pdf</a> –
@@ -1630,7 +1630,7 @@
 	and so it is a complete solution both for the short-term and
 	long-term.</p>
 </div>
-<div id="idm3636784" class="section">
+<div id="idm3629408" class="section">
 <h3>
 <span class="secno">Appendix C.33. </span>An Architecture for a Secure Cloud  Collaboration System – Cullen Jennings, Suhas Nandakumar</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/33.pdf">33.pdf</a> –
@@ -1651,12 +1651,12 @@
 	talking to who but can help protect the content of the
 	conversations.</p>
 </div>
-<div id="idm3633968" class="section">
+<div id="idm3625664" class="section">
 <h3>
 <span class="secno">Appendix C.34. </span>Security and Simplicity – Steven Bellovin</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/34.pdf">34.pdf</a></p>
 </div>
-<div id="idm3632224" class="section">
+<div id="idm3623920" class="section">
 <h3>
 <span class="secno">Appendix C.35. </span>Privacy at the Link Layer – Piers O'Hanlon,  Joss Wright, Ian Brown</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/35.pdf">35.pdf</a> –
@@ -1688,7 +1688,7 @@
 <p>All these mechanisms need to be re-examined in the light of
 	pervasive monitoring.</p>
 </div>
-<div id="idm3627552" class="section">
+<div id="idm3619248" class="section">
 <h3>
 <span class="secno">Appendix C.36. </span>Erosion of the moral authority of  middleboxes – Joe Hildebrand</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/36.pdf">36.pdf</a> –
@@ -1698,7 +1698,7 @@
 	authority that otherwise might accrue to the legitimate value
 	that they add.</p>
 </div>
-<div id="idm3625328" class="section">
+<div id="idm3617024" class="section">
 <h3>
 <span class="secno">Appendix C.37. </span>Policy Responses, Implications and  Opportunities – Joseph Lorenzo Hall &amp; Runa Sandvik</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/37.pdf">37.pdf</a> –
@@ -1719,12 +1719,12 @@
 	over the past year, focusing on software backdoors and NSA
 	surviellance.</p>
 </div>
-<div id="idm3622400" class="section">
+<div id="idm3614096" class="section">
 <h3>
 <span class="secno">Appendix C.38. </span>Is it time to bring back the hosts file? –  Peter Eckersley</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/38.pdf">38.pdf</a></p>
 </div>
-<div id="idm3620640" class="section">
+<div id="idm3612336" class="section">
 <h3>
 <span class="secno">Appendix C.39. </span>Metaphors matter; application-layer;  distribute more – Larry Masinter</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/39.pdf">39.pdf</a> –
@@ -1742,7 +1742,7 @@
 	    to mesh.</li>
 </ol>
 </div>
-<div id="idm3616176" class="section">
+<div id="idm3607872" class="section">
 <h3>
 <span class="secno">Appendix C.40. </span>Levels of Opportunistic Privacy Protection  for Messaging-Oriented Architectures – Dave Crocker, Pete  Resnick</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/40.pdf">40.pdf</a> –
@@ -1757,7 +1757,7 @@
 	provided with existing, or low-risk, component technologies,
 	such as through the DNS and MIME conventions.</p>
 </div>
-<div id="idm3613680" class="section">
+<div id="idm3605376" class="section">
 <h3>
 <span class="secno">Appendix C.41. </span>Fingerprinting Guidance for Web  Specification Authors – Nick Doty</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/41.pdf">41.pdf</a> –
@@ -1770,7 +1770,7 @@
 	specification authors on how to balance these concerns when
 	designing new Web features.</p>
 </div>
-<div id="idm3610448" class="section">
+<div id="idm3602144" class="section">
 <h3>
 <span class="secno">Appendix C.42. </span>Eradicating Bearer Tokens for Session Management –   Philippe De Ryck, Lieven Desmet, Frank Piessens, Wouter  Joosen</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/42.pdf">42.pdf</a> –
@@ -1806,7 +1806,7 @@
 	gradual migration path, while remaining compatible with
 	currently existing applications.</p>
 </div>
-<div id="idm3605360" class="section">
+<div id="idm3597056" class="section">
 <h3>
 <span class="secno">Appendix C.43. </span>STREWS Web-platform security guide: security  assessment of the Web ecosystem – Martin Johns, Lieven  Desmet</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/43.pdf">43.pdf</a> –
@@ -1818,7 +1818,7 @@
 	web application ecosystem, the de-facto Internet application
 	platform.</p>
 </div>
-<div id="idm3602960" class="section">
+<div id="idm3594656" class="section">
 <h3>
 <span class="secno">Appendix C.44. </span>Pervasive Attack: A Threat Model and Problem  Statement – Richard Barnes, Bruce Schneier, Cullen Jennings,  Ted Hardie</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/44.pdf">44.pdf</a> –
@@ -1830,17 +1830,17 @@
 	techniques that can be employed in Internet protocol design to
 	increase the protocols robustness to pervasive attacks.</p>
 </div>
-<div id="idm3600608" class="section">
+<div id="idm3592304" class="section">
 <h3>
 <span class="secno">Appendix C.45. </span>Cryptech – Building a More Assured HSM with  a More Assured Tool-Chain – Randy Bush</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/45.pdf">45.pdf</a></p>
 </div>
-<div id="idm3598720" class="section">
+<div id="idm3590416" class="section">
 <h3>
 <span class="secno">Appendix C.46. </span>Replacing passwords on the Internet AKA  post-Snowden Opportunistic Encryption – Ben Laurie, Ian  Goldberg</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/46.pdf">46.pdf</a></p>
 </div>
-<div id="idm3596848" class="section">
+<div id="idm3588544" class="section">
 <h3>
 <span class="secno">Appendix C.47. </span>End-User Concerns about Pervasive Internet  Monitoring: Principles and Practice – Tara Whalen, Stuart  Cheshire, David Singer</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/47.pdf">47.pdf</a> –
@@ -1860,7 +1860,7 @@
 	this approach would be more effective in protecting end users
 	in an environment of persistent network threats.</p>
 </div>
-<div id="idm3593968" class="section">
+<div id="idm3585664" class="section">
 <h3>
 <span class="secno">Appendix C.48. </span>Developer-Resistant Cryptography – Kelsey  Cairns, Graham Steel</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/48.pdf">48.pdf</a> –
@@ -1874,7 +1874,7 @@
 	cryptography easier to use and more resistant to developer
 	errors?</p>
 </div>
-<div id="idm3591504" class="section">
+<div id="idm3583200" class="section">
 <h3>
 <span class="secno">Appendix C.49. </span>Improving the reliability of key ownership  assertions – Kai Engert</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/49.pdf">49.pdf</a> –
@@ -1896,12 +1896,12 @@
 	ownership assertions to the operators of services, allowing
 	the discovery of false ownership assertions.</p>
 </div>
-<div id="idm3588528" class="section">
+<div id="idm3580224" class="section">
 <h3>
 <span class="secno">Appendix C.50. </span>Mike O'Neill's Position Paper – Mike  O'Neill</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/50.pdf">50.pdf</a></p>
 </div>
-<div id="idm3586672" class="section">
+<div id="idm3578368" class="section">
 <h3>
 <span class="secno">Appendix C.51. </span>Detecting MITM Attacks on Ephemeral  Diffie-Hellman without Relying on a PKI in Real-Time  Communications – Alan Johnston</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/51.pdf">51.pdf</a> –
@@ -1925,7 +1925,7 @@
 	Transport Layer Security – Secure Real-time Transport
 	Protocol, is given.</p>
 </div>
-<div id="idm3583584" class="section">
+<div id="idm3575280" class="section">
 <h3>
 <span class="secno">Appendix C.52. </span>Trust &amp; Usability on the Web, a  Social/Legal perspective – Rigo Wenning, Bert Bos</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/52.pdf">52.pdf</a> –
@@ -1942,7 +1942,7 @@
 	and social aspects that help users understand and explore the
 	keys and the organizations behind them.</p>
 </div>
-<div id="idm3580896" class="section">
+<div id="idm3572592" class="section">
 <h3>
 <span class="secno">Appendix C.53. </span>Hardening Operations and Management Against  Passive Eavesdropping – Bernard Aboba</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/53.pdf">53.pdf</a> –
@@ -1962,12 +1962,12 @@
 	the IETF can assist in bringing customer and regulatory
 	pressure to bear in improving operational practices.</p>
 </div>
-<div id="idm3578032" class="section">
+<div id="idm3569728" class="section">
 <h3>
 <span class="secno">Appendix C.54. </span>A few theses regarding privacy and security  – Andreas Kuckartz</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/54.pdf">54.pdf</a></p>
 </div>
-<div id="idm3576272" class="section">
+<div id="idm3567968" class="section">
 <h3>
 <span class="secno">Appendix C.55. </span>Meet the new threat model, same as the old  threat model – Eric Rescorla</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/55.pdf">55.pdf</a> –
@@ -1990,7 +1990,7 @@
 	provides no assurance that packets which claim to be from that
 	system in fact are. – <a href="#RFC3552">[RFC3552]</a></p>
 </div>
-<div id="idm3571824" class="section">
+<div id="idm3563520" class="section">
 <h3>
 <span class="secno">Appendix C.56. </span>It's Time for Application-Centric Security –  Yuan Gu, Harold Johnson</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/56.pdf">56.pdf</a> –
@@ -2012,22 +2012,22 @@
 	interdependency (motto: aggressive fragility under tampering)
 	can effectively address these vulnerabilities.</p>
 </div>
-<div id="idm3568768" class="section">
+<div id="idm3560464" class="section">
 <h3>
 <span class="secno">Appendix C.57. </span>Sabatini Monatesti position paper – Sabatine  Monatesti</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/57.pdf">57.pdf</a></p>
 </div>
-<div id="idm3567008" class="section">
+<div id="idm3558704" class="section">
 <h3>
 <span class="secno">Appendix C.58. </span>Trust problems in pervasive monitoring –  Melinda Shore, Karen O'Donoghue</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/58.pdf">58.pdf</a></p>
 </div>
-<div id="idm3564896" class="section">
+<div id="idm3556592" class="section">
 <h3>
 <span class="secno">Appendix C.59. </span>Beyond "Just TLS Everywhere": From  Client-encrypted Messaging to Defending the Social Graph –  Harry Halpin, George Danezis</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/59.pdf">59.pdf</a></p>
 </div>
-<div id="idm3563232" class="section">
+<div id="idm3554928" class="section">
 <h3>
 <span class="secno">Appendix C.60. </span>Network Security as a Public Good – Wendy  Seltzer</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/60.pdf">60.pdf</a> –
@@ -2035,12 +2035,12 @@
 	in the Internet ecosystem. Standards consortia should support
 	and help coordinate activity to protect the commons.</p>
 </div>
-<div id="idm3561040" class="section">
+<div id="idm3552736" class="section">
 <h3>
 <span class="secno">Appendix C.61. </span>Statement of Interest on behalf of the W3C  TAG – Dan Appelquist</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/61.pdf">61.pdf</a></p>
 </div>
-<div id="idm3559280" class="section">
+<div id="idm3550976" class="section">
 <h3>
 <span class="secno">Appendix C.62. </span>Improving Security on the Internet – Hannes  Tschofenig</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/62.pdf">62.pdf</a> –
@@ -2058,12 +2058,12 @@
 	the Internet software development life-cycle will be crucial
 	for improving security on the Internet.</p>
 </div>
-<div id="idm3556112" class="section">
+<div id="idm3547808" class="section">
 <h3>
 <span class="secno">Appendix C.63. </span>Protecting customer data from government  snooping – Orit Levin</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/63.pdf">63.pdf</a></p>
 </div>
-<div id="idm3554352" class="section">
+<div id="idm3546048" class="section">
 <h3>
 <span class="secno">Appendix C.64. </span>Privacy Aware Internet Development  Initiative 2014 – Achim Klabunde</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/64.pdf">64.pdf</a> –
@@ -2076,7 +2076,7 @@
 	aiming to address this need, supported by privacy and
 	technology experts.</p>
 </div>
-<div id="idm3551760" class="section">
+<div id="idm3543456" class="section">
 <h3>
 <span class="secno">Appendix C.65. </span>The Internet is Broken: Idealistic Ideas for  Building a NEWGNU Network – Christian Grothoff, Bartlomiej  Polot, Carlo von Loesch</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/65.pdf">65.pdf</a> –
@@ -2085,7 +2085,7 @@
 	the architecture to build a network that offers strong
 	security and privacy by default.</p>
 </div>
-<div id="idm3549616" class="section">
+<div id="idm3541312" class="section">
 <h3>
 <span class="secno">Appendix C.66. </span>Opportunistic Keying as a Countermeasure to  Pervasive Monitoring – Stephen Kent</h3>
 <p><a href="https://www.w3.org/2014/strint/papers/66.pdf">66.pdf</a> –
