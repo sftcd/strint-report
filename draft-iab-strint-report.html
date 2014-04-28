@@ -145,13 +145,13 @@
 <tr><td class="header">Network Working Group</td><td class="header">S. Farrell</td></tr>
 <tr><td class="header">Internet-Draft</td><td class="header">Trinity College, Dublin</td></tr>
 <tr><td class="header">Intended status: Informational</td><td class="header">R. Wenning</td></tr>
-<tr><td class="header">Expires: October 24, 2014</td><td class="header">B. Bos</td></tr>
+<tr><td class="header">Expires: October 30, 2014</td><td class="header">B. Bos</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">W3C</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">M. Blanchet</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">Viagenie</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">H. Tschofenig</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">ARM Ltd.</td></tr>
-<tr><td class="header">&nbsp;</td><td class="header">April 22, 2014</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">April 28, 2014</td></tr>
 </table></td></tr></table>
 <h1><br />STRINT workshop report<br />draft-iab-strint-report-00</h1>
 
@@ -165,7 +165,8 @@
       terminology, the role of user interfaces, classes of mitigation,
       some specific use cases, transition strategies (including
       opportunistic encryption), and more. The workshop ended with a few
-      high-level recommendations. This is the report of that
+      high-level recommendations, which it is believed could be implemented
+      and which could help strengthen the Internet. This is the report of that
       workshop.
 </p>
 <h3>Status of this Memo</h3>
@@ -183,7 +184,7 @@ and may be updated, replaced, or obsoleted by other documents at any time.
 It is inappropriate to use Internet-Drafts as reference material or to cite
 them other than as &ldquo;work in progress.&rdquo;</p>
 <p>
-This Internet-Draft will expire on October 24, 2014.</p>
+This Internet-Draft will expire on October 30, 2014.</p>
 
 <h3>Copyright Notice</h3>
 <p>
@@ -211,8 +212,8 @@ Workshop structure<br />
 Topics<br />
 <a href="#after">6.</a>&nbsp;
 After the workshop<br />
-<a href="#conclusions">7.</a>&nbsp;
-Conclusions and recommendations<br />
+<a href="#iana">7.</a>&nbsp;
+IANA considerations<br />
 <a href="#Security">8.</a>&nbsp;
 Security considerations<br />
 <a href="#rfc.references1">9.</a>&nbsp;
@@ -237,6 +238,13 @@ Authors' Addresses<br />
 <a name="rfc.section.1"></a><h3>1.&nbsp;
 Context</h3>
 
+<p>[[Editorial note: This version was produced from the minutes,
+	and then edited. It quite likely has some inaccuracies, so the
+	authors would welcome corrections from those who attended the
+	workshop. If you're a github person, 
+	https://github.com/sftcd/strint-report has this so you can
+	contribute there.]]
+</p>
 <p>The Vancouver IETF plenary concluded <a class='info' href='#vancouverplenary'>[vancouverplenary]<span> (</span><span class='info'>IETF, &ldquo;IETF 88 Technical Plenary Minutes,&rdquo; .</span><span>)</span></a> that Pervasive
       Monitoring (PM)
       represents an attack on
@@ -273,7 +281,7 @@ Summary</h3>
 
 <p>The workshop was well attended (registration closed when the
       maximum capacity of 100 was reached, but more than
-      150 tried to register) and several people (about 165 at the
+      150 expressed a desire to register) and several people (about 165 at the
       maximum) listened to the streaming audio. The submitted papers
       (67 in total) were generally of good quality and all were
 	  published (see <a class='info' href='#papers'>Appendix&nbsp;C<span> (</span><span class='info'>The submitted papers</span><span>)</span></a>), except for a few where authors who couldn't take part in
@@ -281,12 +289,11 @@ Summary</h3>
       
 </p>
 <p>The chairs of the workshop summarised the workshop in the
-      final session in the form of the following recommendations
-      (paraphrased):
+      final session in the form of the following recommendations:
 
 	</p>
 <ol class="text">
-<li>Well-implemented cryptography works against PM and will benefit the Internet if used more, despite its
+<li>Well-implemented cryptography can be effective against PM and will benefit the Internet if used more, despite its
 	  cost, which is steadily decreasing anyway.
 </li>
 <li>Traffic analysis also needs to be considered, but is less well understood in
@@ -304,17 +311,17 @@ Summary</h3>
 	to start to develop an update to
 	  BCP 72 <a class='info' href='#RFC3552'>[RFC3552]<span> (</span><span class='info'>Rescorla, E. and B. Korver, &ldquo;Guidelines for Writing RFC Text on Security Considerations,&rdquo; July&nbsp;2003.</span><span>)</span></a>, most likely as a new RFC enhancing
         that BCP and dealing with recommendations on how to
-	mitigate PM and how to reflect it in IETF work.
+	mitigate PM and how to reflect that in IETF work.
 </li>
-<li>The term "Opportunistic Encryption" has been widely used 
+<li>The term "Opportunistic" has been widely used 
 		to refer to a possible mitigation strategy for PM. We need
 		to document definition(s) for this term, as it is being
 		used differently by different people and in different
 		contexts. We may also be able to develop a
-	  cookbook-like explanation of related protocol techniques for developers. 
+	  cookbook-like set of related protocol techniques for developers. 
 		Since the workshop, the IETF's security area has taken up
 		this work, most recently favouring the generic term "Opportunistic
-		Security" <a class='info' href='#I-D.kent-opportunistic-security'>[I&#8209;D.kent&#8209;opportunistic&#8209;security]<span> (</span><span class='info'>Kent, S., &ldquo;Opportunistic Security as a Countermeasure to Pervasive Monitoring,&rdquo; April&nbsp;2014.</span><span>)</span></a>.
+		Security" (OS) <a class='info' href='#I-D.kent-opportunistic-security'>[I&#8209;D.kent&#8209;opportunistic&#8209;security]<span> (</span><span class='info'>Kent, S., &ldquo;Opportunistic Security as a Countermeasure to Pervasive Monitoring,&rdquo; April&nbsp;2014.</span><span>)</span></a>.
 	  
 </li>
 <li>The technical community could do better in explaining the
@@ -339,8 +346,8 @@ Summary</h3>
 	  maybe the standards organisations can help and can work
 		with those developing such package-specific documentation.
 </li>
-<li>The IETF and W3C can do more to make the default
-	  ("out-of-the-box") settings for protocols better for protecting
+<li>The IETF and W3C can do more so that default
+	  ("out-of-the-box") settings for protocols better protect
 	  security and privacy.
 </li>
 <li><a href='https://en.wikipedia.org/wiki/Captive_portal'>Captive portals,</a> (and some firewalls, too) can and
@@ -358,9 +365,10 @@ Summary</h3>
 Workshop goals</h3>
 
 <p>As stated, the STRINT workshop started from the position that 
-      PM is an attack. While some dissenting voices are
-      expected and need to be heard, that was the baseline assumption
-      for the workshop, and the high-level goal was to provide some
+      PM is an attack. 
+		<a class='info' href='#I-D.farrell-perpass-attack'>[I&#8209;D.farrell&#8209;perpass&#8209;attack]<span> (</span><span class='info'>Farrell, S. and H. Tschofenig, &ldquo;Pervasive Monitoring is an Attack,&rdquo; February&nbsp;2014.</span><span>)</span></a>
+      While some dissenting voices are expected and need to be heard, that was the baseline assumption
+      for the workshop, and the high-level goal was to provide 
       more consideration of that and how it ought to affect future work
       within the IETF and W3C.
 </p>
@@ -408,10 +416,10 @@ Workshop structure</h3>
       usually less.
 </p>
 <p>Because the papers would not be presented during the
-      workshop, we asked the participants to read and discuss the
+      workshop, participants were asked to read and discuss the
       papers beforehand, at least those relevant to their fields of
-      interest. (To help people choose papers to read, we asked
-      authors to provide short abstracts.)
+      interest. (To help people choose papers to read, 
+      authors were asked to provide short abstracts.)
 </p>
 <p>Most of the sessions had two moderators, one
       to lead the discussion, while the other managed the queue of
@@ -444,13 +452,13 @@ Opening session</h3>
 	workshop. Possible approaches to improving security in the
 	light of pervasive monitoring include a critical look at what
 	metadata is actually required, whether old (less secure)
-	devices can be replaced with new ones, what is the
+	devices can be replaced with new ones, what are
 	"low-hanging fruit" (issues that can be handled quickly and
 	easily), and what level of security is &ldquo;good enough&rdquo;: a good
-	solution may be one that is good for 90% of people or 95% of
+	solution may be one that is good for 90% of people or 90% of
 	organisations.
 </p>
-<p>Standards are needed so that people can see if their
+<p>Some paricipants felt that standards are needed so that people can see if their
 	systems conform to a certain level of security as well as easy to remember names
 	for those standards, so that a buyer can immediately see
 	that a product &ldquo;conforms to the named intended standard.&rdquo;
@@ -461,15 +469,18 @@ Opening session</h3>
 Threats</h3>
 
 <p>One difference between &ldquo;traditional&rdquo; attacks and pervasive
-	monitoring is the motivation of the attacker: typically, one
+	monitoring is modus-operandi of the attacker: typically, one
 	determines what resources an attacker might want to target and
-	at what cost and then one defends first against that threat. But a
+	at what cost and then one defends against that threat. But a
 	pervasive attacker has no specific targets, other than to
 	collect everything he can. The calculation of the cost of
 	losing resources vs the cost of protecting them is thus
-	different.
+	different. And unlike someone motivated to make money, 
+	a PM attacker may not be concerned at the cost of the
+	attack (or may even prefer a higher cost, for "empire
+	building" reasons). 
 </p>
-<p>The terminology to talk about threats has to be chosen
+<p>The terminology used to talk about threats has to be chosen
 	carefully (this was a common theme in several sessions),
 	because we need to explain to people outside the technical
 	community what they need to do or not do. For example, authentication
@@ -484,21 +495,19 @@ Threats</h3>
 	information, such as Facebook, Yahoo, Google, etc. Hopefully,
 	they supervise their security better than the average Internet
 	server, but they are also much more attractive as a target to
-	attack. Avoiding central repositories for private or sensitive
-	information is probably a useful measure that increases the
-	cost of collecting for a pervasive attacker.
+	attack. Avoiding overuse of such repositories for private or sensitive
+	information may be a useful measure that increases the
+	cost of collecting for a pervasive attacker. This is sometimes
+	called the target-dispersal approach.
 </p>
 <p>Lack of interoperability between systems is in itself a
-	security threat. It leads to work-arounds and compromises. And
+	threat as it leads to work-arounds and compromises that may
+	be less secure. And
 	thus improving interoperability needs to be high on the list
 	of priorities of standards makers and even more for implementers. 
         Of course,
 	testing, such as interop testing, is at some level, part of the process of IETF and W3C; and
 	W3C is currently increasing its testing efforts.
-</p>
-<p>Apart from identifying the threats, one desirable result of
-	the workshop is also to document them, targeted at
-	implementers.
 </p>
 <a name="comsec-usage"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
@@ -506,24 +515,29 @@ Threats</h3>
 Increase usage of security tools</h3>
 
 <p>The first session on Communication Security (COMSEC) tools
-	looked at the question why available security tools weren't used
+	looked at the question why existing security tools aren't used
 	more.
 </p>
-<p>The example of HTTPS is informative: in theory, it provides
+<p>The example of HTTPS is informative: it provides
 	encryption and authentication and is widely available. In
-	practice, it is far from being used as much as it could be. It
+	practice though, it is far from being used as much as it could be. It
 	also has some problems. One problem is that certificate
-	authorities (CA) are one potential weak link in the system. Any CA can
+	authorities (CA) are a potential weak link in the system. Any CA can
 	issue a certificate for any server, and thus a single
 	compromised CA can give a MITM the power to impersonate any
-	server. Moreover, certificates cost money, take time to get, and
-	need to be replaced when they expire, so many server
-	administrators don't bother, making the certificate infrastructure less relevant, causing https to provide less/no security.
+	server. Moreover, certificates can cost money, acquiring a
+	certificate requires administrator time and
+	effort, and certificates 
+	need to be replaced when they expire, which is not the
+	normal case for web technologies, so many server
+	administrators forget or don't bother, making the 
+	certificate infrastructure less relevant, and 
+	causing https to provide less security.
 </p>
 <p>Some ideas were discussed for improving the CA system, e.g., via
 	cross-certification of CAs and by means of &ldquo;certificate
 	transparency&rdquo;: a public, permanent log of who issued which
-	certificate.
+	certificate. <a class='info' href='#RFC6962'>[RFC6962]<span> (</span><span class='info'>Laurie, B., Langley, A., and E. Kasper, &ldquo;Certificate Transparency,&rdquo; June&nbsp;2013.</span><span>)</span></a>
 </p>
 <p>Using other models than the hierarchical certificate model
 	(as alternative or in combination) may also help. The PGP
@@ -542,74 +556,77 @@ Increase usage of security tools</h3>
 	first time. So a MITM has to be there on all connections,
 	including the first, otherwise it will be detected by a key mismatch.
 </p>
-<p>Sidebar: A proposal <a class='info' href='#draft-ietf-websec-key-pinning'>[draft&#8209;ietf&#8209;websec&#8209;key&#8209;pinning]<span> (</span><span class='info'>Evans, C., Palmer, C., and R. Sleevi, &ldquo;Public Key Pinning Extension for HTTP,&rdquo; February&nbsp;2014.</span><span>)</span></a> for an HTTP header introduces a bit of
-	  TOFU into HTTP: Key pinning tells HTTP clients that for a
-	  certain time after receiving this certificate, they should
-	  not expect the certificate to change. If it does, even if
-	  the new certificate looks valid, the client should assume a
-	  security breach. 
-</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>Public-Key-Pins: max-age=2592000;
-  pin-sha256="E9CZ9IND...B9+xcprMF+44U1g=";
-  pin-sha256="LPJNul+w...p0JecwQzYpOLmCQ=";
-  report-uri="http://example.com/pkp-report"</pre></div>
 <p>This works well for SSH, because people typically use SSH
 	to communicate with a small number of servers over and over
 	again. And, if they want, they may find a separate
 	channel to get the public key (or its fingerprint). It may
 	also work for Web servers used by small groups (the server of
 	a sports club, a department of a company, etc.), but probably
-	not for public servers that are visited once or a few times.
+	works less well for public servers that are visited once or a few times
+	or for large services where many servers may be used.
 </p>
-<p>SIP is a complex protocol, in part because it potentially
-	needs several different servers in different stages of the
-	communication to deal with NAT traversal. It provides
+<p>A similar proposal <a class='info' href='#draft-ietf-websec-key-pinning'>[draft&#8209;ietf&#8209;websec&#8209;key&#8209;pinning]<span> (</span><span class='info'>Evans, C., Palmer, C., and R. Sleevi, &ldquo;Public Key Pinning Extension for HTTP,&rdquo; February&nbsp;2014.</span><span>)</span></a> for an HTTP header introduces an aspect of
+	  TOFU into HTTP: Key pinning tells HTTP clients that for a
+	  certain time after receiving this certificate, they should
+	  not expect the certificate to change. If it does, even if
+	  the new certificate looks valid, the client should assume a
+	  security breach. 
+</p>
+<p>SIP <a class='info' href='#RFC3261'>[RFC3261]<span> (</span><span class='info'>Rosenberg, J., Schulzrinne, H., Camarillo, G., Johnston, A., Peterson, J., Sparks, R., Handley, M., and E. Schooler, &ldquo;SIP: Session Initiation Protocol,&rdquo; June&nbsp;2002.</span><span>)</span></a> is a complex protocol, in part because it potentially
+	needs several different intermediaries in different stages of the
+	communication to deal with NAT traversal and to handle policy. SIP provides
 	hop-by-hop encryption and end-to-end authentication in theory,
-	but in practice many SIP providers disable these functions. Their reasons
+	but in practice many SIP providers disable these functions and
+	interoperability for end-to-end security in SIP is perhaps not
+	in a good state. The reasons for disabling end-to-end security here
 	are understandable: to overcome lack of interoperability they
-	often need to change protocol headers and fake protocol
-	data. It has been argued that SIP would never have taken off
+	often need to change protocol headers and modify protocol
+	data. Some workshop participants argued that SIP would never have taken off
 	if it hadn't been possible for providers to monitor and
 	interfere in communications in this way. Of course, that means
 	an attacker can listen in just as easily.
 </p>
 <p>A new protocol for peer-to-peer communication of video and
-	audio (and potentially other data) is WebRTC. (Also the
-	subject of a separate report by the STREWS project.
-
-        It
-	re-uses many of the parts of SIP, but there is a reasonable
+	audio (and potentially other data) is WebRTC. 
+        WebRTC
+	re-uses many of the same architectural concepts as SIP, but 
+	there is a reasonable
 	chance that it can do better in terms of protecting users: The
 	people implementing the protocols and offering the service
 	have different goals and interests. In particular, the first
-	implementers are browser makers, who have different business
-	models from VOIP providers.
+	implementers are browser makers, who may have different business
+	models from other more traditional Voice over IP providers.
 </p>
 <p>XMPP suffers from yet another problem. It has encryption
 	and authentication, and the OTR (&ldquo;off the record&rdquo;)
-	module even
-	provides what is called perfect forward secrecy (compromising
+	extension even
+	provides what is called Perfect Forward Secrecy (PFS, compromising
 	the current communication never gives an attacker enough
 	information to decrypt past communications that he may have
 	recorded). But, in practice, many people don't use XMPP at
 	all, but rather Skype, WhatsApp or other instant-messaging
 	tools with unknown or no security. The problem here seems to
-	be one of user awareness.
+	be one of user awareness. And though OTR does provide 
+	security, it is not well integrated with XMPP and nor is
+	it available as a core feature of XMPP clients.
 </p>
-<p>To increase usage of existing solutions, some tasks can be taken:
+<p>To increase usage of existing solutions, some tasks can be identified,
+	though how those map to actions for e.g. IETF/W3C is not clear:
+
 	  </p>
 <ul class="text">
-<li>Improvements to the certificate system.
+<li>Improvements to the certificate system, such as CT.
 </li>
 <li>Making it easier (cheaper, quicker) for system
-	    administrators to deploy secure solutions
+	    administrators to deploy secure solutions.
 </li>
-<li>Make more people aware of the risks. Identify which
+<li>Improve awareness of the risks. Identify which
 	    communities influence which decisions and what is the
 	    appropriate message for each.
 </li>
 <li>Provide an upgrade path that doesn't break existing
 	    systems or require that everybody upgrade at the same
-	    time. Opportunistic Encryption is one model for that.
+	    time. Opportunistic Security may be one model for that.
 </li>
 </ul>
 
@@ -622,50 +639,27 @@ Policy issues and non-technical actions</h3>
 	just technical, such as getting the right algorithms in the standards,
 	fixing interoperability, or educating implementers and systems
 	administrators. There are user interface issues and education
-	issues too. Even more, what wasn't discussed so far: legal issues of
-	responsibility and policy issues for governments.
+	issues too. And there are also legal issues 
+	and policy issues for governments.
 </p>
-<p>It appears that people in general are both demanding more
-	privacy and security (for their children, e.g.) and also
-	pessimistic about getting it. They trust that somebody assures
+<p>It appears that the public in general demand more
+	privacy and security (e.g., for their children) but are also
+	pessimistic about getting that. They trust that somebody assures
 	that nothing bad happens to them, but they also expect to be
 	spied on all the time.
 </p>
-<p>Economics may be partly to blame, as economic success has
-	often been the result of carefully monitoring the clients. It
-	is difficult to make that illegal.
-</p>
-<p>(Perceived) threats of terrorism gave governments the
-	excuse to allow widespread surveillance, much beyond what had
-	previously been considered dangerous for freedom.
+<p>(Perceived) threats of terrorism gave governments a
+	reason to allow widespread surveillance, far beyond what may
+	previously have been considered dangerous for freedom.
 </p>
 <p>In this environment, the technical community will have a
-	hard time developing and deploying technologies that counter
-	massive surveillance. Which means there has to be action in
+	hard time developing and deploying technologies that fully
+	counter PM. Which means there has to be action in
 	the social and political spheres, too.
 </p>
-<p>There are initiatives that can be used as stepping
-	stones. A suggestion such as German Chancellor Angela Merkel's
-	&ldquo;Schengen Net&rdquo; (a communications network that keeps
-	intra-european communications from passing over networks
-	outside Europe and thus protects against foreign monitoring)
-
-	may be a bad idea from a technical perspective (and actually
-	make things easier for European spies&hellip;), but the underlying
-	motive can be used as an argument to promote a solution that
-	does work.
-</p>
-<p>Technical people often don't pay attention to individual
-	cases that reach the news, because they are indeed just that:
-	individual cases. That foreign spies try to listen to a government
-        executive cellphone is not actually an example of pervasive
-	monitoring, but an old-fashioned example of targeted
-	spying&hellip; But it did make the news and therefore it should be
-	used to best effect.
-</p>
 <p>Technology isn't the only thing that can make life harder
-	for attackers. Especially government-sponsored pervasive
-	monitoring is indirectly affected by trade agreements and
+	for attackers. Government-sponsored PM
+	is indirectly affected by trade agreements and
 	treaties and thus it makes sense to lobby for those to be as
 	privacy-friendly as possible.
 </p>
@@ -673,38 +667,24 @@ Policy issues and non-technical actions</h3>
 	influence policy, especially if they reach, for example, the European Court
 	of Human Rights.
 </p>
-<p>And we need people to &ldquo;decode&rdquo; what politician say: what
-	does a proposed law actually mean, how does a policy statement
-	translate to concrete software configuration?
-</p>
-<p>And not all politicians are the same, or have the same
-	goals. In Europe for example, one has to differentiate the European
-	Parliament from the European Commission. They are important,
-	but many people don't understand what they do.
-</p>
 <p>In medicine and law, it is common to have ethics committees,
 	not so in software. Should standards bodies such as IETF and
-	W3C have an ethics committee? Standards such as the
-	Geolocation API
-
- did get scrutiny from privacy experts, but
-	only ad-hoc. (W3C has permanent groups to review standards for
+	W3C have an ethics committee? While standards such as the
+	Geolocation API <a class='info' href='#w3c-geo-api'>[w3c&#8209;geo&#8209;api]<span> (</span><span class='info'>Popescu, A., &ldquo;Geolocation API Specification,&rdquo; October&nbsp;2013.</span><span>)</span></a> have gotten scrutiny 
+	from privacy experts, but
+	only in an ad-hoc manner. (W3C has permanent groups to review standards for
 	accessibility and internationalisation. It also has a Privacy
-	group, but it currently doesn't do the same kind of systematic
+	group, but that currently doesn't do the same kind of systematic
 	reviews.)
 </p>
-<p>The discussion above gives some hints as to why the laws
-	aren't as supportive of privacy and security as we might want,
-	but we don't fully understand the reasons yet.
-</p>
 <p>As the Internet Draft
-	draft-barnes-pervasive-problem-00 (included as <a href='https://www.w3.org/2014/strint/papers/44.pdf'>paper&nbsp;44</a>) explains, pervasive monitoring not just
-	monitors the networks, but also attacks at the endpoints,
+	draft-barnes-pervasive-problem-00 (included as <a href='https://www.w3.org/2014/strint/papers/44.pdf'>paper&nbsp;44</a>) explains, PM doesn't just
+	monitor the networks, but also attacks at the endpoints,
 	turning organisations or people into (willing, unwilling, or
 	unwitting) collaborators. One technical means of protection is
 	thus to design protocols such that there are fewer potential
-	collaborators. E.g., a provider of cloud storage cannot hand
-	over content that is encrypted with a key he doesn't have, and
+	collaborators, e.g., a provider of cloud storage cannot hand
+	over plaintext for content that is encrypted with a key he doesn't have, and
 	cannot hand over names if his client is anonymous.
 </p>
 <p>It is important to distinguish between PM and fighting
@@ -719,32 +699,35 @@ Policy issues and non-technical actions</h3>
 Improving the tools</h3>
 
 <p>An earlier session discussed why existing COMSEC tools
-	weren't used more. One of the reasons was that they had
-	problems. This second session on COMSEC therefore discussed
-	what improvements were needed.
+	weren't used more. 
+	This second session on COMSEC therefore discussed
+	what improvements and/or new tools were needed.
 </p>
-<p>An important meta-tool for improving existing security
-	technology is Opportunistic Encryption (OE). The idea behind it is
-	that software is enhanced with a module that tries to encrypt
-	communications when it detects that the other end also has the
-	same module and otherwise just leaves the communication
-	continue in the old way. Similarly, when it has a public key
-	for the server at the other end, it authenticates it,
-	otherwise just encrypts without authentication. It does all
-	this automatically, i.e., no configuration is needed.
+<p>Discussion at the workshop indicated that an important meta-tool for
+improving existing security technology could be 
+Opportunistic Security (OS).  <a class='info' href='#I-D.kent-opportunistic-security'>[I&#8209;D.kent&#8209;opportunistic&#8209;security]<span> (</span><span class='info'>Kent, S., &ldquo;Opportunistic Security as a Countermeasure to Pervasive Monitoring,&rdquo; April&nbsp;2014.</span><span>)</span></a>.
+The idea is that software is enhanced
+with a module that tries to encrypt communications when it detects that the
+other end also has the same capablility but otherwise leaves the communication
+continue in the old way. The detailed definition of OS is now being
+discussed by the IETF security area. <a class='info' href='#saag'>[saag]<span> (</span><span class='info'>Area, S., &ldquo;IETF Security Area mailing list,&rdquo; March&nbsp;2014.</span><span>)</span></a>
+
 </p>
-<p>Encryption protects against a passive eavesdropper and
-	authentication against an active one (a MITM). As OE spreads,
-	more and more communications will be encrypted (and hopefully
+<p>OS would protect against a passive eavesdropper but should
+	also allow for endpoint
+	authentication to protect against an active attacker (a MITM). As OS spreads,
+	more and more communications would be encrypted (and hopefully
 	authenticated) and thus there is less and less for an
 	eavesdropper to collect.
 </p>
-<p>Of course, this can give a false sense of security as well:
-	some connections are encrypted, some are not. A user may see
-	something like the padlock icon in browsers, but it is not
-	sure people actually look at that.
+<p>Of course, an implementation of OS could give a false sense of security as well:
+	some connections are encrypted, some are not. A user might see
+	something like a padlock icon in browsers, but there was
+	agreement at the workshop that such user interface features
+	ought not be changed because OS is being used.
+	
 </p>
-<p>And there is the possibility that a MITM intercepts the
+<p>There is also the possibility that a MITM intercepts the
 	reply from a server that says &ldquo;yes, I can do encryption&rdquo; and
 	removes it, causing the client to fall back to an unencrypted
 	protocol. Mitigations against this can be to have other
@@ -752,7 +735,7 @@ Improving the tools</h3>
 	remembering that a server could do encryption previously.
 </p>
 <p>There is also, again, a terminology problem. The technical
-	descriptions of OE talk about &ldquo;silent fail&rdquo; when a connection
+	descriptions of OS talk about &ldquo;silent fail&rdquo; when a connection
 	couldn't be encrypted and has to fall back to the old,
 	unencrypted protocol. Actually, it's not a fail, it's no worse
 	then it was before. A successful encryption would rather be a
@@ -787,12 +770,12 @@ Improving the tools</h3>
 </p>
 <p>Encryption and authentication have a cost, in terms of
 	setting them up, but also in terms of the time it takes for
-	software to do the calculations. The setting-up cost can be
-	diminished with sensible defaults, predefined profiles and
-	cut-and-paste configurations. The cost of authentication
-	could, if necessary, be diminished by authenticating only a
-	random sample of connections. It is less secure, but still
-	makes things harder for an eavesdropper. And for some
+	software to do the calculations. The set-up cost can be
+	reduced with sensible defaults, predefined profiles and
+	cut-and-paste configurations. 
+	
+	
+	And for some
 	connections, authentication without encryption could be
 	enough, in the case that the data doesn't need to be kept
 	secret, but it is important to know that it is the real
@@ -807,7 +790,9 @@ Improving the tools</h3>
 <p>And it also has to be kept in mind that encrypting only the
 	&ldquo;sensitive&rdquo; data and not the rest decreases the cost for an
 	attacker, too: It becomes easy to know which connections are
-	worth attacking.
+	worth attacking. Selective field confidentiality is also
+	more prone to lead to developer error, as not all developers
+	will know the provenance of values to be processed.
 </p>
 <p>One problem with the <a class='info' href='#tofu'>TOFU model</a> as used by SSH (see explanation above) is
 	that it lacks a solution for key continuity: When a key is
@@ -818,11 +803,6 @@ Improving the tools</h3>
 	that doesn't scale and doesn't always happen either.) An
 	improvement in the SSH protocol could thus be a way to
 	transfer a new key to a client in a safe way.
-</p>
-<p>OE is a way to upgrade old protocols, but it is not a good
-	model for new protocols. New protocols should be designed with
-	the new attack models in mind, and thus with encryption and
-	authentication from the start.
 </p>
 <a name="metadata"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
@@ -904,15 +884,15 @@ Hiding metadata</h3>
 	lower layer than the application layer is difficult. The
 	applications themselves need to pass less data, e.g., use
 	anonymous temporary handles instead of permanent
-	identities. There is often no real need for people to use the
-	same identity on different computers (smartphone, desktop,
+	identifiers. There is often no real need for people to use the
+	same identifier on different computers (smartphone, desktop,
 	etc.) other than that the application they use was designed
 	that way.
 </p>
 <p>One thing that can be done relatively easily in the short
-	term is going through existing protocols and check what data
-	they send that isn't really necessary. One candidate for such
-	a study is SNMP.
+	term is going through existing protocols to check what data
+	they send that isn't really necessary. One candidate mentioned for such
+	a study was XMPP.
 </p>
 <p><em>Fingerprinting</em> is the process
 	of distinguishing different senders of messages based on
@@ -949,9 +929,6 @@ Hiding metadata</h3>
 	well, and not actually make messages easier to recognise
 	rather than harder.
 </p>
-<p>The practice of protocol design is already changing to give
-	security equal priority to bandwidth and latency.
-</p>
 <p>Different users in different contexts may have different
 	security needs, so maybe the priority can be a user
 	choice. (If that can be done without making high-security
@@ -966,13 +943,12 @@ Deployment, intermediaries and middleboxes</h3>
 
 <p>Secure protocols have often been designed in the past for
 	end-to-end security: Intermediaries cannot read or modify the
-	messages. This is the model behind TLS and IPSec, e.g.
+	messages. This is the model behind TLS for example.
 </p>
 <p>But in practice people have more or less valid reasons to
 	insist on intermediaries: companies filtering incoming and
 	outgoing traffic for viruses or other reasons, giving priority
-	to certain communications, caching to reduce bandwidth,
-	etc.
+	to certain communications or caching to reduce bandwidth.
 </p>
 <p>In the presence of end-to-end encryption and
 	authentication, these intermediaries have two choices: using
@@ -990,19 +966,20 @@ Deployment, intermediaries and middleboxes</h3>
 	of a single legal entity that can be made into a <a class='info' href='#collaborator'>collaborator</a>.
 </p>
 <p>The way Web communication with TLS typically works is that
-	the client authenticates the server, but the server not the
-	client. (If the client needs to be identified, that is rather
+	the client authenticates the server, but the server does not 
+	authenticate the
+	client at the TLS layer. (If the client needs to be identified, that is mainly
 	done at the application layer via passwords or cookies.) Thus
-	the presence of a MITM (middlebox) can be detected by the
+	the presence of a MITM (middlebox) could be detected by the
 	client (because of the incorrect certificate), but not by the
 	server. If the client doesn't immediately close the
-	connection, the server may thus disclose information that the
-	client would rather not have disclosed.
+	connection, (which they do not in many cases), the server may thus disclose information that the
+	user would rather not have disclosed.
 </p>
 <p>One widespread example of middleboxes is captive portals,
 	as found on the wifi hotspots in hotels, airports, etc. Even
-	the ones that are free often still intercept communications
-	and try to redirect them to a login page.
+	the hotspots offering free access often intercept communications
+	to redirect the user to a login or policy page.
 </p>
 <p>When the communication they intercept is, e.g., the
 	automatic update of your calendar program or a chat session,
@@ -1010,10 +987,10 @@ Deployment, intermediaries and middleboxes</h3>
 	know how to display a Web page. With the increasing use of
 	apps, it may be a while before the user actually opens a
 	browser. The flood of error messages may also have as a result
-	that the user no longer reads them, allowing an actual,
+	that the user no longer reads the errors, allowing an actual
 	malicious attack to go unnoticed.
 </p>
-<p>Some operating systems, such as those from Apple, now come
+<p>Some operating systems now come
 	with heuristics that try to recognise captive portals and
 	either automatically login or show their login page in a
 	separate application. (But some hotspot providers apparently
@@ -1046,7 +1023,45 @@ Deployment, intermediaries and middleboxes</h3>
 <a name="rfc.section.5.8"></a><h3>5.8.&nbsp;
 Break-out 1 &ndash; research</h3>
 
-<p><a class='info' href='#comment.break-out-1'>[break-out-1]<span> (</span><span class='info'>Bert: Who has a summary for the session of the challenge of connecting academics and standards bodies</span><span>)</span></a><a name='break-out-1'></a>
+<p>
+      Despite some requests earlier in the workshop, the research 
+      break-out did not discuss clean-slate approaches. The 
+      challenge was rather that the relation between security research
+      and standardisation needs improvement. Research on linkability is 
+      not yet well known in the IETF. But the other side of the coin 
+      needs improvement too: While doing protocol design, 
+      standardisation should indicate what specific problems are in 
+      need of more research. 
+    
+</p>
+<p>
+      The break-out then made a non exclusive list of topics that are 
+      in need of further research: 
+      </p>
+<ul class="text">
+<li>
+          The interaction of compression and encryption as demonstrated 
+          by the <a href='https://community.qualys.com/blogs/securitylabs/2012/09/14/crime 
+           -information-leakage-attack-against-ssltls'>CRIME SSL/TLS 
+            vulnerability</a>
+        
+</li>
+<li>
+          A more proactive deprecation of algorithms based 
+          on research results.
+        
+</li>
+<li>
+          Mitigation for return oriented programming attacks
+        
+</li>
+<li>
+          How to better obfuscate so called "metadata", how to make the 
+          existence of traffic and their endpoints stealthy
+        
+</li>
+</ul><p>
+    
 </p>
 <a name="client"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
@@ -1099,41 +1114,178 @@ Break-out 3 &ndash; on by default</h3>
 <p>One step in improving security is to require the relevant
 	features, in particular encryption and authentication, to be
 	implemented in compliant products: The features are labelled as
-	MUST in the standard rather than MAY. (This is sometimes
-	referred to as MTI, Mandatory To Implement.)
+	MUST in the standard rather than MAY. This is sometimes
+	referred to as MTI, Mandatory To Implement and is 
+	the current practice for IETF protocols. <a class='info' href='#RFC3365'>[RFC3365]<span> (</span><span class='info'>Schiller, J., &ldquo;Strong Security Requirements for Internet Engineering Task Force Standard Protocols,&rdquo; August&nbsp;2002.</span><span>)</span></a> 
 </p>
-<p>But that is not enough. It may be that the features are
+<p>But that may not be enough to counter PM. It may be that the features are
 	there, but not used, because only very knowledgeable users or
-	sysadmins turn them on. Thus such features should also be on
-	by default.
+	sysadmins turn them on. Or it may be that implementations do not
+	actually follow the MTI parts of specifications. Or it may be
+	that some security features are implemented but interoperability
+	for those doesn't really work. Or, even worse, it may be that
+	protocol designers have only followed the letter of the MTI best 
+	practice and not its spirit, with the result that security
+	features are hard to use or make deployment harder.
+	One can thus argue that such features should be defined 
+	to be on by default.
 </p>
-<p>And sometimes the features should not even be options,
-	i.e., there should be no way to turn them off. (This is
-	sometimes called MTU, Mandatory To Use.)
+<p>Going further one might argue that these features should not even be options,
+	i.e., there should be no way to turn them off. This is
+	sometimes called MTU, Mandatory To Use.
 </p>
-<p>The question is for what protocols on-by-default is
+<p>The question raised at this session was for what protocols on-by-default is
 	appropriate, and how to explain to the developers of such
-	protocols that it is needed.
+	protocols that it is needed?
 </p>
-<p>There may be resistance to mandatory encryption from
-	companies that practice deep packet inspection (DPI) and also
-	from some governments. On the other hand, there may also be
-	governments that outlaw protocols <em>without</em> proper encryption. E.g., can
-	IPSec become mandatory at some point?
+<p>There would of course be resistance to MTU security from
+	implemeters and deployments that practice deep packet inspection (DPI) and also
+	perhaps from some governments. On the other hand, there may also be
+	governments that outlaw protocols <em>without</em> proper encryption. 
+	
+</p>
+<p>This break-out concluded that there could be value in
+	attempting to document a new Best Current Practice for the
+	IETF that moves from the current MTI position to one
+	where security features are on-by-default. Some of the 
+	workshop participants expressed interest in authoring
+	a draft for such a new BCP and progressing that through
+	the IETF consensus process. (Where it would no doubt be
+	controversial.) 
 </p>
 <a name="measure"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.11"></a><h3>5.11.&nbsp;
-Break-out 4 &ndash; measure</h3>
+Break-out 4 &ndash; measurement</h3>
 
-<p><a class='info' href='#comment.break-out-4'>[break-out-4]<span> (</span><span class='info'>Bert: Who has a summary for the break-out on measuring</span><span>)</span></a><a name='break-out-4'></a>
+<p>There was a small break-out on the idea of measurement as
+	a way to encourage or gamify the increased use of security
+	mechanisms. [[We don't currently have notes from that.]]
 </p>
 <a name="opportunistic"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.5.12"></a><h3>5.12.&nbsp;
 Break-out 5 &ndash; opportunistic</h3>
 
-<p><a class='info' href='#comment.break-out-5'>[break-out-5]<span> (</span><span class='info'>Bert: Who has a summary for the break out on opportunistic encryption?</span><span>)</span></a><a name='break-out-5'></a>
+<p>This break out considered the use of the term "opportunistic" as
+	it applies to crytpgraphic security and attempted to progress the
+	work towards arriving at an agreed definition for use of that 
+	term, at it applies to IETF and W3C work.
+</p>
+<p>While various terms had been used, with many people talking
+	about opportunistic encryption, that usage was felt to be 
+	problematic both because it conflicted with the use of the
+	same term in <a class='info' href='#RFC4322'>[RFC4322]<span> (</span><span class='info'>Richardson, M. and D. Redelmeier, &ldquo;Opportunistic Encryption using the Internet Key Exchange (IKE),&rdquo; December&nbsp;2005.</span><span>)</span></a> and because it was
+	being used differently in different parts of the community.
+</p>
+<p>At the session it was felt that the term "opportunistic 
+	keying" was better, but as explained above subsequent list
+	discussion resulted in a move to the term "Opportunistic
+	Security" (OS). 
+</p>
+<p>Aside from terminology, disussion focused on the use
+	of Diffie-Hellman (D-H) key exchange as the preferred mechanism
+	of OS, with fall back to cleartext if D-H doesn't succeed
+	as a counter for passive attacks.
+</p>
+<p>There was also of course the desire to be able to
+	easily escalate from countering passive attacks to
+	also handling endpoint authentication and thereby 
+	also countering MITM attacks.
+</p>
+<p>Making OS visible to users was again considered to
+	be undesirable, as users could not be expected to 
+	distinguish between cleartext, OS and (one-sided or
+	mutal) endpoint authentication.
+</p>
+<p>Finally, it was noted that it may take some 
+	effort to establish how middleboxes might affect OS at different layers
+	and that OS really is not suitable as the only migitation
+	to use for high-sensitivity sessions such as financial
+	transactions.
+</p>
+<a name="anchor1"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5.13"></a><h3>5.13.&nbsp;
+Unofficial Transport/Routing Break-out</h3>
+
+<p>
+Some routing and transport area directors felt a little left
+out by all the application layer break-outs:-) So they had their own
+brainstorm about what
+could be done at the Transport and Routing layers from which
+these notes resulted.
+</p>
+<p>
+The LEDBAT <a class='info' href='#RFC6817'>[RFC6817]<span> (</span><span class='info'>Shalunov, S., Hazel, G., Iyengar, J., and M. Kuehlewind, &ldquo;Low Extra Delay Background Transport (LEDBAT),&rdquo; December&nbsp;2012.</span><span>)</span></a> 
+protocol was targeted towards a
+bulk-transfer service that is reordering and delay insensitive.  Use of
+LDEBAT could offer the following benefits for an application:
+</p>
+<blockquote class="text"><dl>
+<dt>a.</dt>
+<dd>
+    Because it is reordering insensitive, traffic can be sprayed across
+a large number of forwarding paths.  Assuming such different paths exist,
+this would make it more challenging to capture and analyze a full
+interaction.
+
+</dd>
+<dt>b.</dt>
+<dd>
+    The application can vary the paths by indicating per packet a
+different microflow.  In IPv6, this can be done via different IPv6 flow
+labels.  For IPv4, this can be done by encapsulating the IP packet into UDP
+and varying the UDP src port.
+
+</dd>
+<dt>c.</dt>
+<dd>
+    Since LEDBAT is delay insensitive and applications using it would
+need to be as well, it would be possible to obfuscate the application
+signatures by varying the packet lengths and frequency.
+
+</dd>
+<dt>d.</dt>
+<dd>
+    This can also hide the transport header (for IP in UDP).
+
+</dd>
+<dt>e.</dt>
+<dd>
+    If we could fix the reverse SPF check problem, perhaps the source
+could be hidden - but that has assumptions on trusted perimeters.
+
+</dd>
+<dt>f.</dt>
+<dd>
+    The use of LEDBAT is orthogonal to the use of encryption and provides
+different benefits (harder to intercept the whole conversation, ability to
+obfuscate the traffic analysis), and also has different costs (longer latency, new
+transport protocol usage) to its users.
+
+</dd>
+</dl></blockquote><p>
+
+</p>
+<p>
+We also discussed the idea of encrypting traffic from CE to CE as part of a
+L3VPN or such.  This could allow hiding of addresses, including source, and
+headers.  From my further conversation with Ron Bonica, some customers
+already do encryption (though not hiding the source address) like this.
+ So, I'm not sure this is very practically useful as an enhancement except
+for encouraging deployment and use.
+
+</p>
+<p>
+Finally, we discussed whether it would be useful to have a means of
+communicating where and what layers are doing encryption on an
+application's traffic path.  The initial idea of augmenting ICMP has some
+issues (not visible to application, ICMP packets frequently filtered) as
+well as potential work (determining how to trust the report of encryption).
+ It would be interesting to understand if such communication is actually
+needed and what the requirements would be.
+
 </p>
 <a name="after"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
@@ -1181,106 +1333,19 @@ After the workshop</h3>
       Pouwelse, &ldquo;The Shadow Internet: liberation from
       Surveillance, Censorship and Servers&rdquo; <a class='info' href='#draft-pouwelse-perpass-shadow-internet'>[draft&#8209;pouwelse&#8209;perpass&#8209;shadow&#8209;internet]<span> (</span><span class='info'>Pouwelse, J., Ed., &ldquo;The Shadow Internet: liberation from Surveillance, 	  Censorship and Servers,&rdquo; February&nbsp;2014.</span><span>)</span></a>
 </p>
-<a name="conclusions"></a><br /><hr />
+<a name="iana"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.7"></a><h3>7.&nbsp;
-Conclusions and recommendations</h3>
+IANA considerations</h3>
 
-<p>The main conclusions from the workshop are the following:
-	</p>
-<ol class="text">
-<li>Encryption works and needs to be used more, despite its
-	  cost (which is steadily going down anyway).
-</li>
-<li>Data minimisation is worthwhile, too, but difficult:
-	  Traffic analysis research and protocol development need to
-	  work together.
-</li>
-<li>The threat models discussed in the workshop should be
-	  written up in an RFC (either separately or as an update to
-	  <a href='http://tools.ietf.org/html/bcp72'>BCP&nbsp;72</a>).
-</li>
-<li>&ldquo;Opportunistic Encryption&rdquo; could benefit from a
-	  cookbook-like explanation for developers. (The term itself
-	  may also be confusing. Best effort encryption or
-	  opportunistic keying were suggested as alternatives.)
-</li>
-<li>The technical community can do better in explaining the
-	  issues of Pervasive Monitoring to policy makers.
-</li>
-<li>Similarly, user interfaces could be better. (Some people
-	  even argue that certain dangerous choices should simply not
-	  be offered anymore. But that requires concertation among
-	  software makers, otherwise some will be considered &ldquo;broken&rdquo;
-	  by users.) How to integrate UI issues into the processes of
-	  IETF and W3C needs further discussion.
-</li>
-<li>Examples of good software configurations, guidelines for
-	  developers, cut-and-paste configurations for popular
-	  software, etc., can help. This is not standards work, but
-	  maybe the standards organisations can still help.
-</li>
-<li>Software makers can do more to make the default
-	  (&ldquo;out-of-the-box&rdquo;) settings better for protecting
-	  privacy.
-</li>
-<li><a href='https://en.wikipedia.org/wiki/Captive_portal'>Captive portals,</a> (and some firewalls, too) can and
-	  should be distinguished from real man-in-the-middle
-	  attacks. Maybe this just needs establishing common
-	  conventions with makers of such proxies, but maybe also new
-	  protocols.
-</li>
-</ol>
-
-<p>Some recommendations also emerged from the discussions.
-	Some are meant for the developers of standards, some do not
-	have a clear target yet:
-	</p>
-<blockquote class="text"><dl>
-<dt>a.</dt>
-<dd>Lack of interoperability generally reduces security.
-	  Standards organisations should do everything they can to
-	  improve interoperability.
-</dd>
-<dt>b.</dt>
-<dd>The hierarchical certificate system used by TLS has some
-	  problems that may be solvable (e.g., with Certificate
-	  Transparency).
-</dd>
-<dt>c.</dt>
-<dd>Standards organisations should investigate the
-	  possibility of a permanent committee that reviews proposed
-	  standards in the light of privacy protection.
-</dd>
-<dt>d.</dt>
-<dd>Developers of standards should do more to get the
-	  expertise that is available from academics, such as in
-	  traffic analysis and user interfaces.
-</dd>
-<dt>e.</dt>
-<dd>Create example configurations, standard profiles and
-	  cut-and-paste solutions to help sysadmins deploy correctly
-	  configured secure systems.
-</dd>
-<dt>f.</dt>
-<dd>Develop an upgrade path from current, insecure systems to
-	  secure systems, without hindrance to users.
-</dd>
-<dt>g.</dt>
-<dd>Technical solutions for increased security will have
-	  difficulty being deployed unless they are socially and
-	  legally accepted, or better still: demanded. Educating
-	  people within the technical community only is thus not
-	  enough.
-</dd>
-</dl></blockquote>
-
+<p>There are none. We hope the RFC editor deletes this section.
+</p>
 <a name="Security"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.8"></a><h3>8.&nbsp;
 Security considerations</h3>
 
-<p>This document does not define a technology.
+<p>This document does not define a technology but is all about security and privacy.
 </p>
 <p>Plenary.
 </p><div><img src="https://www.w3.org/2014/strint/lib/workshop-6" alt="(foto: view from the back of the room)" /></div>
@@ -1306,12 +1371,22 @@ Security considerations</h3>
 <td class="author-text">Farrell, S. and H. Tschofenig, &ldquo;<a href="http://tools.ietf.org/html/draft-farrell-perpass-attack-06">Pervasive Monitoring is an Attack</a>,&rdquo; draft-farrell-perpass-attack-06 (work in progress), February&nbsp;2014 (<a href="http://www.ietf.org/internet-drafts/draft-farrell-perpass-attack-06.txt">TXT</a>).</td></tr>
 <tr><td class="author-text" valign="top"><a name="I-D.kent-opportunistic-security">[I-D.kent-opportunistic-security]</a></td>
 <td class="author-text">Kent, S., &ldquo;<a href="http://tools.ietf.org/html/draft-kent-opportunistic-security-01">Opportunistic Security as a Countermeasure to Pervasive Monitoring</a>,&rdquo; draft-kent-opportunistic-security-01 (work in progress), April&nbsp;2014 (<a href="http://www.ietf.org/internet-drafts/draft-kent-opportunistic-security-01.txt">TXT</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC3261">[RFC3261]</a></td>
+<td class="author-text">Rosenberg, J., Schulzrinne, H., Camarillo, G., Johnston, A., Peterson, J., Sparks, R., Handley, M., and E. Schooler, &ldquo;<a href="http://tools.ietf.org/html/rfc3261">SIP: Session Initiation Protocol</a>,&rdquo; RFC&nbsp;3261, June&nbsp;2002 (<a href="http://www.rfc-editor.org/rfc/rfc3261.txt">TXT</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC3365">[RFC3365]</a></td>
+<td class="author-text">Schiller, J., &ldquo;<a href="http://tools.ietf.org/html/rfc3365">Strong Security Requirements for Internet Engineering Task Force Standard Protocols</a>,&rdquo; BCP&nbsp;61, RFC&nbsp;3365, August&nbsp;2002 (<a href="http://www.rfc-editor.org/rfc/rfc3365.txt">TXT</a>).</td></tr>
 <tr><td class="author-text" valign="top"><a name="RFC3552">[RFC3552]</a></td>
 <td class="author-text">Rescorla, E. and B. Korver, &ldquo;<a href="http://tools.ietf.org/html/rfc3552">Guidelines for Writing RFC Text on Security Considerations</a>,&rdquo; BCP&nbsp;72, RFC&nbsp;3552, July&nbsp;2003 (<a href="http://www.rfc-editor.org/rfc/rfc3552.txt">TXT</a>).</td></tr>
 <tr><td class="author-text" valign="top"><a name="RFC4252">[RFC4252]</a></td>
 <td class="author-text">Ylonen, T. and C. Lonvick, &ldquo;<a href="http://tools.ietf.org/html/rfc4252">The Secure Shell (SSH) Authentication Protocol</a>,&rdquo; RFC&nbsp;4252, January&nbsp;2006 (<a href="http://www.rfc-editor.org/rfc/rfc4252.txt">TXT</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC4322">[RFC4322]</a></td>
+<td class="author-text">Richardson, M. and D. Redelmeier, &ldquo;<a href="http://tools.ietf.org/html/rfc4322">Opportunistic Encryption using the Internet Key Exchange (IKE)</a>,&rdquo; RFC&nbsp;4322, December&nbsp;2005 (<a href="http://www.rfc-editor.org/rfc/rfc4322.txt">TXT</a>).</td></tr>
 <tr><td class="author-text" valign="top"><a name="RFC6585">[RFC6585]</a></td>
 <td class="author-text">Nottingham, M. and R. Fielding, &ldquo;<a href="http://tools.ietf.org/html/rfc6585">Additional HTTP Status Codes</a>,&rdquo; RFC&nbsp;6585, April&nbsp;2012 (<a href="http://www.rfc-editor.org/rfc/rfc6585.txt">TXT</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC6817">[RFC6817]</a></td>
+<td class="author-text">Shalunov, S., Hazel, G., Iyengar, J., and M. Kuehlewind, &ldquo;<a href="http://tools.ietf.org/html/rfc6817">Low Extra Delay Background Transport (LEDBAT)</a>,&rdquo; RFC&nbsp;6817, December&nbsp;2012 (<a href="http://www.rfc-editor.org/rfc/rfc6817.txt">TXT</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC6962">[RFC6962]</a></td>
+<td class="author-text">Laurie, B., Langley, A., and E. Kasper, &ldquo;<a href="http://tools.ietf.org/html/rfc6962">Certificate Transparency</a>,&rdquo; RFC&nbsp;6962, June&nbsp;2013 (<a href="http://www.rfc-editor.org/rfc/rfc6962.txt">TXT</a>).</td></tr>
 <tr><td class="author-text" valign="top"><a name="draft-ietf-websec-key-pinning">[draft-ietf-websec-key-pinning]</a></td>
 <td class="author-text"><a href="mailto:cevans@google.com">Evans, C.</a>, <a href="mailto:cevans@google.com">Palmer, C.</a>, and <a href="mailto:sleevi@google.com">R. Sleevi</a>, &ldquo;<a href="http://tools.ietf.org/html/draft-ietf-websec-key-pinning-11">Public Key Pinning Extension for HTTP</a>,&rdquo; February&nbsp;2014.<p>
 (Work in progress.)
@@ -1323,8 +1398,12 @@ Security considerations</h3>
 (Work in progress.)
 </p>
 </td></tr>
+<tr><td class="author-text" valign="top"><a name="saag">[saag]</a></td>
+<td class="author-text">Area, S., &ldquo;<a href="https://www.ietf.org/mail-archive/web/saag/current/maillist.html">IETF Security Area mailing list</a>,&rdquo; March&nbsp;2014.</td></tr>
 <tr><td class="author-text" valign="top"><a name="vancouverplenary">[vancouverplenary]</a></td>
 <td class="author-text">IETF, &ldquo;<a href="http://www.ietf.org/proceedings/88/minutes/minutes-88-iab-techplenary">IETF 88 Technical Plenary Minutes</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="w3c-geo-api">[w3c-geo-api]</a></td>
+<td class="author-text">Popescu, A., &ldquo;<a href="http://www.w3.org/TR/geolocation-API/">Geolocation API Specification</a>,&rdquo; October&nbsp;2013.</td></tr>
 </table>
 
 <a name="logistics"></a><br /><hr />
@@ -1629,7 +1708,7 @@ The submitted papers</h3>
       <a href='https://strint.pads.ccc.de/1'>editable page
       (&ldquo;Etherpad&rdquo;)</a> where the authors could insert them.)
 </p>
-<a name="anchor2"></a><br /><hr />
+<a name="anchor3"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.1"></a><h3>C.1.&nbsp;
 Privacy Protected Email &ndash; Phillip Hallam-Baker</h3>
@@ -1647,7 +1726,7 @@ Privacy Protected Email &ndash; Phillip Hallam-Baker</h3>
 	people generate keys for their email we can secure chat,
 	video, 2-factor authentication as well.
 </p>
-<a name="anchor3"></a><br /><hr />
+<a name="anchor4"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.2"></a><h3>C.2.&nbsp;
 Opportunistic Encryption for MPLS &ndash; Stephen Farrell, Adrian Farrrell</h3>
@@ -1665,7 +1744,7 @@ Opportunistic Encryption for MPLS &ndash; Stephen Farrell, Adrian Farrrell</h3>
 	I'd be interested in whether or not (b) is tractable (I'm not
 	sure).
 </p>
-<a name="anchor4"></a><br /><hr />
+<a name="anchor5"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.3"></a><h3>C.3.&nbsp;
 Overcoming the Friend-or-Foe Paradigm in Secure Communication &ndash; Sebastian Gajek, Jan Seedorf, Marc Fischlin, Oezguer Dagdalen</h3>
@@ -1687,7 +1766,7 @@ Overcoming the Friend-or-Foe Paradigm in Secure Communication &ndash; Sebastian 
 	Communication&rdquo; exists and we think it is feasible to extend
 	TLS in this way in a reasonable timeframe.
 </p>
-<a name="anchor5"></a><br /><hr />
+<a name="anchor6"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.4"></a><h3>C.4.&nbsp;
 Flows and Pervasive Monitoring &ndash; Ted Hardie</h3>
@@ -1702,7 +1781,7 @@ Flows and Pervasive Monitoring &ndash; Ted Hardie</h3>
 	pervasive monitoring and the related consequences for network
 	operations.
 </p>
-<a name="anchor6"></a><br /><hr />
+<a name="anchor7"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.5"></a><h3>C.5.&nbsp;
 BetterCrypto.org Applied Crypto Hardening &ndash; Aaron Zauner, L. Aaron Kaplan</h3>
@@ -1719,7 +1798,7 @@ BetterCrypto.org Applied Crypto Hardening &ndash; Aaron Zauner, L. Aaron Kaplan<
 	operations community that needs to deploy sound security on
 	the public internet. Our focus group: sysadmins / ops.
 </p>
-<a name="anchor7"></a><br /><hr />
+<a name="anchor8"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.6"></a><h3>C.6.&nbsp;
 A Complimentary Analysis (The Danger Of The New Internet Choke Points) &ndash; Andrei Robachevsky, Christine Runnegar, Karen O'Donoghue, Mat Ford</h3>
@@ -1745,7 +1824,7 @@ A Complimentary Analysis (The Danger Of The New Internet Choke Points) &ndash; A
 	some significant areas of tension or trade-offs, and we
 	consider possible areas for additional efforts.  Also: <a href='http://www.internetsociety.org/blog/tech-matters/2014/02/danger-new-internet-choke-points'>danger-new-internet-choke-points</a> and <a href='http://www.circleid.com/posts/20140218_mind_the_step_function_are_we_really_less_secure_than_a_year_ago/'>mind_the_step_function</a>
 </p>
-<a name="anchor8"></a><br /><hr />
+<a name="anchor9"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.7"></a><h3>C.7.&nbsp;
 Trust Issues with Opportunistic Encryption &ndash; Scott Rose, Stephen Nightingale, Doug Montgomery</h3>
@@ -1765,7 +1844,7 @@ Trust Issues with Opportunistic Encryption &ndash; Scott Rose, Stephen Nightinga
 	while opportunistic encryption can solve one set of problems,
 	authentication is often desired by end users.
 </p>
-<a name="anchor9"></a><br /><hr />
+<a name="anchor10"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.8"></a><h3>C.8.&nbsp;
 Challenges with End-to-End Email Encryption &ndash; Jiangshan Yu, Vincent Cheval, Mark Ryan</h3>
@@ -1781,7 +1860,7 @@ Challenges with End-to-End Email Encryption &ndash; Jiangshan Yu, Vincent Cheval
 	concerns i.e. metadata protection, key loss mitigation, spam
 	detection, and the security of webmail.
 </p>
-<a name="anchor10"></a><br /><hr />
+<a name="anchor11"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.9"></a><h3>C.9.&nbsp;
 Strengthening the path and strengthening the end-points &ndash; Xavier Marjou, Emile Stephan, Jean-Michel Combes, Iuniana Oprescu</h3>
@@ -1797,7 +1876,7 @@ Strengthening the path and strengthening the end-points &ndash; Xavier Marjou, E
 	contradict security's two other pillars, which are
 	availability and integrity.
 </p>
-<a name="anchor11"></a><br /><hr />
+<a name="anchor12"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.10"></a><h3>C.10.&nbsp;
 SIP is Difficult &ndash; Jon Peterson</h3>
@@ -1811,7 +1890,7 @@ SIP is Difficult &ndash; Jon Peterson</h3>
 	open for eavesdropping, and what lessons RTCWeb could learn
 	from this.
 </p>
-<a name="anchor12"></a><br /><hr />
+<a name="anchor13"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.11"></a><h3>C.11.&nbsp;
 Thoughts of Strengthening Network Devices in
@@ -1831,7 +1910,7 @@ Thoughts of Strengthening Network Devices in
 	organization can do to help vendors address these security
 	concerns.
 </p>
-<a name="anchor13"></a><br /><hr />
+<a name="anchor14"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.12"></a><h3>C.12.&nbsp;
 Opportunistic Encryption for HTTP URIs &ndash;
@@ -1844,7 +1923,7 @@ Opportunistic Encryption for HTTP URIs &ndash;
 	make is whether or not to require the certs to validate in
 	this scenario.
 </p>
-<a name="anchor14"></a><br /><hr />
+<a name="anchor15"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.13"></a><h3>C.13.&nbsp;
 Cyberdefense-Oriented Multilayer Threat
@@ -1852,7 +1931,7 @@ Cyberdefense-Oriented Multilayer Threat
 
 <p><a href='https://www.w3.org/2014/strint/papers/13.pdf'>13.pdf</a>
 </p>
-<a name="anchor15"></a><br /><hr />
+<a name="anchor16"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.14"></a><h3>C.14.&nbsp;
 A Threat Model for Pervasive Passive
@@ -1874,7 +1953,7 @@ A Threat Model for Pervasive Passive
 	identifiers can increase protocol-level resistance to
 	pervasive surveillance.
 </p>
-<a name="anchor16"></a><br /><hr />
+<a name="anchor17"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.15"></a><h3>C.15.&nbsp;
 Why Provable Transparency is Useful Against
@@ -1882,12 +1961,12 @@ Why Provable Transparency is Useful Against
 
 <p><a href='https://www.w3.org/2014/strint/papers/15.pdf'>15.pdf</a>
 </p>
-<a name="anchor17"></a><br /><hr />
+<a name="anchor18"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.16"></a><h3>C.16.&nbsp;
 Withheld</h3>
 
-<a name="anchor18"></a><br /><hr />
+<a name="anchor19"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.17"></a><h3>C.17.&nbsp;
 Monitoring message size to break privacy &ndash;
@@ -1912,12 +1991,12 @@ Monitoring message size to break privacy &ndash;
 	such as required developer awareness, ease of deployment,
 	efficiency, and interaction with other countermeasures.
 </p>
-<a name="anchor19"></a><br /><hr />
+<a name="anchor20"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.18"></a><h3>C.18.&nbsp;
 Withheld</h3>
 
-<a name="anchor20"></a><br /><hr />
+<a name="anchor21"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.19"></a><h3>C.19.&nbsp;
 Making The Internet Secure By Default &ndash;
@@ -1943,7 +2022,7 @@ Making The Internet Secure By Default &ndash;
 	proposal is evolutionary and allows a smooth migration from
 	today's Internet technology, device by device.
 </p>
-<a name="anchor21"></a><br /><hr />
+<a name="anchor22"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.20"></a><h3>C.20.&nbsp;
 Increasing HTTP Transport Confidentiality
@@ -1953,7 +2032,7 @@ Increasing HTTP Transport Confidentiality
 </p>
 <p>
 </p>
-<a name="anchor22"></a><br /><hr />
+<a name="anchor23"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.21"></a><h3>C.21.&nbsp;
 Balance &ndash; Societal security versus
@@ -1963,7 +2042,7 @@ Balance &ndash; Societal security versus
 </p>
 <p>
 </p>
-<a name="anchor23"></a><br /><hr />
+<a name="anchor24"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.22"></a><h3>C.22.&nbsp;
 Strengthening the Extensible Messaging and
@@ -1976,7 +2055,7 @@ Strengthening the Extensible Messaging and
 	Strengthening the Internet Against Pervasive Monitoring
 	(STRINT).
 </p>
-<a name="anchor24"></a><br /><hr />
+<a name="anchor25"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.23"></a><h3>C.23.&nbsp;
 The Internet We Want or the Internet We
@@ -1986,7 +2065,7 @@ The Internet We Want or the Internet We
 </p>
 <p>
 </p>
-<a name="anchor25"></a><br /><hr />
+<a name="anchor26"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.24"></a><h3>C.24.&nbsp;
 Beyond Encrypt Everything: Passive
@@ -1996,7 +2075,7 @@ Beyond Encrypt Everything: Passive
 </p>
 <p>
 </p>
-<a name="anchor26"></a><br /><hr />
+<a name="anchor27"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.25"></a><h3>C.25.&nbsp;
 Examining Proxies to Mitigate Pervasive
@@ -2014,7 +2093,7 @@ Examining Proxies to Mitigate Pervasive
 	one threat analysis. Finally we summarize in a set of four
 	principles that should be considered in future work.
 </p>
-<a name="anchor27"></a><br /><hr />
+<a name="anchor28"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.26"></a><h3>C.26.&nbsp;
 Spontaneous Wireless Networking to Counter
@@ -2036,7 +2115,7 @@ Spontaneous Wireless Networking to Counter
 	entities &ndash; can help realize target dispersal and thus counter
 	pervasive monitoring.
 </p>
-<a name="anchor28"></a><br /><hr />
+<a name="anchor29"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.27"></a><h3>C.27.&nbsp;
 Is Opportunistic Encryption the Answer?
@@ -2054,7 +2133,7 @@ Is Opportunistic Encryption the Answer?
 	encryption is not an effective way to thwart pervasive
 	monitoring.
 </p>
-<a name="anchor29"></a><br /><hr />
+<a name="anchor30"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.28"></a><h3>C.28.&nbsp;
 Clearing off the Cloud over the Internet of
@@ -2073,12 +2152,12 @@ Clearing off the Cloud over the Internet of
 	of principles as a program to improve the long-term
 	outlook.
 </p>
-<a name="anchor30"></a><br /><hr />
+<a name="anchor31"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.29"></a><h3>C.29.&nbsp;
 Withheld</h3>
 
-<a name="anchor31"></a><br /><hr />
+<a name="anchor32"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.30"></a><h3>C.30.&nbsp;
 The Trust-to-Trust Model of Cloud Services &ndash;
@@ -2088,7 +2167,7 @@ The Trust-to-Trust Model of Cloud Services &ndash;
 </p>
 <p>
 </p>
-<a name="anchor32"></a><br /><hr />
+<a name="anchor33"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.31"></a><h3>C.31.&nbsp;
 Linkability Considered Harmful &ndash; Leif
@@ -2103,7 +2182,7 @@ Linkability Considered Harmful &ndash; Leif
 	obtain access to linked data sets which are being maintained
 	by large content and service providers.
 </p>
-<a name="anchor33"></a><br /><hr />
+<a name="anchor34"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.32"></a><h3>C.32.&nbsp;
 Simple Opportunistic Encryption &ndash; Andrea
@@ -2130,7 +2209,7 @@ Simple Opportunistic Encryption &ndash; Andrea
 	and so it is a complete solution both for the short-term and
 	long-term.
 </p>
-<a name="anchor34"></a><br /><hr />
+<a name="anchor35"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.33"></a><h3>C.33.&nbsp;
 An Architecture for a Secure Cloud
@@ -2154,14 +2233,14 @@ An Architecture for a Secure Cloud
 	talking to who but can help protect the content of the
 	conversations.
 </p>
-<a name="anchor35"></a><br /><hr />
+<a name="anchor36"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.34"></a><h3>C.34.&nbsp;
 Security and Simplicity &ndash; Steven Bellovin</h3>
 
 <p><a href='https://www.w3.org/2014/strint/papers/34.pdf'>34.pdf</a>
 </p>
-<a name="anchor36"></a><br /><hr />
+<a name="anchor37"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.35"></a><h3>C.35.&nbsp;
 Privacy at the Link Layer &ndash; Piers O'Hanlon,
@@ -2199,7 +2278,7 @@ Privacy at the Link Layer &ndash; Piers O'Hanlon,
 <p>All these mechanisms need to be re-examined in the light of
 	pervasive monitoring.
 </p>
-<a name="anchor37"></a><br /><hr />
+<a name="anchor38"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.36"></a><h3>C.36.&nbsp;
 Erosion of the moral authority of
@@ -2212,7 +2291,7 @@ Erosion of the moral authority of
 	authority that otherwise might accrue to the legitimate value
 	that they add.
 </p>
-<a name="anchor38"></a><br /><hr />
+<a name="anchor39"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.37"></a><h3>C.37.&nbsp;
 Policy Responses, Implications and
@@ -2236,7 +2315,7 @@ Policy Responses, Implications and
 	over the past year, focusing on software backdoors and NSA
 	surviellance.
 </p>
-<a name="anchor39"></a><br /><hr />
+<a name="anchor40"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.38"></a><h3>C.38.&nbsp;
 Is it time to bring back the hosts file? &ndash;
@@ -2244,7 +2323,7 @@ Is it time to bring back the hosts file? &ndash;
 
 <p><a href='https://www.w3.org/2014/strint/papers/38.pdf'>38.pdf</a>
 </p>
-<a name="anchor40"></a><br /><hr />
+<a name="anchor41"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.39"></a><h3>C.39.&nbsp;
 Metaphors matter; application-layer;
@@ -2269,7 +2348,7 @@ Metaphors matter; application-layer;
 </ol><p>
 	
 </p>
-<a name="anchor41"></a><br /><hr />
+<a name="anchor42"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.40"></a><h3>C.40.&nbsp;
 Levels of Opportunistic Privacy Protection
@@ -2288,7 +2367,7 @@ Levels of Opportunistic Privacy Protection
 	provided with existing, or low-risk, component technologies,
 	such as through the DNS and MIME conventions.
 </p>
-<a name="anchor42"></a><br /><hr />
+<a name="anchor43"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.41"></a><h3>C.41.&nbsp;
 Fingerprinting Guidance for Web
@@ -2304,7 +2383,7 @@ Fingerprinting Guidance for Web
 	specification authors on how to balance these concerns when
 	designing new Web features.
 </p>
-<a name="anchor43"></a><br /><hr />
+<a name="anchor44"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.42"></a><h3>C.42.&nbsp;
 Eradicating Bearer Tokens for Session Management &ndash; 
@@ -2344,7 +2423,7 @@ Eradicating Bearer Tokens for Session Management &ndash;
 	gradual migration path, while remaining compatible with
 	currently existing applications.
 </p>
-<a name="anchor44"></a><br /><hr />
+<a name="anchor45"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.43"></a><h3>C.43.&nbsp;
 STREWS Web-platform security guide: security
@@ -2360,7 +2439,7 @@ STREWS Web-platform security guide: security
 	web application ecosystem, the de-facto Internet application
 	platform.
 </p>
-<a name="anchor45"></a><br /><hr />
+<a name="anchor46"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.44"></a><h3>C.44.&nbsp;
 Pervasive Attack: A Threat Model and Problem
@@ -2376,7 +2455,7 @@ Pervasive Attack: A Threat Model and Problem
 	techniques that can be employed in Internet protocol design to
 	increase the protocols robustness to pervasive attacks.
 </p>
-<a name="anchor46"></a><br /><hr />
+<a name="anchor47"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.45"></a><h3>C.45.&nbsp;
 Cryptech &ndash; Building a More Assured HSM with
@@ -2384,7 +2463,7 @@ Cryptech &ndash; Building a More Assured HSM with
 
 <p><a href='https://www.w3.org/2014/strint/papers/45.pdf'>45.pdf</a>
 </p>
-<a name="anchor47"></a><br /><hr />
+<a name="anchor48"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.46"></a><h3>C.46.&nbsp;
 Replacing passwords on the Internet AKA
@@ -2393,7 +2472,7 @@ Replacing passwords on the Internet AKA
 
 <p><a href='https://www.w3.org/2014/strint/papers/46.pdf'>46.pdf</a>
 </p>
-<a name="anchor48"></a><br /><hr />
+<a name="anchor49"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.47"></a><h3>C.47.&nbsp;
 End-User Concerns about Pervasive Internet
@@ -2417,7 +2496,7 @@ End-User Concerns about Pervasive Internet
 	this approach would be more effective in protecting end users
 	in an environment of persistent network threats.
 </p>
-<a name="anchor49"></a><br /><hr />
+<a name="anchor50"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.48"></a><h3>C.48.&nbsp;
 Developer-Resistant Cryptography &ndash; Kelsey
@@ -2434,7 +2513,7 @@ Developer-Resistant Cryptography &ndash; Kelsey
 	cryptography easier to use and more resistant to developer
 	errors?
 </p>
-<a name="anchor50"></a><br /><hr />
+<a name="anchor51"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.49"></a><h3>C.49.&nbsp;
 Improving the reliability of key ownership
@@ -2459,7 +2538,7 @@ Improving the reliability of key ownership
 	ownership assertions to the operators of services, allowing
 	the discovery of false ownership assertions.
 </p>
-<a name="anchor51"></a><br /><hr />
+<a name="anchor52"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.50"></a><h3>C.50.&nbsp;
 Mike O'Neill's Position Paper &ndash; Mike
@@ -2467,7 +2546,7 @@ Mike O'Neill's Position Paper &ndash; Mike
 
 <p><a href='https://www.w3.org/2014/strint/papers/50.pdf'>50.pdf</a>
 </p>
-<a name="anchor52"></a><br /><hr />
+<a name="anchor53"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.51"></a><h3>C.51.&nbsp;
 Detecting MITM Attacks on Ephemeral
@@ -2495,7 +2574,7 @@ Detecting MITM Attacks on Ephemeral
 	Transport Layer Security &ndash; Secure Real-time Transport
 	Protocol, is given.
 </p>
-<a name="anchor53"></a><br /><hr />
+<a name="anchor54"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.52"></a><h3>C.52.&nbsp;
 Trust &amp; Usability on the Web, a
@@ -2515,7 +2594,7 @@ Trust &amp; Usability on the Web, a
 	and social aspects that help users understand and explore the
 	keys and the organizations behind them.
 </p>
-<a name="anchor54"></a><br /><hr />
+<a name="anchor55"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.53"></a><h3>C.53.&nbsp;
 Hardening Operations and Management Against
@@ -2538,7 +2617,7 @@ Hardening Operations and Management Against
 	the IETF can assist in bringing customer and regulatory
 	pressure to bear in improving operational practices.
 </p>
-<a name="anchor55"></a><br /><hr />
+<a name="anchor56"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.54"></a><h3>C.54.&nbsp;
 A few theses regarding privacy and security
@@ -2546,7 +2625,7 @@ A few theses regarding privacy and security
 
 <p><a href='https://www.w3.org/2014/strint/papers/54.pdf'>54.pdf</a>
 </p>
-<a name="anchor56"></a><br /><hr />
+<a name="anchor57"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.55"></a><h3>C.55.&nbsp;
 Meet the new threat model, same as the old
@@ -2573,7 +2652,7 @@ Meet the new threat model, same as the old
 	provides no assurance that packets which claim to be from that
 	system in fact are. &ndash; <a class='info' href='#RFC3552'>[RFC3552]<span> (</span><span class='info'>Rescorla, E. and B. Korver, &ldquo;Guidelines for Writing RFC Text on Security Considerations,&rdquo; July&nbsp;2003.</span><span>)</span></a>
 </p>
-<a name="anchor57"></a><br /><hr />
+<a name="anchor58"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.56"></a><h3>C.56.&nbsp;
 It's Time for Application-Centric Security &ndash;
@@ -2598,7 +2677,7 @@ It's Time for Application-Centric Security &ndash;
 	interdependency (motto: aggressive fragility under tampering)
 	can effectively address these vulnerabilities.
 </p>
-<a name="anchor58"></a><br /><hr />
+<a name="anchor59"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.57"></a><h3>C.57.&nbsp;
 Sabatini Monatesti position paper &ndash; Sabatine
@@ -2606,7 +2685,7 @@ Sabatini Monatesti position paper &ndash; Sabatine
 
 <p><a href='https://www.w3.org/2014/strint/papers/57.pdf'>57.pdf</a>
 </p>
-<a name="anchor59"></a><br /><hr />
+<a name="anchor60"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.58"></a><h3>C.58.&nbsp;
 Trust problems in pervasive monitoring &ndash;
@@ -2614,7 +2693,7 @@ Trust problems in pervasive monitoring &ndash;
 
 <p><a href='https://www.w3.org/2014/strint/papers/58.pdf'>58.pdf</a>
 </p>
-<a name="anchor60"></a><br /><hr />
+<a name="anchor61"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.59"></a><h3>C.59.&nbsp;
 Beyond &quot;Just TLS Everywhere&quot;: From
@@ -2623,7 +2702,7 @@ Beyond &quot;Just TLS Everywhere&quot;: From
 
 <p><a href='https://www.w3.org/2014/strint/papers/59.pdf'>59.pdf</a>
 </p>
-<a name="anchor61"></a><br /><hr />
+<a name="anchor62"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.60"></a><h3>C.60.&nbsp;
 Network Security as a Public Good &ndash; Wendy
@@ -2634,7 +2713,7 @@ Network Security as a Public Good &ndash; Wendy
 	in the Internet ecosystem. Standards consortia should support
 	and help coordinate activity to protect the commons.
 </p>
-<a name="anchor62"></a><br /><hr />
+<a name="anchor63"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.61"></a><h3>C.61.&nbsp;
 Statement of Interest on behalf of the W3C
@@ -2642,7 +2721,7 @@ Statement of Interest on behalf of the W3C
 
 <p><a href='https://www.w3.org/2014/strint/papers/61.pdf'>61.pdf</a>
 </p>
-<a name="anchor63"></a><br /><hr />
+<a name="anchor64"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.62"></a><h3>C.62.&nbsp;
 Improving Security on the Internet &ndash; Hannes
@@ -2664,7 +2743,7 @@ Improving Security on the Internet &ndash; Hannes
 	the Internet software development life-cycle will be crucial
 	for improving security on the Internet.
 </p>
-<a name="anchor64"></a><br /><hr />
+<a name="anchor65"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.63"></a><h3>C.63.&nbsp;
 Protecting customer data from government
@@ -2672,7 +2751,7 @@ Protecting customer data from government
 
 <p><a href='https://www.w3.org/2014/strint/papers/63.pdf'>63.pdf</a>
 </p>
-<a name="anchor65"></a><br /><hr />
+<a name="anchor66"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.64"></a><h3>C.64.&nbsp;
 Privacy Aware Internet Development
@@ -2688,7 +2767,7 @@ Privacy Aware Internet Development
 	aiming to address this need, supported by privacy and
 	technology experts.
 </p>
-<a name="anchor66"></a><br /><hr />
+<a name="anchor67"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.65"></a><h3>C.65.&nbsp;
 The Internet is Broken: Idealistic Ideas for
@@ -2701,7 +2780,7 @@ The Internet is Broken: Idealistic Ideas for
 	the architecture to build a network that offers strong
 	security and privacy by default.
 </p>
-<a name="anchor67"></a><br /><hr />
+<a name="anchor68"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.C.66"></a><h3>C.66.&nbsp;
 Opportunistic Keying as a Countermeasure to
