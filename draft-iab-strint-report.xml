@@ -1002,7 +1002,41 @@ postamble if the artwork cannot be shown... -->
 	<t><cref anchor="break-out-1" source="Bert">Who has a summary
 	for the session of the challenge of connecting academics and
 	standards bodies</cref></t>
-      </section>
+    <t>
+      Despite some requests earlier in the workshop, the research 
+      break-out did not discuss about clean-slate approaches. The 
+      challenge was rather that the relation between security research
+      and standardisation needs improvement. Research on linkability is 
+      not yet well known in the IETF. But the other side of the medal 
+      needs improvement too: While doing protocol design, 
+      standardisation should indicate what specific problems are in 
+      need of more research. 
+    </t>
+    <t>
+      The break-out then made a non exclusive list of topics that are 
+      in need of further research: 
+      <list style="symbols">
+        <t>
+          The interaction of compression and encryption as demonstrated 
+          by the <eref 
+target="https://community.qualys.com/blogs/securitylabs/2012/09/14/crime 
+           -information-leakage-attack-against-ssltls">CRIME SSL/TLS 
+            vulnerability</eref>
+        </t>
+        <t>
+          A more proactive deprecation of algorithms based 
+          on research results.
+        </t>
+        <t>
+          Mitigation for return oriented programming attacks
+        </t>
+        <t>
+          How to better obfuscate so called "metadata", how to make the 
+          existence of traffic and their endpoints stealthy
+        </t>  
+      </list>
+    </t>
+  </section>
       <section anchor="client" title="Break-out 2 &ndash; clients">
 	<t>Browsers are the first clients one thinks of when talking
 	about encrypted connections, authentication and certificates,
