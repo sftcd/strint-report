@@ -1,0 +1,2328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+<!--include title.inc--> - report/papers</title>
+<!--include head.inc--><meta name="keywords" content="IAB W3C STREWS security pervasive monitoring London ">
+</head>
+<body>
+<!--include top.inc--><!--include twitter.inc--><!--include hostbox.inc--><dl class="meta">
+<dt>Internet-Draft</dt>
+<dd><a href="http://tools.ietf.org/html/draft-iab-strint-report-00">draft-iab-strint-report-00</a></dd>
+<dt>Intended status</dt>
+<dd>Informational</dd>
+<dt>Date</dt>
+<dd>28 April 2014</dd>
+<dt>Expires</dt>
+<dd>28 October 2014</dd>
+</dl>
+<div class="section" id="abstract">
+<h2>Abstract</h2>
+<p>The STRINT workshop assembled one hundred participants in 
+      London for two days in early 2014 to discuss how the technical
+      community, and in particular the IETF and the W3C, should react
+      to Pervasive Monitoring and more generally how to strengthen
+	  the Internet in the face of such attacks. The discussions covered issues of
+      terminology, the role of user interfaces, classes of mitigation,
+      some specific use cases, transition strategies (including
+      opportunistic encryption), and more. The workshop ended with a few
+      high-level recommendations, which it is believed could be implemented
+      and which could help strengthen the Internet. This is the report of that
+      workshop.</p>
+</div>
+<div class="section" id="status">
+<h2>Status of This Memo</h2>
+<p>This document is not an Internet Standards Track
+	    specification; it is published for informational purposes.</p>
+</div>
+<div class="section" id="copyright">
+<h2>Copyright Notice</h2>
+<p>Copyright © 2014 IETF Trust and the persons
+	  identified as the document authors. All rights
+	  reserved.</p>
+<p>This document is subject to
+	  <a href="http://tools.ietf.org/html/bcp78">BCP 78</a> and the IETF Trust's
+	  Legal Provisions Relating to IETF Documents (<a href="http://trustee.ietf.org/license-info">http://trustee.ietf.org/license-info</a>) in effect on the date of publication of this
+	  document. Please review these documents carefully, as they
+	  describe your rights and restrictions with respect to this
+	  document.</p>
+</div>
+<div class="section" id="toc">
+<h2>Table of contents</h2>
+<ul>
+<li><a href="#context"><span class="secno">1. </span>Context</a></li>
+<li><a href="#summary"><span class="secno">2. </span>Summary</a></li>
+<li><a href="#goals"><span class="secno">3. </span>Workshop goals</a></li>
+<li><a href="#structure"><span class="secno">4. </span>Workshop structure</a></li>
+<li><a href="#topics"><span class="secno">5. </span>Topics</a></li>
+<li><a href="#after"><span class="secno">6. </span>After the workshop</a></li>
+<li><a href="#conclusions"><span class="secno">7. </span>Conclusions and recommendations</a></li>
+<li><a href="#Security"><span class="secno">8. </span>Security considerations</a></li>
+<li><a href="#idm4015520"><span class="secno">9. </span>Informative references</a></li>
+<li><a href="#logistics"><span class="secno">Appendix A. </span>Logistics</a></li>
+<li><a href="#agenda"><span class="secno">Appendix B. </span>Agenda</a></li>
+<li><a href="#papers"><span class="secno">Appendix C. </span>The submitted papers</a></li>
+<li><a href="#committee"><span class="secno">Appendix D. </span>Workshop chairs &amp; program committee</a></li>
+<li><a href="#participants"><span class="secno">Appendix E. </span>Participants</a></li>
+<li><a href="#authors">Authors' addresses</a></li>
+</ul>
+</div>
+<div id="context" class="section">
+<h2>
+<span class="secno">1. </span>Context</h2>
+<p>[[Editorial note: This version was produced from the minutes,
+	and then edited. It quite likely has some inaccuracies, so the
+	authors would welcome corrections from those who attended the
+	workshop.]]</p>
+<p>The Vancouver IETF plenary concluded <a href="#vancouverplenary">[vancouverplenary]</a> that Pervasive
+      Monitoring (PM)
+      represents an attack on
+      the Internet, and the IETF has begun to carry out 
+      the more obvious actions required to try to handle this attack.
+      However, there are additional much more complex questions
+      arising that need further consideration before any additional
+      concrete plans can be made.</p>
+<p>The <a href="http://www.w3.org/">W3C</a> and <a href="https://www.iab.org/">IAB</a> therefore decided to
+      host a <a href="https://www.w3.org/2014/strint/Overview.html">workshop</a> on the topic of “Strengthening the Internet
+      Against Pervasive Monitoring” before <a href="https://www.ietf.org/meeting/89/index.html">IETF 89</a> in London in March 2014.
+      The FP7-funded 
+	<a href="http://www.strews.eu/">STREWS</a> 
+	project 
+		organised the STRINT workshop on behalf of the IAB and W3C.
+		</p>
+<p>
+	The main workshop goal was to discuss what can be
+      done, especially by the two standards organisations IETF and
+      W3C, against PM, both for existing Internet
+      protocols (HTTP/1, SMTP, etc.) and for new ones (WebRTC, HTTP/2,
+      etc.).</p>
+<p>The starting point for the workshop was the existing
+		IETF consensus that PM is an attack<a href="#I-D.farrell-perpass-attack">[I-D.farrell-perpass-attack]</a>.
+		</p>
+</div>
+<div id="summary" class="section">
+<h2>
+<span class="secno">2. </span>Summary</h2>
+<p>The workshop was well attended (registration closed when the
+      maximum capacity of 100 was reached, but more than
+      150 expressed a desire to register) and several people (about 165 at the
+      maximum) listened to the streaming audio. The submitted papers
+      (67 in total) were generally of good quality and all were
+	  published (see <a href="#papers">Appendix C, “The submitted papers,”</a>), except for a few where authors who couldn't take part in
+	  the workshop preferred not to publish. 
+      </p>
+<p>The chairs of the workshop summarised the workshop in the
+      final session in the form of the following recommendations:
+
+	</p>
+<ol>
+<li>Well-implemented cryptography can be effective against PM and will benefit the Internet if used more, despite its
+	  cost, which is steadily decreasing anyway.</li>
+<li>Traffic analysis also needs to be considered, but is less well understood in
+		the Internet community:
+	  relevant research and protocol mitigations such
+		as data minimisation need to
+	  be better understood.</li>
+<li>Work should continue on progressing the PM threat model
+	draft<a href="#I-D.barnes-pervasive-problem">[I-D.barnes-pervasive-problem]</a> discussed in the workshop.  
+	  </li>
+<li>
+	Later, the IETF may be in a position
+	to start to develop an update to
+	  BCP 72 <a href="#RFC3552">[RFC3552]</a>, most likely as a new RFC enhancing
+        that BCP and dealing with recommendations on how to
+	mitigate PM and how to reflect that in IETF work.</li>
+<li>The term "Opportunistic" has been widely used 
+		to refer to a possible mitigation strategy for PM. We need
+		to document definition(s) for this term, as it is being
+		used differently by different people and in different
+		contexts. We may also be able to develop a
+	  cookbook-like set of related protocol techniques for developers. 
+		Since the workshop, the IETF's security area has taken up
+		this work, most recently favouring the generic term "Opportunistic
+		Security" <a href="#I-D.kent-opportunistic-security">[I-D.kent-opportunistic-security]</a>.
+	  </li>
+<li>The technical community could do better in explaining the
+	  real technical downsides related to PM in terms that policy makers
+		can understand.</li>
+<li>Many User Interfaces (UI) could be better in terms of how they
+		present security state, though this is a significantly hard
+ 		problem. There may be benefits if
+	  certain dangerous choices were simply not
+	  offered anymore. But that could require significant co-ordination among
+	  competing software makers, otherwise some will be considered "broken"
+	  by users. </li>
+<li>Ways to better integrate UI issues into the processes of
+	  IETF and W3C needs further discussion.</li>
+<li>Examples of good software configurations
+	  that can be cut-and-paste'd for popular
+	  software, etc., can help. This is not necessarily standards 
+		work, but
+	  maybe the standards organisations can help and can work
+		with those developing such package-specific documentation.</li>
+<li>The IETF and W3C can do more so that default
+	  ("out-of-the-box") settings for protocols better protect
+	  security and privacy.</li>
+<li>
+<a href="https://en.wikipedia.org/wiki/Captive_portal">Captive portals,</a> (and some firewalls, too) can and
+	  should be distinguished from real man-in-the-middle
+	  attacks. This might mean establishing common
+	  conventions with makers of such middleboxes, but might also need
+		new protocols. However, the incentives for deploying such
+		new middlebox features might not align.</li>
+</ol>
+</div>
+<div id="goals" class="section">
+<h2>
+<span class="secno">3. </span>Workshop goals</h2>
+<p>As stated, the STRINT workshop started from the position that 
+      PM is an attack. 
+		<a href="#I-D.farrell-perpass-attack">[I-D.farrell-perpass-attack]</a>
+      While some dissenting voices are expected and need to be heard, that was the baseline assumption
+      for the workshop, and the high-level goal was to provide 
+      more consideration of that and how it ought to affect future work
+      within the IETF and W3C.</p>
+<p>At the next level down the goals of the STRINT workshop were
+      to:
+	</p>
+<ul>
+<li>Discuss and hopefully come to agreement among the
+	  participants on concepts in PM for both threats and
+	  mitigation, e.g., “opportunistic” as the term applies to
+	  cryptography.</li>
+<li>Discuss the PM threat model, and how that might be
+	  usefully documented for the IETF at least, e.g., via an
+	  update to <a href="http://tools.ietf.org/html/bcp72">BCP72.</a>
+</li>
+<li>Discuss and progress common understanding in the
+	  trade-offs between mitigating and suffering PM.</li>
+<li>Identify weak links in the chain of Web security
+	  architecture with respect to PM.</li>
+<li>Identify potential work items for the IETF, IAB, IRTF and
+	  W3C that help mitigate PM.</li>
+<li>Discuss the kinds of action outside the IETF/W3C context
+	  might help those done within the IETF/W3C.</li>
+</ul>
+</div>
+<div id="structure" class="section">
+<h2>
+<span class="secno">4. </span>Workshop structure</h2>
+<p>The workshop structure was designed to maximise discussion
+      time. There were no direct presentations of submitted
+      papers. Instead, the moderators of each session summarised
+		topics that the Technical Programme Committee (TPC) had
+ 	  agreed based on the submitted
+      papers. 
+      These summary presentations took at most 50% of the session and
+      usually less.</p>
+<p>Because the papers would not be presented during the
+      workshop, participants were asked to read and discuss the
+      papers beforehand, at least those relevant to their fields of
+      interest. (To help people choose papers to read, 
+      authors were asked to provide short abstracts.)</p>
+<p>Most of the sessions had two moderators, one
+      to lead the discussion, while the other managed the queue of
+      people who wanted to speak. This worked well: everybody got a
+      chance to speak and each session still ended on time.</p>
+<p>The penultimate session consisted of
+      break-outs. (Which turned out to be the most productive
+		sessions of all, most likely simply due to the smaller
+		numbers of people involved.) The subjects for the break-outs were 
+      agreed during the 
+      earlier sessions and just before the break-out session the
+      participants collectively determined who would attend which.</p>
+</div>
+<div id="topics" class="section">
+<h2>
+<span class="secno">5. </span>Topics</h2>
+<p>The following sections contain summaries of the various
+      sessions. See the minutes (see <a href="#agenda">Appendix B, “Agenda,”</a>) for more
+      details.</p>
+<div id="opening" class="section">
+<h3>
+<span class="secno">5.1. </span>Opening session</h3>
+<p>The first session discussed the goals of the
+	workshop. Possible approaches to improving security in the
+	light of pervasive monitoring include a critical look at what
+	metadata is actually required, whether old (less secure)
+	devices can be replaced with new ones, what are
+	"low-hanging fruit" (issues that can be handled quickly and
+	easily), and what level of security is “good enough”: a good
+	solution may be one that is good for 90% of people or 90% of
+	organisations.</p>
+<p>Some paricipants felt that standards are needed so that people can see if their
+	systems conform to a certain level of security as well as easy to remember names
+	for those standards, so that a buyer can immediately see
+	that a product “conforms to the named intended standard.”</p>
+</div>
+<div id="threats" class="section">
+<h3>
+<span class="secno">5.2. </span>Threats</h3>
+<p>One difference between “traditional” attacks and pervasive
+	monitoring is modus-operandi of the attacker: typically, one
+	determines what resources an attacker might want to target and
+	at what cost and then one defends against that threat. But a
+	pervasive attacker has no specific targets, other than to
+	collect everything he can. The calculation of the cost of
+	losing resources vs the cost of protecting them is thus
+	different. And unlike someone motivated to make money, 
+	a PM attacker may not be concerned at the cost of the
+	attack (or may even prefer a higher cost, for "empire
+	building" reasons). </p>
+<p>The terminology used to talk about threats has to be chosen
+	carefully (this was a common theme in several sessions),
+	because we need to explain to people outside the technical
+	community what they need to do or not do. For example, authentication
+	of endpoints doesn't so much “protect against”
+	man-in-the-middle (MITM) attacks as make them visible. The
+	attacker can still attack, but it does not remain invisible while he
+	does so. Somebody on either end of the conversation needs to
+	react to the alert from the system: stop the conversation or
+	find a different channel.</p>
+<p>An interesting paradox is the role of big repositories of
+	information, such as Facebook, Yahoo, Google, etc. Hopefully,
+	they supervise their security better than the average Internet
+	server, but they are also much more attractive as a target to
+	attack. Avoiding overuse of such repositories for private or sensitive
+	information may be a useful measure that increases the
+	cost of collecting for a pervasive attacker. This is sometimes
+	called the target-dispersal approach.</p>
+<p>Lack of interoperability between systems is in itself a
+	threat as it leads to work-arounds and compromises that may
+	be less secure. And
+	thus improving interoperability needs to be high on the list
+	of priorities of standards makers and even more for implementers. 
+        Of course,
+	testing, such as interop testing, is at some level, part of the process of IETF and W3C; and
+	W3C is currently increasing its testing efforts.</p>
+</div>
+<div id="comsec-usage" class="section">
+<h3>
+<span class="secno">5.3. </span>Increase usage of security tools</h3>
+<p>The first session on Communication Security (COMSEC) tools
+	looked at the question why existing security tools aren't used
+	more.</p>
+<p>The example of HTTPS is informative: it provides
+	encryption and authentication and is widely available. In
+	practice though, it is far from being used as much as it could be. It
+	also has some problems. One problem is that certificate
+	authorities (CA) are a potential weak link in the system. Any CA can
+	issue a certificate for any server, and thus a single
+	compromised CA can give a MITM the power to impersonate any
+	server. Moreover, certificates can cost money, acquiring a
+	certificate requires administrator time and
+	effort, and certificates 
+	need to be replaced when they expire, which is not the
+	normal case for web technologies, so many server
+	administrators forget or don't bother, making the 
+	certificate infrastructure less relevant, and 
+	causing https to provide less security.</p>
+<p>Some ideas were discussed for improving the CA system, e.g., via
+	cross-certification of CAs and by means of “certificate
+	transparency”: a public, permanent log of who issued which
+	certificate. <a href="#RFC6962">[RFC6962]</a></p>
+<p>Using other models than the hierarchical certificate model
+	(as alternative or in combination) may also help. The PGP
+	model, e.g., is a flat network where people verify the
+	identity (public key) of people they meet. And then they
+	trust, to a certain level, that those people verified the
+	identity of other people. This works for certain types of
+	communication (it was more deployed for e-mail). However, an identity
+	only verified by a friend of a friend provides a lower level of trust.</p>
+<p id="tofu">Yet another model is “trust on first use”
+	(TOFU). This is used quite effectively by SSH <a href="#RFC4252">[RFC4252]</a>. On the first
+	connection, one has no way to verify that the received public key
+        belongs to the server one is contacting, therefore, the key is accepted without further verification. But on the subsequent
+	connections, one can verify that the received key is the same key as the
+	first time. So a MITM has to be there on all connections,
+	including the first, otherwise it will be detected by a key mismatch.</p>
+<p>This works well for SSH, because people typically use SSH
+	to communicate with a small number of servers over and over
+	again. And, if they want, they may find a separate
+	channel to get the public key (or its fingerprint). It may
+	also work for Web servers used by small groups (the server of
+	a sports club, a department of a company, etc.), but probably
+	works less well for public servers that are visited once or a few times
+	or for large services where many servers may be used.</p>
+<p>A similar proposal <a href="#draft-ietf-websec-key-pinning">[draft-ietf-websec-key-pinning]</a> for an HTTP header introduces an aspect of
+	  TOFU into HTTP: Key pinning tells HTTP clients that for a
+	  certain time after receiving this certificate, they should
+	  not expect the certificate to change. If it does, even if
+	  the new certificate looks valid, the client should assume a
+	  security breach. </p>
+<p>SIP <a href="#RFC3261">[RFC3261]</a> is a complex protocol, in part because it potentially
+	needs several different intermediaries in different stages of the
+	communication to deal with NAT traversal and to handle policy. SIP provides
+	hop-by-hop encryption and end-to-end authentication in theory,
+	but in practice many SIP providers disable these functions and
+	interoperability for end-to-end security in SIP is perhaps not
+	in a good state. The reasons for disabling end-to-end security here
+	are understandable: to overcome lack of interoperability they
+	often need to change protocol headers and modify protocol
+	data. Some workshop participants argued that SIP would never have taken off
+	if it hadn't been possible for providers to monitor and
+	interfere in communications in this way. Of course, that means
+	an attacker can listen in just as easily.</p>
+<p>A new protocol for peer-to-peer communication of video and
+	audio (and potentially other data) is WebRTC. 
+        WebRTC
+	re-uses many of the same architectural concepts as SIP, but 
+	there is a reasonable
+	chance that it can do better in terms of protecting users: The
+	people implementing the protocols and offering the service
+	have different goals and interests. In particular, the first
+	implementers are browser makers, who may have different business
+	models from other more traditional Voice over IP providers.</p>
+<p>XMPP suffers from yet another problem. It has encryption
+	and authentication, and the OTR (“off the record”)
+	extension even
+	provides what is called Perfect Forward Secrecy (PFS, compromising
+	the current communication never gives an attacker enough
+	information to decrypt past communications that he may have
+	recorded). But, in practice, many people don't use XMPP at
+	all, but rather Skype, WhatsApp or other instant-messaging
+	tools with unknown or no security. The problem here seems to
+	be one of user awareness. And though OTR does provide 
+	security, it is not well integrated with XMPP and nor is
+	it available as a core feature of XMPP clients.</p>
+<p>To increase usage of existing solutions, some tasks can be identified,
+	though how those map to actions for e.g. IETF/W3C is not clear:
+
+	  </p>
+<ul>
+<li>Improvements to the certificate system, such as CT.</li>
+<li>Making it easier (cheaper, quicker) for system
+	    administrators to deploy secure solutions.</li>
+<li>Improve awareness of the risks. Identify which
+	    communities influence which decisions and what is the
+	    appropriate message for each.</li>
+<li>Provide an upgrade path that doesn't break existing
+	    systems or require that everybody upgrade at the same
+	    time. Opportunistic Security may be one model for that.</li>
+</ul>
+</div>
+<div id="policy" class="section">
+<h3>
+<span class="secno">5.4. </span>Policy issues and non-technical actions</h3>
+<p>Previous sessions already concluded that the problem isn't
+	just technical, such as getting the right algorithms in the standards,
+	fixing interoperability, or educating implementers and systems
+	administrators. There are user interface issues and education
+	issues too. And there are also legal issues 
+	and policy issues for governments.</p>
+<p>It appears that the public in general demand more
+	privacy and security (e.g., for their children) but are also
+	pessimistic about getting that. They trust that somebody assures
+	that nothing bad happens to them, but they also expect to be
+	spied on all the time.</p>
+<p>(Perceived) threats of terrorism gave governments a
+	reason to allow widespread surveillance, far beyond what may
+	previously have been considered dangerous for freedom.</p>
+<p>In this environment, the technical community will have a
+	hard time developing and deploying technologies that fully
+	counter PM. Which means there has to be action in
+	the social and political spheres, too.</p>
+<p>Technology isn't the only thing that can make life harder
+	for attackers. Government-sponsored PM
+	is indirectly affected by trade agreements and
+	treaties and thus it makes sense to lobby for those to be as
+	privacy-friendly as possible.</p>
+<p>Court cases on the grounds of human rights can also
+	influence policy, especially if they reach, for example, the European Court
+	of Human Rights.</p>
+<p>In medicine and law, it is common to have ethics committees,
+	not so in software. Should standards bodies such as IETF and
+	W3C have an ethics committee? While standards such as the
+	Geolocation API <a href="#w3c-geo-api">[w3c-geo-api]</a> have gotten scrutiny 
+	from privacy experts, but
+	only in an ad-hoc manner. (W3C has permanent groups to review standards for
+	accessibility and internationalisation. It also has a Privacy
+	group, but that currently doesn't do the same kind of systematic
+	reviews.)</p>
+<p id="collaborator">As the Internet Draft
+	draft-barnes-pervasive-problem-00 (included as <a href="https://www.w3.org/2014/strint/papers/44.pdf">paper 44</a>) explains, PM doesn't just
+	monitor the networks, but also attacks at the endpoints,
+	turning organisations or people into (willing, unwilling, or
+	unwitting) collaborators. One technical means of protection is
+	thus to design protocols such that there are fewer potential
+	collaborators, e.g., a provider of cloud storage cannot hand
+	over plaintext for content that is encrypted with a key he doesn't have, and
+	cannot hand over names if his client is anonymous.</p>
+<p>It is important to distinguish between PM and fighting
+	crime. PM is an attack, but a judge ordering the surveillance
+	of a suspected criminal is not. The latter, often abbreviated
+	in this context as LI (for Lawful Intercept), is outside the
+	scope of this workshop.</p>
+</div>
+<div id="comsec-improvements" class="section">
+<h3>
+<span class="secno">5.5. </span>Improving the tools</h3>
+<p>An earlier session discussed why existing COMSEC tools
+	weren't used more. One of the reasons was that they had
+	problems. This second session on COMSEC therefore discussed
+	what improvements were needed.</p>
+<p>An important meta-tool for improving existing security
+	technology is Opportunistic Encryption (OE). The idea behind it is
+	that software is enhanced with a module that tries to encrypt
+	communications when it detects that the other end also has the
+	same module and otherwise just leaves the communication
+	continue in the old way. Similarly, when it has a public key
+	for the server at the other end, it authenticates it,
+	otherwise just encrypts without authentication. It does all
+	this automatically, i.e., no configuration is needed.</p>
+<p>Encryption protects against a passive eavesdropper and
+	authentication against an active one (a MITM). As OE spreads,
+	more and more communications will be encrypted (and hopefully
+	authenticated) and thus there is less and less for an
+	eavesdropper to collect.</p>
+<p>Of course, this can give a false sense of security as well:
+	some connections are encrypted, some are not. A user may see
+	something like the padlock icon in browsers, but it is not
+	sure people actually look at that.</p>
+<p>And there is the possibility that a MITM intercepts the
+	reply from a server that says “yes, I can do encryption” and
+	removes it, causing the client to fall back to an unencrypted
+	protocol. Mitigations against this can be to have other
+	channels of finding out a server's capabilities and
+	remembering that a server could do encryption previously.</p>
+<p>There is also, again, a terminology problem. The technical
+	descriptions of OE talk about “silent fail” when a connection
+	couldn't be encrypted and has to fall back to the old,
+	unencrypted protocol. Actually, it's not a fail, it's no worse
+	then it was before. A successful encryption would rather be a
+	“silent improvement.”</p>
+<p>That raises the question of the UI: How do you explain to a
+	user what their security options are, and, in case an error
+	occurs, how do you explain the implications of the various
+	responses?</p>
+<p>The people working on encryption are mathematicians and
+	engineers, and typically not the same people who know about
+	UI. We need to involve the experts. We also need to
+	distinguish between usability of the UI, user understanding,
+	and user experience. For an e-commerce site, e.g., it is not
+	just important that the user's data is technically safe, but
+	also that he feels secure. Otherwise he still won't buy
+	anything.</p>
+<p>When talking about users, we also need to distinguish the
+	end user (who we typically think about when we talk about UI)
+	from the server administrators and other technical people
+	involved in enabling a connection. When something goes wrong
+	(e.g., the user's software detects an invalid certificate),
+	the message usually goes to the end user. But he isn't
+	necessarily the person who can do something about it. E.g., if
+	the problem is a certificate that expired yesterday, the
+	options for the user are to break the connection (the safe
+	choice, but it means he can't get his work done) or continue
+	anyway (there could be a MITM…). The server administrator,
+	on the other hand, could actually solve the problem.</p>
+<p>Encryption and authentication have a cost, in terms of
+	setting them up, but also in terms of the time it takes for
+	software to do the calculations. The setting-up cost can be
+	diminished with sensible defaults, predefined profiles and
+	cut-and-paste configurations. The cost of authentication
+	could, if necessary, be diminished by authenticating only a
+	random sample of connections. It is less secure, but still
+	makes things harder for an eavesdropper. And for some
+	connections, authentication without encryption could be
+	enough, in the case that the data doesn't need to be kept
+	secret, but it is important to know that it is the real
+	data. Most mail UAs already provide independent options for
+	encryption and signing, but Web servers only support
+	authentication if the connection is also encrypted.</p>
+<p>On the other hand, as e-mail also shows, it is difficult
+	for users to understand what encryption and authentication do
+	separately.</p>
+<p>And it also has to be kept in mind that encrypting only the
+	“sensitive” data and not the rest decreases the cost for an
+	attacker, too: It becomes easy to know which connections are
+	worth attacking.</p>
+<p>One problem with the <a href="#tofu" class="pageno">TOFU model</a> as used by SSH (see explanation above) is
+	that it lacks a solution for key continuity: When a key is
+	changed (which can happen e.g., when a server is replaced or
+	the software upgraded), there is no way to inform the client.
+	(In practice, people use other means, such as calling people
+	on the phone or asking their colleagues in the office, but
+	that doesn't scale and doesn't always happen either.) An
+	improvement in the SSH protocol could thus be a way to
+	transfer a new key to a client in a safe way.</p>
+<p>OE is a way to upgrade old protocols, but it is not a good
+	model for new protocols. New protocols should be designed with
+	the new attack models in mind, and thus with encryption and
+	authentication from the start.</p>
+</div>
+<div id="metadata" class="section">
+<h3>
+<span class="secno">5.6. </span>Hiding metadata</h3>
+<p>Encryption and authentication help protect the content of
+	messages. Correctly implemented encryption is very hard to
+	crack. (To get the content, an attacker would rather attempt
+	to steal the keys, corrupt the encoding software, or get the
+	content via a <a href="#collaborator" class="pageno">collaborator</a>.) But encrypting the content doesn't hide
+	the fact that you are communicating. This metadata (who talks
+	to whom, when and for how long) is often as interesting as the
+	content itself, and in some cases the size and timing of
+	messages is even an accurate predictor of the content. So how
+	to stop an attacker from collecting metadata, given that much
+	of that data is actually needed by routers and other services
+	to deliver the message to the right place?</p>
+<p>It is useful to distinguish different kinds of metadata:
+	explicit (or metadata proper) and implicit (sometimes called
+	traffic data). Implicit metadata is things that can be derived
+	from a message or are necessary for its delivery, such as the
+	destination address, the size, the time, or the frequency with
+	which messages pass. Explicit metadata is things like quality
+	ratings, provenance or copyright data: data about the data,
+	useful for an application, but not required to deliver the
+	data to its endpoint.</p>
+<p>A system like Tor hides much of the metadata by passing
+	through several servers, encrypting all the data except that
+	which a particular server needs to see. Each server thus knows
+	which server a message came from and where he has to send it
+	to, but cannot know where the previous server got it from or
+	where the next server is instructed to send it. However,
+	deliberately passing through multiple servers makes the
+	communication slower than taking the most direct route and
+	increases the amount of traffic the network as a whole has to
+	process.</p>
+<p>There are three kinds of measures that can be taken to make
+	metadata harder to get: aggregation, contraflow and multipath
+	(see <a href="https://www.w3.org/2014/strint/papers/04.pdf">paper
+	4</a>). New protocols should be designed such that these
+	measures are not inadvertently disallowed, e.g., because the
+	design assumes that the whole of a conversation passes through
+	the same route.</p>
+<p><em>Aggregation</em> means collecting
+	conversations from multiple sources into one stream. E.g., if
+	HTTP connections pass through a proxy, all the conversations
+	appear to come from the proxy instead of from their original
+	sources. (This assumes that telltale information in the
+	headers is stripped by the proxy, or that the connection is
+	encrypted.) It also works in the other direction: if multiple
+	Web sites are hosted on the same server, an attacker cannot
+	see which of those Web sites a user is reading. (This assumes
+	that the name of the site is in the path info of the URL and
+	not in the domain name, otherwise watching DNS queries can
+	still reveal the name.)</p>
+<p><em>Contraflow</em> means routing a
+	conversation via one or more other servers than the normal
+	route, e.g., by using a tunnel (e.g., with SSH or a VPN) to
+	another server. Tor is an example of this. An attacker must
+	watch more routes and do more effort to correlate
+	conversations. (Again, this assumes that there is no telltale
+	information left in the messages that leave the tunnel.)</p>
+<p><em>Multipath</em> splits up a single
+	conversation (or a set of related conversations) and routes
+	the parts in different ways. E.g., send a request via a
+	satellite link and receive the response via a land line; or
+	starting a conversation on a cellular link and continuing it
+	via wifi. This again increases the cost for an attacker, who
+	has to monitor and correlate multiple networks.</p>
+<p>Protecting metadata automatically with technology at a
+	lower layer than the application layer is difficult. The
+	applications themselves need to pass less data, e.g., use
+	anonymous temporary handles instead of permanent
+	identities. There is often no real need for people to use the
+	same identity on different computers (smartphone, desktop,
+	etc.) other than that the application they use was designed
+	that way.</p>
+<p>One thing that can be done relatively easily in the short
+	term is going through existing protocols and check what data
+	they send that isn't really necessary. One candidate for such
+	a study is SNMP.</p>
+<p><em>Fingerprinting</em> is the process
+	of distinguishing different senders of messages based on
+	metadata: Clients can be recognised (or at least grouped)
+	because their messages always have a combination of features
+	that other clients do not have. Reducing redundant metadata
+	and reducing the number of optional features in a protocol
+	reduces the variation between clients and thus makes
+	fingerprinting harder.</p>
+<p>Traffic analysis is a research discipline that produces
+	sometimes surprising findings, which are little known among
+	protocol developers. Some collections of results are
+	  </p>
+<ul>
+<li>A selected <a href="http://freehaven.net/anonbib/">bibliography on anonymity</a> by the Free Haven
+	    Project</li>
+<li>The yearly <a href="http://www.informatik.uni-trier.de/~Ley/db/conf/pet/index.html">Symposium on Privacy Enhancing Technologies
+	    (PETS).</a>
+</li>
+<li>The yearly <a href="http://www.informatik.uni-trier.de/~Ley/db/conf/wpes/index.html">Workshop on Privacy in the Electronic Society
+	    (WPES).</a>
+</li>
+</ul>
+<p>Techniques that deliberately change the timing or size of
+	messages, such as padding, can also help reduce
+	fingerprinting. Obviously, they make conversations slower
+	and/or use more bandwidth, but in some cases that is not an
+	issue, e.g., if the conversation is limited by the speed of a
+	human user anyway. HTTP/2 has a built-in padding
+	mechanism. However, it is not so easy to use these techniques
+	well, and not actually make messages easier to recognise
+	rather than harder.</p>
+<p>The practice of protocol design is already changing to give
+	security equal priority to bandwidth and latency.</p>
+<p>Different users in different contexts may have different
+	security needs, so maybe the priority can be a user
+	choice. (If that can be done without making high-security
+	users stand out from other users.) Although many people would
+	not understand what their choices are, some do, such as
+	political activists or journalists.</p>
+</div>
+<div id="deployment" class="section">
+<h3>
+<span class="secno">5.7. </span>Deployment, intermediaries and middleboxes</h3>
+<p>Secure protocols have often been designed in the past for
+	end-to-end security: Intermediaries cannot read or modify the
+	messages. This is the model behind TLS and IPSec, e.g.</p>
+<p>But in practice people have more or less valid reasons to
+	insist on intermediaries: companies filtering incoming and
+	outgoing traffic for viruses or other reasons, giving priority
+	to certain communications, caching to reduce bandwidth,
+	etc.</p>
+<p>In the presence of end-to-end encryption and
+	authentication, these intermediaries have two choices: using
+	fake certificates to impersonate the endpoints or having
+	access to the private keys of the endpoints. The former is a
+	MITM attack that is difficult to distinguish from a more
+	malicious one, the latter obviously decreases the security of
+	the endpoints by copying supposedly protected data and
+	concentrating such data in a single place.</p>
+<p>As mentioned in <a href="#threats" class="pageno">5.2, “Threats,”</a> above,
+	aggregation of data in a single place makes that place an
+	attractive target. And in the case of PM even if the data is
+	not concentrated physically in one place, but is under control
+	of a single legal entity that can be made into a <a href="#collaborator" class="pageno">collaborator</a>.</p>
+<p>The way Web communication with TLS typically works is that
+	the client authenticates the server, but the server not the
+	client. (If the client needs to be identified, that is rather
+	done at the application layer via passwords or cookies.) Thus
+	the presence of a MITM (middlebox) can be detected by the
+	client (because of the incorrect certificate), but not by the
+	server. If the client doesn't immediately close the
+	connection, the server may thus disclose information that the
+	client would rather not have disclosed.</p>
+<p>One widespread example of middleboxes is captive portals,
+	as found on the wifi hotspots in hotels, airports, etc. Even
+	the ones that are free often still intercept communications
+	and try to redirect them to a login page.</p>
+<p>When the communication they intercept is, e.g., the
+	automatic update of your calendar program or a chat session,
+	the redirect obviously doesn't work: these applications don't
+	know how to display a Web page. With the increasing use of
+	apps, it may be a while before the user actually opens a
+	browser. The flood of error messages may also have as a result
+	that the user no longer reads them, allowing an actual,
+	malicious attack to go unnoticed.</p>
+<p>Some operating systems, such as those from Apple, now come
+	with heuristics that try to recognise captive portals and
+	either automatically login or show their login page in a
+	separate application. (But some hotspot providers apparently
+	don't want automatic logins and actually reverse-engineered
+	the heuristics to try and fool them.)</p>
+<p>It seems some protocol is missing in this case. Captive
+	portals shouldn't have to do MITM attacks to be noticed. Maybe
+	something like an extension to DHCP that tells a connecting
+	device about the login page can help, although that still
+	doesn't solve the problem for devices that do not have a Web
+	browser, such as game consoles or SIP phones. HTTP response
+	code 511 (defined in <a href="#RFC6585">[RFC6585]</a>) is another
+	attempt at a solution. (Partial, because it can only work at
+	the moment the user uses a browser to connect to a Web site
+	and doesn't use HTTPS.)</p>
+<p>A practical problem with deployment of such a protocol may
+	be that many such captive portals are very old and never
+	updated. The hotel staff only knows how to reboot the system
+	and as long as it works, the hotel has no incentive to buy a
+	new one. As evidence of this: how many such systems require
+	you to get a password and the ticket shows the price as zero?
+	This is typically because the owner doesn't know how to
+	reconfigure the hotspot, but he does know how to change the
+	price in his cash register…</p>
+</div>
+<div id="research" class="section">
+<h3>
+<span class="secno">5.8. </span>Break-out 1 – research</h3>
+<p><span class="issue" id="break-out-1">[Bert: Who has a summary
+	for the session of the challenge of connecting academics and
+	standards bodies]</span></p>
+</div>
+<div id="client" class="section">
+<h3>
+<span class="secno">5.9. </span>Break-out 2 – clients</h3>
+<p>Browsers are the first clients one thinks of when talking
+	about encrypted connections, authentication and certificates,
+	but there are many others.</p>
+<p>Another common case of “false” alarms for MITM (after
+	captive portals) is expired and mis-configured
+	certificates. This is quite common in intranets, when the
+	sysadmin hasn't bothered updating a certificate and rather
+	tells his handful of users to just “click continue.” The
+	problem is on the one hand that users may not understand the
+	difference between this case and the same error message when
+	they connect to a server outside the company, and on the other
+	hand that the incorrect certificate installed by the sysadmin
+	is not easily distinguishable from an incorrect certificate
+	from a MITM. The error message is almost the same and the user
+	may just click continue again.</p>
+<p>One way to get rid of such certificates is if client
+	software no longer offers the option to continue after a
+	certificate error. That requires that all major clients (such
+	as browsers) change their behaviour at the same time, otherwise
+	the first one to do so will be considered broken by users,
+	because the others still work. Also it requires a period in
+	which that software gives increasingly strong warnings about
+	the cut-off date after which the connection will fail with
+	this certificate.</p>
+<p>Yet another source of error messages is self-signed
+	certificates. Such certificates are actually only errors for
+	sites that are not expected to have them. If a message about a
+	self-signed certificate appears when connecting to Facebook or
+	Google, you're clearly not connected to the real Facebook or
+	Google. But for a personal Website it shouldn't cause such
+	scary warnings. There may be ways to improve the explanations
+	in the error message and provide an easy way to verify the
+	certificate (by e-mail, over the phone or some other channel)
+	and import it.</p>
+</div>
+<div id="on-by-default" class="section">
+<h3>
+<span class="secno">5.10. </span>Break-out 3 – on by default</h3>
+<p>One step in improving security is to require the relevant
+	features, in particular encryption and authentication, to be
+	implemented in compliant products: The features are labelled as
+	MUST in the standard rather than MAY. (This is sometimes
+	referred to as MTI, Mandatory To Implement.)</p>
+<p>But that is not enough. It may be that the features are
+	there, but not used, because only very knowledgeable users or
+	sysadmins turn them on. Thus such features should also be on
+	by default.</p>
+<p>And sometimes the features should not even be options,
+	i.e., there should be no way to turn them off. (This is
+	sometimes called MTU, Mandatory To Use.)</p>
+<p>The question is for what protocols on-by-default is
+	appropriate, and how to explain to the developers of such
+	protocols that it is needed.</p>
+<p>There may be resistance to mandatory encryption from
+	companies that practice deep packet inspection (DPI) and also
+	from some governments. On the other hand, there may also be
+	governments that outlaw protocols <em>without</em> proper encryption. E.g., can
+	IPSec become mandatory at some point?</p>
+</div>
+<div id="measure" class="section">
+<h3>
+<span class="secno">5.11. </span>Break-out 4 – measure</h3>
+<p><span class="issue" id="break-out-4">[Bert: Who has a summary
+	for the break-out on measuring]</span></p>
+</div>
+<div id="opportunistic" class="section">
+<h3>
+<span class="secno">5.12. </span>Break-out 5 – opportunistic</h3>
+<p><span class="issue" id="break-out-5">[Bert: Who has a summary
+	for the break out on opportunistic encryption?]</span></p>
+</div>
+</div>
+<div id="after" class="section">
+<h2>
+<span class="secno">6. </span>After the workshop</h2>
+<p>Holding the workshop just before the IETF had the intended
+      effect: a number of people went to both the workshop and the
+      IETF. And they took the opportunity of being together at the
+      IETF to continue the discussions.</p>
+<p>Working groups of the IETF who met in London took the
+      recommendations from the workshop into account. It was even the
+      first item in the report about the IETF meeting by the IETF
+      chair, Jari Arkko:
+	</p>
+<blockquote><p><em>“Strengthening the security and
+	  privacy of the
+	  Internet continued to draw a lot of attention. The STRINT
+	  workshop organised by the IAB and W3C just before the IETF
+	  attracted 100 participants and over 60 papers. Even more
+	  people would have joined us, but there was no space. During
+	  the IETF meeting, we continued discussing the topic at
+	  various working groups. A while ago we created the first
+	  working group specifically aimed at addressing some of the
+	  issues surrounding pervasive monitoring. The Using TLS for
+	  Applications (UTA) working group had its first meeting in
+	  London. But many other working groups also address these
+	  issues in their own work. The TCPM working group discussed a
+	  proposal to add opportunistic keying mechanisms directly
+	  onto the TCP protocol. And the DNSE BOF considered the
+	  possibility of adding confidentiality support to DNS
+	  queries. Finally, there is an ongoing effort to review old
+	  specifications to search for areas that might benefit from
+	  taking privacy and data minimisation better into
+	  account.”</em> – <a href="#Arkko1">[Arkko1]</a></p></blockquote>
+<p>Two papers that were written for the workshop, but not
+      finished in time, are worth mentioning, too: One by the same
+      Jari Arkko, titled “Privacy and Networking
+      Functions” <a href="#Arkko2">[Arkko2]</a>; and one by Johan
+      Pouwelse, “The Shadow Internet: liberation from
+      Surveillance, Censorship and Servers” <a href="#draft-pouwelse-perpass-shadow-internet">[draft-pouwelse-perpass-shadow-internet]</a></p>
+</div>
+<div id="conclusions" class="section">
+<h2>
+<span class="secno">7. </span>Conclusions and recommendations</h2>
+<p>The main conclusions from the workshop are the following:
+	</p>
+<ol>
+<li>Encryption works and needs to be used more, despite its
+	  cost (which is steadily going down anyway).</li>
+<li>Data minimisation is worthwhile, too, but difficult:
+	  Traffic analysis research and protocol development need to
+	  work together.</li>
+<li>The threat models discussed in the workshop should be
+	  written up in an RFC (either separately or as an update to
+	  <a href="http://tools.ietf.org/html/bcp72">BCP 72</a>).</li>
+<li>“Opportunistic Encryption” could benefit from a
+	  cookbook-like explanation for developers. (The term itself
+	  may also be confusing. Best effort encryption or
+	  opportunistic keying were suggested as alternatives.)</li>
+<li>The technical community can do better in explaining the
+	  issues of Pervasive Monitoring to policy makers.</li>
+<li>Similarly, user interfaces could be better. (Some people
+	  even argue that certain dangerous choices should simply not
+	  be offered anymore. But that requires concertation among
+	  software makers, otherwise some will be considered “broken”
+	  by users.) How to integrate UI issues into the processes of
+	  IETF and W3C needs further discussion.</li>
+<li>Examples of good software configurations, guidelines for
+	  developers, cut-and-paste configurations for popular
+	  software, etc., can help. This is not standards work, but
+	  maybe the standards organisations can still help.</li>
+<li>Software makers can do more to make the default
+	  (“out-of-the-box”) settings better for protecting
+	  privacy.</li>
+<li>
+<a href="https://en.wikipedia.org/wiki/Captive_portal">Captive portals,</a> (and some firewalls, too) can and
+	  should be distinguished from real man-in-the-middle
+	  attacks. Maybe this just needs establishing common
+	  conventions with makers of such proxies, but maybe also new
+	  protocols.</li>
+</ol>
+<p>Some recommendations also emerged from the discussions.
+	Some are meant for the developers of standards, some do not
+	have a clear target yet:
+	</p>
+<ol class="letters">
+<li>Lack of interoperability generally reduces security.
+	  Standards organisations should do everything they can to
+	  improve interoperability.</li>
+<li>The hierarchical certificate system used by TLS has some
+	  problems that may be solvable e.g., with Certificate
+	  Transparency (CT).</li>
+<li>Standards organisations should investigate the
+	  possibility of a permanent committee that reviews proposed
+	  standards in the light of privacy protection.</li>
+<li>Developers of standards should do more to get the
+	  expertise that is available from academics, such as in
+	  traffic analysis and user interfaces.</li>
+<li>Create example configurations, standard profiles and
+	  cut-and-paste solutions to help sysadmins deploy correctly
+	  configured secure systems.</li>
+<li>Develop an upgrade path from current, insecure systems to
+	  secure systems, without hindrance to users.</li>
+<li>Technical solutions for increased security will have
+	  difficulty being deployed unless they are socially and
+	  legally accepted, or better still: demanded. Educating
+	  people within the technical community only is thus not
+	  enough.</li>
+</ol>
+</div>
+<div id="Security" class="section">
+<h2>
+<span class="secno">8. </span>Security considerations</h2>
+<p>This document does not define a technology.</p>
+<div id="idm4022000" class="figure">
+<p><img src="https://www.w3.org/2014/strint/lib/workshop-6" alt="(foto: view from the back of the room)"><span class="credit"><a href="http://www.stonehousephotographic.com/">©
+	Stonehouse Photographic</a></span></p>
+<p>Plenary.</p>
+</div>
+</div>
+<div class="section" id="idm4015520">
+<h2>
+<span class="secno">9. </span>Informative references</h2>
+<dl>
+<dt id="RFC3552">[RFC3552]</dt>
+<dd>E. Rescorla, B. Korver, <a><em>Guidelines for Writing RFC Text on Security Considerations.</em></a> July 2003. BCP 72. RFC 3552. <a href="http://www.rfc-editor.org/rfc/rfc3552.txt">TXT</a>
+</dd>
+<dt id="RFC3261">[RFC3261]</dt>
+<dd>J. Rosenberg, H. Schulzrinne, G. Camarillo, A. Johnston, J. Peterson, R. Sparks, M. Handley, E. Schooler, <a><em>SIP: Session Initiation Protocol.</em></a> June 2002. RFC 3261. <a href="http://www.rfc-editor.org/rfc/rfc3261.txt">TXT</a>
+</dd>
+<dt id="RFC6962">[RFC6962]</dt>
+<dd>B. Laurie, A. Langley, E. Kasper, <a><em>Certificate Transparency.</em></a> June 2013. RFC 6962. <a href="http://www.rfc-editor.org/rfc/rfc6962.txt">TXT</a>
+</dd>
+<dt id="I-D.barnes-pervasive-problem">[I-D.barnes-pervasive-problem]</dt>
+<dd>Richard Barnes, Bruce Schneier, Cullen Jennings, Ted Hardie, <a><em>Pervasive Attack: A Threat Model and Problem Statement.</em></a> 6 January 2014. Internet-Draft draft-barnes-pervasive-problem-00. <a href="http://www.ietf.org/internet-drafts/draft-barnes-pervasive-problem-00.txt">TXT</a>
+</dd>
+<dt id="I-D.kent-opportunistic-security">[I-D.kent-opportunistic-security]</dt>
+<dd>Stephen Kent, <a><em>Opportunistic Security as a Countermeasure to Pervasive Monitoring.</em></a> 9 April 2014. Internet-Draft draft-kent-opportunistic-security-01. <a href="http://www.ietf.org/internet-drafts/draft-kent-opportunistic-security-01.txt">TXT</a>
+</dd>
+<dt id="I-D.farrell-perpass-attack">[I-D.farrell-perpass-attack]</dt>
+<dd>Stephen Farrell, Hannes Tschofenig, <a><em>Pervasive Monitoring is an Attack.</em></a> 11 February 2014. Internet-Draft draft-farrell-perpass-attack-06. <a href="http://www.ietf.org/internet-drafts/draft-farrell-perpass-attack-06.txt">TXT</a>
+</dd>
+<dt id="RFC4252">[RFC4252]</dt>
+<dd>T. Ylonen, C. Lonvick, <a><em>The Secure Shell (SSH) Authentication Protocol.</em></a> January 2006. RFC 4252. <a href="http://www.rfc-editor.org/rfc/rfc4252.txt">TXT</a>
+</dd>
+<dt id="vancouverplenary">[vancouverplenary]</dt>
+<dd> IETF, <a href="http://www.ietf.org/proceedings/88/minutes/minutes-88-iab-techplenary"><em>IETF 88 Technical Plenary Minutes.</em></a> . </dd>
+<dt id="RFC6585">[RFC6585]</dt>
+<dd>M. Nottingham, R. Fielding, <a><em>Additional HTTP Status Codes.</em></a> April 2012. RFC 6585. <a href="http://www.rfc-editor.org/rfc/rfc6585.txt">TXT</a>
+</dd>
+<dt id="draft-ietf-websec-key-pinning">[draft-ietf-websec-key-pinning]</dt>
+<dd>Chris Evans, Chris Palmer, Ryan Sleevi, <a><em>Public Key Pinning Extension for HTTP.</em></a> 8 February 2014. <a href="http://tools.ietf.org/html/draft-ietf-websec-key-pinning-11">TXT</a> (Work in progress.)</dd>
+<dt id="w3c-geo-api">[w3c-geo-api]</dt>
+<dd>Andrei Popescu, <a href="http://www.w3.org/TR/geolocation-API/"><em>Geolocation API Specification.</em></a> 24 October 2013. </dd>
+<dt id="Arkko1">[Arkko1]</dt>
+<dd>Jari Arkko, <a href="http://www.ietf.org/blog/2014/03/ietf-89-summary/"><em>IETF-89 Summary.</em></a> 10 March 2014. </dd>
+<dt id="draft-pouwelse-perpass-shadow-internet">[draft-pouwelse-perpass-shadow-internet]</dt>
+<dd>Johan Pouwelse, <a href="https://datatracker.ietf.org/doc/draft-pouwelse-perpass-shadow-internet/"><em>The Shadow Internet: liberation from Surveillance,
+	  Censorship and Servers.</em></a> 14 February 2014.  (Work in progress.)</dd>
+<dt id="Arkko2">[Arkko2]</dt>
+<dd>Jari Arkko, <a href="http://www.arkko.com/ietf/strint/draft-arkko-strint-networking-functions.txt"><em>Privacy and Networking Functions.</em></a> 6 March 2014.  (Work in progress.)</dd>
+</dl>
+</div>
+<div id="logistics" class="section">
+<h2>
+<span class="secno">Appendix A. </span>Logistics</h2>
+<p>The workshop was organised by the 
+	<a href="http://www.strews.eu/">STREWS</a> 
+		project (a
+      research project funded under the European Union's <a href="http://cordis.europa.eu/fp7/ict/">7th Framework
+      Programme</a>), as the first of two workshops in its work
+      plan. The organisers were supported by the IAB and W3C, and, for
+      the local organisation, by <a href="http://blog.digital.telefonica.com/">Telefonica
+      Digital.</a></p>
+<p>One of the suggestions in the project description of the
+      STREWS project was to attach the first workshop to an IETF
+      meeting. The best opportunity was <a href="https://www.ietf.org/meeting/89/index.html">IETF 89</a> in London, which would begin on Sunday
+      March 2, 2014. Telefonica Digital offered meeting rooms at
+      its offices in central London for the preceding Friday and
+      Saturday, just minutes away from the IETF's location.</p>
+<p>The room held 100 people, which was thought to be
+      sufficient. There turned out to be more interest than expected
+      and we could have filled a larger room, but 100 people is
+      probably an upper limit for good discussions anyway.</p>
+<p>Apart from the usual equipment in the room (projector, white
+      boards, microphones, coffee…), we also set up some extra
+      communication channels:
+	</p>
+<ul>
+<li>A mailing list where participants could discuss the
+	  agenda and the published papers about three weeks in advance
+	  of the workshop itself. (Only participants were allowed to
+	  write to the mailing list, but the <a href="http://lists.i1b.org/pipermail/strint-attendees-i1b.org/">archive</a> is public.)</li>
+<li>Publicly advertised streaming audio (one-way only). At
+	  some point, no less than 165 people were listening.</li>
+<li>An IRC channel for live minute taking, passing links and
+	  other information, and as a help for remote participants to
+	  follow the proceedings.</li>
+<li>An Etherpad, where the authors of papers could provide an
+	  abstract of their submissions, to help participants who
+	  could not read all 66 papers in full in advance of the
+	  workshop. (The abstracts were also used on the workshop's
+	  Web site and are <a href="#papers" class="pageno">reproduced in this
+	  report</a>.)</li>
+<li>A “Twitter hashtag” (#strint). Four weeks
+	  after the workshop, there were still a few new <a href="https://twitter.com/search?q=%23strint">messages</a> about events related to workshop
+	  topics.</li>
+</ul>
+</div>
+<div id="agenda" class="section">
+<h2>
+<span class="secno">Appendix B. </span>Agenda</h2>
+<p>This was the final agenda of the workshop, as 
+      determined by the TPC and participants on the mailing list prior to the
+      workshop. The included links are to the slides that the
+      moderators used to introduce each discussion topic and to the
+      minutes.</p>
+<div id="friday" class="section">
+<h3>
+<span class="secno">Appendix B.1. </span>Friday 28 February</h3>
+<p>(<a href="http://www.w3.org/2014/02/28-strint-minutes.html">minutes</a>)
+	  </p>
+<dl>
+<dt>13:00</dt>
+<dd>Registration, Coffee, play with n/w,
+	    power, find seat</dd>
+<dt>14:00</dt>
+<dd>Workshop starts, welcome, logistics,
+	  opening/overview <a href="http://down.dsg.cs.tcd.ie/strint-slides/s0-welcome.pdf">[slides]</a><ul>
+<li>Goal is to plan how we respond to PM threats</li>
+<li>Specific questions to be discussed in sessions</li>
+<li>Outcomes are actions for IETF, W3C, IRTF, etc.</li>
+</ul>
+</dd>
+<dt>14:30</dt>
+<dd>I. Threats – What problem are we trying
+	  to solve?  (Presenter: Richard Barnes; Moderator: Cullen
+	  Jennings) <a href="http://down.dsg.cs.tcd.ie/strint-slides/s1-threat.pdf">[slides]</a><ul>
+<li>What attacks have been described? (Attack taxonomy)</li>
+<li>What should we assume the attackers' capabilities are?</li>
+<li>When is it really “pervasive monitoring” and when is
+	      it not?</li>
+<li>Scoping – what's in and what's out? (for IETF/W3C)</li>
+</ul>
+</dd>
+<dt>15:30</dt>
+<dd>Break</dd>
+<dt>16:00</dt>
+<dd>II. COMSEC 1 – How can we increase
+	  usage of current COMSEC tools? (Presenter: Hannes
+	  Tschofenig; Moderator: Leif Johansson) <a href="http://down.dsg.cs.tcd.ie/strint-slides/s2-comsec.pdf">[slides]</a><ul>
+<li>Whirlwind catalog of current tools</li>
+<li>Why aren't people using them?  In what situations
+	      are / aren't they used?</li>
+<li>Securing AAA and management protocols – why not?</li>
+<li>How can we (IETF/W3C/community) encourage more/better use?</li>
+</ul>
+</dd>
+<dt>17:30</dt>
+<dd>Break</dd>
+<dt>17:45</dt>
+<dd>III. Policy – What policy / legal/
+	  other issues need to be taken into account? (Presenter:
+	  Christine Runnegar; Moderator: Rigo Wenning) <a href="http://down.dsg.cs.tcd.ie/strint-slides/s3-policy.pdf">[slides]</a><ul>
+<li>What non-technical activities do we need to be aware of?</li>
+<li>How might such non-technical activities impact on IETF/W3C?</li>
+<li>How might IETF/W3C activities impact on those
+	      non-technical activities?</li>
+</ul>
+</dd>
+<dt>18:30</dt>
+<dd>Session IV – Saturday plan,
+	  open-mic, wrap up day</dd>
+<dt>19:00</dt>
+<dd>Social event</dd>
+</dl>
+<div id="idm3781184" class="figure">
+<p><img src="https://www.w3.org/2014/strint/lib/workshop-4" alt="(foto: people around a big table)"><span class="credit"><a href="http://www.stonehousephotographic.com/">©
+	  Stonehouse Photographic</a></span></p>
+<p>Break out.</p>
+</div>
+</div>
+<div id="saturday" class="section">
+<h3>
+<span class="secno">Appendix B.2. </span>Saturday 1 March</h3>
+<p>(<a href="http://www.w3.org/2014/03/01-strint-minutes.html">minutes</a>)
+	  </p>
+<dl>
+<dt>09:00</dt>
+<dd>Welcome again, logistics</dd>
+<dt>09:15</dt>
+<dd>IV. COMSEC 2 – What improvements
+	    to COMSEC tools are needed?(Presenter: Mark Nottingham;
+	    Moderator: Steve Bellovin) <a href="http://down.dsg.cs.tcd.ie/strint-slides/s4-opportunistic.pdf">[slides]</a><ul>
+<li>Opportunistic encryption – what is it and where it
+		might apply</li>
+<li>Mitigations aiming to block PM vs. detect PM – when
+		to try which?</li>
+</ul>
+</dd>
+<dt>10:30</dt>
+<dd>Break</dd>
+<dt>10:45</dt>
+<dd>V. Metadata – How can we reduce
+	  the metadata that protocols expose? (Presenter: Alfredo
+	  Pironti <a href="http://down.dsg.cs.tcd.ie/strint-slides/s5-1metadata-pironti.pdf">[slides]</a> / Ted Hardie <a href="http://down.dsg.cs.tcd.ie/strint-slides/s5-2metadata-hardie.pdf">[slides]</a>; Moderator: Alissa Cooper <a href="http://down.dsg.cs.tcd.ie/strint-slides/s5-3metadata-cooper.pdf">[slides]</a>)
+	    <ul>
+<li>Meta-data, fingerprinting, minimisation</li>
+<li>What's out there?</li>
+<li>How can we do better?</li>
+</ul>
+</dd>
+<dt>12:00</dt>
+<dd>Lunch (Buffet)</dd>
+<dt>13:00</dt>
+<dd>VI. Deployment – How can we
+	  address PM in deployment / operations? (Presenter: Eliot
+	  Lear; Moderator: Barry Leiba) <a href="http://down.dsg.cs.tcd.ie/strint-slides/s6-deploy.pdf">[slides]</a><ul>
+<li>“Mega”-commercial services (clouds, large
+	      scale email &amp; SN, SIP, WebRTC…)</li>
+<li>Target dispersal – good goal or wishful thinking?</li>
+<li>Middleboxes: when a help and when a hindrance?</li>
+</ul>
+</dd>
+<dt>14:30</dt>
+<dd>Break</dd>
+<dt>15:00</dt>
+<dd>VII. 3 x Break-out Sessions / Bar-Camp
+	  style (Hannes Tschofenig)
+	    <ul>
+<li>Content to be defined during meeting, as topics come up</li>
+<li>Sum up at the end to gather conclusions for report</li>
+</ul>
+</dd>
+<dt>15:00</dt>
+<dd>Break-outs:
+	    <ol>
+<li>Research Questions (Moderator:
+	      Kenny Paterson)
+		<ul>
+<li>Do we need more/different crypto tools?</li>
+<li>How can applications make better use of COMSEC tools?</li>
+<li>What research topics could be handled in IRTF?</li>
+<li>What other research would help?</li>
+</ul>
+</li>
+<li>clients</li>
+<li>on by default</li>
+<li>measuring</li>
+<li>opportunistic</li>
+</ol>
+</dd>
+<dt>16:15</dt>
+<dd>VIII. Break-out reports, Open mic &amp;
+	  Conclusions – What are we going to do to address PM?
+	  <a href="https://www.w3.org/2014/strint/slides/summary.pdf">[slides]</a><ul><li>Gather conclusions / recommendations / goals from
+	      earlier sessions</li></ul>
+</dd>
+<dt>17:15</dt>
+<dd>End</dd>
+</dl>
+<div id="idm3747200" class="figure">
+<p><img src="https://www.w3.org/2014/strint/lib/workshop-5" alt="(foto: the back of somebody looking    at a whiteboard full of text and arrows)"><span class="credit"><a href="http://www.stonehousephotographic.com/">©
+	  Stonehouse Photographic</a></span></p>
+<p>Whiteboard notes.</p>
+</div>
+</div>
+</div>
+<div id="papers" class="section">
+<h2>
+<span class="secno">Appendix C. </span>The submitted papers</h2>
+<p><span class="issue" id="sort-papers">[Bert: Group the papers by
+      (rough) topic?]</span></p>
+<p>The following papers were submitted to the workshop. The
+      abstracts were provided by the authors themselves. (We set up an
+      <a href="https://strint.pads.ccc.de/1">editable page
+      (“Etherpad”)</a> where the authors could insert them.)</p>
+<div id="idm3737152" class="section">
+<h3>
+<span class="secno">Appendix C.1. </span>Privacy Protected Email – Phillip Hallam-Baker</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/01.pdf">01.pdf</a> –
+	This proposal is two things: First it shows that with some
+	small adjustments to S/MIME and PGP we can merge two competing
+	end-to-end security proposals that are too hard for people to
+	use into one scheme that provides a useful degree of security
+	with no thought from the user. In cases where the user has
+	security concerns they can easily determine that they are
+	met. The second part of the proposal is that it the Trust set
+	deployed to secure email encryption can be leveraged to solve
+	pretty much every other end-to-end security requirement. If
+	people generate keys for their email we can secure chat,
+	video, 2-factor authentication as well.</p>
+</div>
+<div id="idm3734608" class="section">
+<h3>
+<span class="secno">Appendix C.2. </span>Opportunistic Encryption for MPLS – Stephen Farrell, Adrian Farrrell</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/02.pdf">02.pdf</a> –
+	This is an early proposal for a way to do open-channel D-H
+	key agreement and encryption in MPLS. Two things are maybe
+	interesting: a) its an example of trying to add
+	confidentiality to an existing protocol with making PM harder
+	as a specific goal and b) maybe it shows that there could be a
+	benefit in a generic protocol for after-the-fact MITM
+	detection for such cases. It'd probably be most interesting to
+	discuss (a) as one example of something we want to do more
+	generally and not the specifics of MPLS at the workshop; and
+	I'd be interested in whether or not (b) is tractable (I'm not
+	sure).</p>
+</div>
+<div id="idm3731920" class="section">
+<h3>
+<span class="secno">Appendix C.3. </span>Overcoming the Friend-or-Foe Paradigm in Secure Communication – Sebastian Gajek, Jan Seedorf, Marc Fischlin, Oezguer Dagdalen</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/03.pdf">03.pdf</a> –
+	Essentially, our point is that with the existing
+	end-to-end client-server security paradigm, e.g. as
+	instantiated in TLS, the “good guys” often actually have to
+	mount attacks in order for middleboxes (which are on the path
+	between client ans server being able) to perform their
+	job. The good guys are thus technically indistinguishable from
+	the bad guys.</p>
+<p>Concretely, we are proposing to extend
+	TLS in a way that would allow authorized modification of
+	certain, dedicated parts of the TLS payload by middleboxes,
+	while still allowing for integrity verification by
+	clients. The crypto for such “Interferable Secure
+	Communication” exists and we think it is feasible to extend
+	TLS in this way in a reasonable timeframe.</p>
+</div>
+<div id="idm3728848" class="section">
+<h3>
+<span class="secno">Appendix C.4. </span>Flows and Pervasive Monitoring – Ted Hardie</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/04.pdf">04.pdf</a> –
+	This document describes methods that may hinder a pervasive
+	monitor's efforts to derive metadata from flows.  There are
+	three main methods discussed in the paper: aggregation,
+	contraflow, and multipath.  These are largely side-effects of
+	other efforts at this time, but the paper discusses how they
+	might fit into the design space of efforts intended to combat
+	pervasive monitoring and the related consequences for network
+	operations.</p>
+</div>
+<div id="idm3726464" class="section">
+<h3>
+<span class="secno">Appendix C.5. </span>BetterCrypto.org Applied Crypto Hardening – Aaron Zauner, L. Aaron Kaplan</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/05.pdf">05.pdf</a> –
+	BetterCrypto is a community-driven project where admins,
+	engineers, cryptographers, security researchers alike
+	participate in finding well researched best-practices for
+	commonly deployed networked applications and
+	infrastructure. We try to outline a proper interim solution
+	until better protocols and standards are widely deployed. Our
+	hope is that we can contribute to a safer internet for all and
+	better understanding of cryptographic primitives for the
+	operations community that needs to deploy sound security on
+	the public internet. Our focus group: sysadmins / ops.</p>
+</div>
+<div id="idm3723200" class="section">
+<h3>
+<span class="secno">Appendix C.6. </span>A Complimentary Analysis (The Danger Of The New Internet Choke Points) – Andrei Robachevsky, Christine Runnegar, Karen O'Donoghue, Mat Ford</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/06.pdf">06.pdf</a> –
+	The ongoing disclosures of pervasive surveillance of
+	Internet users' communications and data by national signals
+	intelligence agencies have prompted protocol designers,
+	software and hardware vendors, as well as Internet service and
+	content providers, to re-evaluate prevailing security and
+	privacy threat models and to refocus on providing more
+	effective security and confidentiality. At IETF88, there was
+	consensus to address pervasive monitoring as an attack and to
+	consider the pervasive attack threat model when designing a
+	protocol.  In this paper, we offer a complimentary
+	analysis. We identify some of the components of the Internet
+	architecture that provide attractive opportunities for
+	wholesale monitoring and/or interception, and, therefore,
+	represent architectural vulnerabilities, or choke points. We
+	also suggest possible mitigation strategies and pose some of
+	the questions that need to be considered if the Internet is to
+	evolve to reduce such vulnerabilities. Finally, we identify
+	some significant areas of tension or trade-offs, and we
+	consider possible areas for additional efforts.  Also: <a href="http://www.internetsociety.org/blog/tech-matters/2014/02/danger-new-internet-choke-points">danger-new-internet-choke-points</a> and <a href="http://www.circleid.com/posts/20140218_mind_the_step_function_are_we_really_less_secure_than_a_year_ago/">mind_the_step_function</a></p>
+</div>
+<div id="idm3718608" class="section">
+<h3>
+<span class="secno">Appendix C.7. </span>Trust Issues with Opportunistic Encryption – Scott Rose, Stephen Nightingale, Doug Montgomery</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/07.pdf">07.pdf</a> –
+	“Once is happenstance. Twice is coincidence. Three times is
+	enemy action”</p>
+<p>The lack of authentication in opportunistic encryption
+	could have the perverse affect of putting more end users at
+	risk: thinking that they are “secure”, an end user may divulge
+	private information to an imposter instead of the service they
+	believe they have contacted. When adding protection mechanisms
+	to protocols, designers and implementers should not downplay
+	the importance of authentication in order to make
+	opportunistic encryption easier to deploy. We advocate that
+	while opportunistic encryption can solve one set of problems,
+	authentication is often desired by end users.</p>
+</div>
+<div id="idm3715552" class="section">
+<h3>
+<span class="secno">Appendix C.8. </span>Challenges with End-to-End Email Encryption – Jiangshan Yu, Vincent Cheval, Mark Ryan</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/08.pdf">08.pdf</a> –
+	In this paper we show how the use of an extended
+	certificate transparency can build a secure end-to-end email
+	or messaging system using PKI without requiring trusted
+	parties nor complex p2p key-signing arrangements such as
+	PGP. This makes end-to-end encrypted mail possible, and users
+	do not need to understand or concern themselves with keys or
+	certificates. In addition, we briefly present some related
+	concerns i.e. metadata protection, key loss mitigation, spam
+	detection, and the security of webmail.</p>
+</div>
+<div id="idm3712976" class="section">
+<h3>
+<span class="secno">Appendix C.9. </span>Strengthening the path and strengthening the end-points – Xavier Marjou, Emile Stephan, Jean-Michel Combes, Iuniana Oprescu</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/09.pdf">09.pdf</a> –
+	Internet data is more and more subject to pervasive
+	monitoring. This paper investigates ways of enhancing this
+	situation depending on where such pervasive monitoring may
+	occur. There are two different locations to secure: the
+	endpoints and the path between these endpoints. In the present
+	document, we also emphasize the fact that encryption, although
+	bringing additional data confidentiality, might in some cases
+	contradict security's two other pillars, which are
+	availability and integrity.</p>
+</div>
+<div id="idm3710544" class="section">
+<h3>
+<span class="secno">Appendix C.10. </span>SIP is Difficult – Jon Peterson</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/10.pdf">10.pdf</a> –
+	While SIP is widely used as a protocol for real-time
+	communications, it is very difficult to secure from pervasive
+	monitoring. In fact, one could argue that SIP's susceptibility
+	to mass surveillance was essential to its success in the
+	marketplace. This paper shows why SIP's design left the door
+	open for eavesdropping, and what lessons RTCWeb could learn
+	from this.</p>
+</div>
+<div id="idm3708112" class="section">
+<h3>
+<span class="secno">Appendix C.11. </span>Thoughts of Strengthening Network Devices in  the Face of Pervasive Surveillance – Dacheng Zhang, Fuyou  Miao</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/11.pdf">11.pdf</a> –
+	The material released by Edward Snowden has raised serious
+	concerns about pervasive surveillance. People worry that their
+	privacy is not properly protected when they are using the
+	Internet. Network product vendors also encounter the doubts on
+	the security of their products (e.g., routers, switches,
+	firewalls). Such doubts are seriously damaging the Internet
+	ecosystem. In this paper we try to analyze the affects brought
+	by the Snowden scandal on our ability to trust products at the
+	core of the Internet and discuss what the standard
+	organization can do to help vendors address these security
+	concerns.</p>
+</div>
+<div id="idm3705584" class="section">
+<h3>
+<span class="secno">Appendix C.12. </span>Opportunistic Encryption for HTTP URIs –  Mark Nottingham</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/12.pdf">12.pdf</a> –
+	This is a proposed method for using TLS with http:// URIs
+	under discussion in the HTTPbis WG, in particular for HTTP/2
+	but also applicable to HTTP/1. One of the biggest decisions to
+	make is whether or not to require the certs to validate in
+	this scenario.</p>
+</div>
+<div id="idm3703232" class="section">
+<h3>
+<span class="secno">Appendix C.13. </span>Cyberdefense-Oriented Multilayer Threat  Analysis – Yuji Sekiya, Daisuke Miyamoto, Hajime Tazaki</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/13.pdf">13.pdf</a></p>
+</div>
+<div id="idm3701408" class="section">
+<h3>
+<span class="secno">Appendix C.14. </span>A Threat Model for Pervasive Passive  Surveillance – Brian Trammell, Daniel Borkmann, Christian  Huitema</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/14.pdf">14.pdf</a> –
+	This document elaborates a threat model for pervasive
+	surveillance, assuming an adversary with an interest in
+	indiscriminate eavesdropping that can passively observe
+	network traffic at every layer at every point in the network
+	between the endpoints. We provide guidelines on evaluating the
+	observability and inferability of information and
+	metainformation radiated from Internet protocols. The central
+	message to protocol designers: pervasive encryption for
+	confidentiality, protocol and implementation design for
+	simplicity and auditability, flexibility to allow
+	fingerprinting resistance, and moving away from static
+	identifiers can increase protocol-level resistance to
+	pervasive surveillance.</p>
+</div>
+<div id="idm3698752" class="section">
+<h3>
+<span class="secno">Appendix C.15. </span>Why Provable Transparency is Useful Against  Surveillance – Ben Laurie</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/15.pdf">15.pdf</a></p>
+</div>
+<div id="idm3697088" class="section"><h3>
+<span class="secno">Appendix C.16. </span>Withheld</h3></div>
+<div id="idm3695936" class="section">
+<h3>
+<span class="secno">Appendix C.17. </span>Monitoring message size to break privacy –  Current issues and proposed solutions – Alfredo Pironti</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/17.pdf">17.pdf</a> –
+	One of the Internet traffic features that can be easily
+	collected by passive pervasive monitoring is the size of the
+	exchanged messages, or the total bandwidth used by a
+	conversation. Several works have showed that careful analysis
+	of this data can break users' expected privacy, even for
+	encrypted traffic. Despite this, little has been done in
+	practice to hide message sizes, perhaps because deemed too
+	inefficient or not a realistic threat.</p>
+<p>In this short paper,
+	we contextualize message size analysis in the wider pervasive
+	monitoring scenario, which encompasses other powerful analysis
+	techniques, and we re-state the severity of the privacy breach
+	that message size analysis constitutes. We finally discuss
+	proposals to fix this issue, considering practical aspects
+	such as required developer awareness, ease of deployment,
+	efficiency, and interaction with other countermeasures.</p>
+</div>
+<div id="idm3692784" class="section"><h3>
+<span class="secno">Appendix C.18. </span>Withheld</h3></div>
+<div id="idm3691696" class="section">
+<h3>
+<span class="secno">Appendix C.19. </span>Making The Internet Secure By Default –  Michael H. Behringer, Max Pritkin, Steinthor Bjarnason</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/19.pdf">19.pdf</a> –
+	Pervasive monitoring on the Internet is enabled by the lack
+	of general, fundamental security. In his presentation at the
+	88th IETF Bruce Schneier called for ubiquitous use of security
+	technologies to make pervasive monitoring too expensive and
+	thus impractical. However, today security is too operationally
+	expensive, and thus only used where strictly required. In this
+	position paper we argue that all network transactions can be
+	secure by default, with minimal or no operator
+	involvement. This requires an autonomic approach where all
+	devices in a domain enrol automatically in a trust
+	domain. Once they share a common trust anchor they can secure
+	communications between themselves, following a domain policy
+	which is by default secure. The focus of this proposal is the
+	network itself, with all protocols between network elements,
+	including control plane protocols (e.g., routing protocols)
+	and management plane protocols (e.g., SSH, netconf, etc). The
+	proposal is evolutionary and allows a smooth migration from
+	today's Internet technology, device by device.</p>
+</div>
+<div id="idm3688544" class="section">
+<h3>
+<span class="secno">Appendix C.20. </span>Increasing HTTP Transport Confidentiality  with TLS Based Alternate Services – Patrick McManus</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/20.pdf">20.pdf</a></p>
+</div>
+<div id="idm3686576" class="section">
+<h3>
+<span class="secno">Appendix C.21. </span>Balance – Societal security versus  individual liberty – Scott Cadzow</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/21.pdf">21.pdf</a></p>
+</div>
+<div id="idm3684512" class="section">
+<h3>
+<span class="secno">Appendix C.22. </span>Strengthening the Extensible Messaging and  Presence Protocol (XMPP) – Peter Saint-Andre</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/22.pdf">22.pdf</a> –
+	This document describes existing and potential future
+	efforts at strengthening the Extensible Messaging and Presence
+	Protocol (XMPP), for discussion at the W3C/IAB workshop on
+	Strengthening the Internet Against Pervasive Monitoring
+	(STRINT).</p>
+</div>
+<div id="idm3682192" class="section">
+<h3>
+<span class="secno">Appendix C.23. </span>The Internet We Want or the Internet We  Deserve? – David Rogers</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/23.pdf">23.pdf</a></p>
+</div>
+<div id="idm3680176" class="section">
+<h3>
+<span class="secno">Appendix C.24. </span>Beyond Encrypt Everything: Passive  Monitoring – Mark Donnelly, Sam Hartman</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/24.pdf">24.pdf</a></p>
+</div>
+<div id="idm3678080" class="section">
+<h3>
+<span class="secno">Appendix C.25. </span>Examining Proxies to Mitigate Pervasive  Surveillance – Eliot Lear, Barbara Fraser</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/25.pdf">25.pdf</a> – The notion of pervasive surveillance
+	assumes that it is possible for an attacker to have access to
+	all links and devices between end points, as well as end
+	points themselves. We examine this threat is some detail with
+	an eye toward whether trusted intermediaries can provide
+	relief from the attack. We go on to examine the costs
+	associated with the various remediation methods. In at least
+	one case, we challenge the notion that one should encrypt
+	absolutely everything in all cases, as was implied in at least
+	one threat analysis. Finally we summarize in a set of four
+	principles that should be considered in future work.</p>
+</div>
+<div id="idm3674640" class="section">
+<h3>
+<span class="secno">Appendix C.26. </span>Spontaneous Wireless Networking to Counter  Pervasive Monitoring – Emmanuel Baccelli, Oliver Hahm,  Matthias Waehlisch</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/26.pdf">26.pdf</a> – Several approaches can be employed to
+	counter pervasive monitoring at large scale on the
+	Internet. One category of approaches aims to harden the
+	current Internet architecture and to increase the security of
+	high profile targets (data centers, exchange points
+	etc.). Another category of approaches aims instead for target
+	dispersal, i.e. disabling systematic mass surveillance via the
+	elimination of existing vantage points, thus forcing
+	surveillance efforts to be more specific and
+	personalized. This paper argues how networking approaches that
+	do not rely on central entities – but rather on spontaneous
+	interaction, as locally as possible, between autonomous peer
+	entities – can help realize target dispersal and thus counter
+	pervasive monitoring.</p>
+</div>
+<div id="idm3671840" class="section">
+<h3>
+<span class="secno">Appendix C.27. </span>Is Opportunistic Encryption the Answer?  Practical Benefits and Disadvantages – John Mattsson</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/27.pdf">27.pdf</a> –
+	In this paper, we give an overview of various opportunistic
+	and unauthenticated encryption techniques, and discuss their
+	benefits, limits, and disadvantages. We recommend the Internet
+	community to clearly define the term “opportunistic
+	encryption” or to use other terms.  We conclude that while
+	opportunistic and unauthenticated encryption certainly has its
+	uses and may with the right choices provide good enough
+	security for a low cost, general deployment of unauthenticated
+	encryption is not an effective way to thwart pervasive
+	monitoring.</p>
+</div>
+<div id="idm3669280" class="section">
+<h3>
+<span class="secno">Appendix C.28. </span>Clearing off the Cloud over the Internet of  Things – Carsten Bormann, Stefanie Gerdes, Olaf Bergmann</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/28.pdf">28.pdf</a> –
+	As was foreshadowed by product introductions in 2013, the
+	Consumer Electronics Show 2014 has seen the introduction of a
+	large number of “Internet of Things” (IoT) innovations.
+	Almost all of these have in common that they are meant to
+	operate via Cloud-based services.  In the light of the recent
+	attention to threats by state-level tenacious attackers with
+	significant infrastructure (STASI), in particular to their
+	practice of pervasive monitoring, we discuss the implications
+	of a cloud-centric IoT landscape, and attempt to outline a set
+	of principles as a program to improve the long-term
+	outlook.</p>
+</div>
+<div id="idm3666880" class="section"><h3>
+<span class="secno">Appendix C.29. </span>Withheld</h3></div>
+<div id="idm3665904" class="section">
+<h3>
+<span class="secno">Appendix C.30. </span>The Trust-to-Trust Model of Cloud Services –  Alissa Cooper, Cullen Jennings</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/30.pdf">30.pdf</a></p>
+</div>
+<div id="idm3663808" class="section">
+<h3>
+<span class="secno">Appendix C.31. </span>Linkability Considered Harmful – Leif  Johansson</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/31.pdf">31.pdf</a> –
+	Current debate on pervasive monitoring often focus on
+	passive attacks on the protocol and transport layers but even
+	if these issues were eliminated through the judicious use of
+	encryption, roughly the same information would still be
+	available to an attacker who is able to (legally or otherwize)
+	obtain access to linked data sets which are being maintained
+	by large content and service providers.</p>
+</div>
+<div id="idm3661264" class="section">
+<h3>
+<span class="secno">Appendix C.32. </span>Simple Opportunistic Encryption – Andrea  Bittau, Michael Hamburg, Mark Handley, David Mazieres, Dan  Boneh</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/32.pdf">32.pdf</a> –
+	Network traffic encryption is becoming a requirement, not
+	an option.  Enabling encryption will be a communal effort so a
+	solution that gives partial benefits until fully deployed is
+	needed.  A solution that requires little changes to existing
+	infrastructure will also help as it can be quickly deployed to
+	give immediate short-term benefits.  We argue that tcpcrypt, a
+	TCP option for opportunistic encryption is the path of
+	least-resistance for a solution against large-scale traffic
+	encryption.  Tcpcrypt requires no changes to applications, is
+	compatible with existing networks (works with NATs), and just
+	works by default.  It is high performance, so it can be
+	deployed on servers without much concern.  tcpcrypt attempts
+	to maximize security for any given setting.  By default, it
+	will protect against passive eavesdropping, and also allows
+	detecting large scale interception.  With authentication,
+	tcpcrypt can provide full security against active attackers
+	and so it is a complete solution both for the short-term and
+	long-term.</p>
+</div>
+<div id="idm3658192" class="section">
+<h3>
+<span class="secno">Appendix C.33. </span>An Architecture for a Secure Cloud  Collaboration System – Cullen Jennings, Suhas Nandakumar</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/33.pdf">33.pdf</a> –
+	The Internet technical community is looking at ways to
+	address pervasive attacks as described in several other
+	internet drafts.  [I-D.barnes-pervasive-problem] describes
+	threat model to characterize various pervasive attacks on the
+	Internet communications.  There are many systems that need to
+	be secured against such attacks but this paper considers one
+	possible way to secure cloud based collaborations systems.  At
+	a high level, this paper sugests that users or enterprises
+	could run a key server that manages the keys to access their
+	content.  The cloud service provider would not have access to
+	decrypt the data stored in the cloud but various users of the
+	cloud service could get the keys to encrypt and decrypt the
+	contents of collaboration sessions facilitated by the cloud
+	service.  This does not protect the meta data of who is
+	talking to who but can help protect the content of the
+	conversations.</p>
+</div>
+<div id="idm3655376" class="section">
+<h3>
+<span class="secno">Appendix C.34. </span>Security and Simplicity – Steven Bellovin</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/34.pdf">34.pdf</a></p>
+</div>
+<div id="idm3653632" class="section">
+<h3>
+<span class="secno">Appendix C.35. </span>Privacy at the Link Layer – Piers O'Hanlon,  Joss Wright, Ian Brown</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/35.pdf">35.pdf</a> –
+	This paper gives an overview of the privacy issues around
+	the use of link layer identifiers and associated
+	protocols. Whilst the IETF generally specifies IP level
+	protocols it does also address the link layer in protocols
+	such as address resolution, network attachment detection,
+	tunnelling and router redundancy.</p>
+<p>The indiscriminate
+	broadcast of a device's MAC address, a unique and effectively
+	personal identifier, allows for unregulated and broad-scale
+	tracking of individuals via their personal devices, whether or
+	not those devices have made use of a particular service or
+	not. These addresses typically remain unchanged for the
+	lifetime of a device, creating a persistent, lifelong tracking
+	capability. The collation of such addresses, primarily WiFi
+	and Bluetooth, has been been gathering pace and is already in
+	use by organisations such as security agencies and
+	advertisers.</p>
+<p>Ephemeral addresses are used further up the
+	stack so why not at the link layer?  As default devices should
+	use a randomised MAC address and any higher level associations
+	can be maintained as and when approved by the user.  Moreover
+	various other 'performance enhancing' approaches further
+	degrade the privacy of individuals such as proactive discovery
+	of WLAN SSIDs, Detection of Network Attachment (DNA), Wireless
+	ISP roaming (WISPr), name lookups and so on.</p>
+<p>All these mechanisms need to be re-examined in the light of
+	pervasive monitoring.</p>
+</div>
+<div id="idm3648496" class="section">
+<h3>
+<span class="secno">Appendix C.36. </span>Erosion of the moral authority of  middleboxes – Joe Hildebrand</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/36.pdf">36.pdf</a> –
+	Many middleboxes on the Internet attempt to add value to
+	the connections that traverse that point on the
+	network. Problems in their implementations erode the moral
+	authority that otherwise might accrue to the legitimate value
+	that they add.</p>
+</div>
+<div id="idm3646272" class="section">
+<h3>
+<span class="secno">Appendix C.37. </span>Policy Responses, Implications and  Opportunities – Joseph Lorenzo Hall &amp; Runa Sandvik</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/37.pdf">37.pdf</a> –
+	We raise issues for discussion that lie in the interface
+	between policy and technology. Specifically, we discuss 1)
+	routing, processing and data localization policy mandates
+	(i.e., new laws that may affect how data flows through the
+	'net; 2) the uncertain possibility of dilution of credibility
+	of IETF and w3c given what we've seen with NIST after
+	NSA-coziness allegations; 3) the claim that strenghtening the
+	internet and web will “help the bad guys” and the dubious need
+	for “lawful intercept” funcationality; and 3) abusive content,
+	cryptography as a controlled export technology, and the need
+	to standardize more anonymity primitives (onion routing,
+	pluggable transport protocols). We also highlight our own work
+	in ensuring that technologists have a voice in policy
+	environments and discuss a few interventions we coordinated
+	over the past year, focusing on software backdoors and NSA
+	surviellance.</p>
+</div>
+<div id="idm3643344" class="section">
+<h3>
+<span class="secno">Appendix C.38. </span>Is it time to bring back the hosts file? –  Peter Eckersley</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/38.pdf">38.pdf</a></p>
+</div>
+<div id="idm3641584" class="section">
+<h3>
+<span class="secno">Appendix C.39. </span>Metaphors matter; application-layer;  distribute more – Larry Masinter</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/39.pdf">39.pdf</a> –
+	
+	  </p>
+<ol>
+<li>Dont say Attack: IETF should stay away from political
+	    theatre: changing protocols or workflows not because the
+	    change works but just to say you did something. Metaphors
+	    matter.</li>
+<li>For most relevant threats, traffic analysis is enough,
+	    and encyption doesnt mitigate.</li>
+<li>The only deployable protection – if that is what is
+	    wanted – means shifting architecture from client-server
+	    to mesh.</li>
+</ol>
+</div>
+<div id="idm3637120" class="section">
+<h3>
+<span class="secno">Appendix C.40. </span>Levels of Opportunistic Privacy Protection  for Messaging-Oriented Architectures – Dave Crocker, Pete  Resnick</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/40.pdf">40.pdf</a> –
+	Messaging protection against pervasive monitoring (PM)
+	needs to cover primary payload, descriptive meta-data, and
+	traffic-related analysis.  Complete protection against PM, for
+	traffic through complex handling sequences, has not yet been
+	achieved reliably in real-world operation.  Consequently, this
+	document considers a range of end-to-end, object-based
+	mechanisms, distinct from channel-based mechanisms. Each
+	approach offers incremental protection levels that can be
+	provided with existing, or low-risk, component technologies,
+	such as through the DNS and MIME conventions.</p>
+</div>
+<div id="idm3634624" class="section">
+<h3>
+<span class="secno">Appendix C.41. </span>Fingerprinting Guidance for Web  Specification Authors – Nick Doty</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/41.pdf">41.pdf</a> –
+	<a href="http://w3c.github.io/fingerprinting-guidance/">http://w3c.github.io/fingerprinting-guidance/</a> –
+	Exposure of settings and characteristics of browsers can
+	impact user privacy by allowing for browser
+	fingerprinting. This document defines different types of
+	fingerprinting, considers distinct levels of mitigation for
+	the related privacy risks and provides guidance for Web
+	specification authors on how to balance these concerns when
+	designing new Web features.</p>
+</div>
+<div id="idm3631392" class="section">
+<h3>
+<span class="secno">Appendix C.42. </span>Eradicating Bearer Tokens for Session Management –   Philippe De Ryck, Lieven Desmet, Frank Piessens, Wouter  Joosen</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/42.pdf">42.pdf</a> –
+	Session management is a crucial component in every modern
+	web application. It links multiple requests and temporary
+	stateful information together, enabling a rich and interactive
+	user experience. The de facto cookie-based session management
+	mechanism is however flawed by design, enabling the theft of
+	the session cookie through simple eavesdropping or script
+	injection attacks. Possession of the session cookie gives an
+	adversary full control the user's sover ession, allowing him
+	to impersonate the user to the target application and perform
+	transactions in the user's name. While several alternatives
+	for secure session management exist, they fail to be adopted
+	due to the introduction of additional roundtrips and overhead,
+	as well as incompatibility with current Web technologies, such
+	as third-party authentication providers, or widely deployed
+	middleboxes, such as web caches.  We identify four key
+	objectives for a secure session management mechanism, aiming
+	to be compatible with the current and future Web. We propose
+	SecSess, a lightweight session management mechanism based on a
+	shared secret between client and server, used to authenticate
+	each request. SecSess ensures that a session remains under
+	control of the parties that established it, and only
+	introduces limited overhead. During session establishment,
+	SecSess introduces no additional roundtrips and only adds 4.3
+	milliseconds to client-side and server-side processing. Once a
+	session is established, the overhead becomes negligible
+	(&lt;0.1ms), and the average size of the request headers is
+	even smaller than with common session cookies. Additionally,
+	SecSess works well with currently deployed systems, such as
+	web caches and third-party services. SecSess also supports a
+	gradual migration path, while remaining compatible with
+	currently existing applications.</p>
+</div>
+<div id="idm3626304" class="section">
+<h3>
+<span class="secno">Appendix C.43. </span>STREWS Web-platform security guide: security  assessment of the Web ecosystem – Martin Johns, Lieven  Desmet</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/43.pdf">43.pdf</a> –
+	In this document, we report on the Web-platform security
+	guide, which has been developed within the EC-FP7 project
+	STREWS. Based on their research, the STREWS consortium argues
+	that in order to strengthening the Internet (e.g. against
+	pervasive monitoring), it is crucial to also strengthen the
+	web application ecosystem, the de-facto Internet application
+	platform.</p>
+</div>
+<div id="idm3623904" class="section">
+<h3>
+<span class="secno">Appendix C.44. </span>Pervasive Attack: A Threat Model and Problem  Statement – Richard Barnes, Bruce Schneier, Cullen Jennings,  Ted Hardie</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/44.pdf">44.pdf</a> –
+	Documents published in 2013 have revealed several classes
+	of “pervasive” attack on Internet communications.  In this
+	document, we review the main attacks that have been published,
+	and develop a threat model that describes these pervasive
+	attacks.  Based on this threat model, we discuss the
+	techniques that can be employed in Internet protocol design to
+	increase the protocols robustness to pervasive attacks.</p>
+</div>
+<div id="idm3621552" class="section">
+<h3>
+<span class="secno">Appendix C.45. </span>Cryptech – Building a More Assured HSM with  a More Assured Tool-Chain – Randy Bush</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/45.pdf">45.pdf</a></p>
+</div>
+<div id="idm3619664" class="section">
+<h3>
+<span class="secno">Appendix C.46. </span>Replacing passwords on the Internet AKA  post-Snowden Opportunistic Encryption – Ben Laurie, Ian  Goldberg</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/46.pdf">46.pdf</a></p>
+</div>
+<div id="idm3617792" class="section">
+<h3>
+<span class="secno">Appendix C.47. </span>End-User Concerns about Pervasive Internet  Monitoring: Principles and Practice – Tara Whalen, Stuart  Cheshire, David Singer</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/47.pdf">47.pdf</a> –
+	This position paper will discuss pervasive monitoring on
+	the Internet from the perspective of end users: what are
+	overarching concerns around pervasive monitoring, and what are
+	some steps that could be taken to address those concerns?  We
+	begin by exploring a preliminary set of characteristics of
+	systemic surveillance, which can be used to pinpoint dominant
+	concerns of end users that should be addressed through
+	technical means. We then illustrate one specific significant
+	problem facing end users, namely that of certificate errors,
+	which can be exploited to facilitate pervasive
+	surveillance. We suggest that users should not be required to
+	determine whether a certificate error is valid, but instead to
+	block access to websites that generate such errors. We believe
+	this approach would be more effective in protecting end users
+	in an environment of persistent network threats.</p>
+</div>
+<div id="idm3614912" class="section">
+<h3>
+<span class="secno">Appendix C.48. </span>Developer-Resistant Cryptography – Kelsey  Cairns, Graham Steel</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/48.pdf">48.pdf</a> –
+	“Properly implemented strong crypto systems are one of the
+	few things that you can rely on” – Edward Snowden. So why is
+	mass surveillance so successful? One (big) problem is endpoint
+	security. Another is that strong crypto systems are
+	sufficiently difficult to implement that often either mistakes
+	are made resulting in catastrophic loss of security, or
+	cryptography is not used at all. What can we do to make
+	cryptography easier to use and more resistant to developer
+	errors?</p>
+</div>
+<div id="idm3612448" class="section">
+<h3>
+<span class="secno">Appendix C.49. </span>Improving the reliability of key ownership  assertions – Kai Engert</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/49.pdf">49.pdf</a> –
+	A majority of today's secure Internet connections rely on
+	Certificate Authorities not being abused for issueing false
+	certificates (key ownership assertions), which might get
+	abused for interception purposes, despite the risk of
+	detection. I suggest to enhance Internet protocols with
+	protective mechanisms to detect false key ownership
+	assertions.  Ideas: (1) Using a network of proxy services, for
+	example as implemented by the The Onion Router (Tor),
+	consistency checking chould be performed by individual
+	clients, in order to detect assertions that are likely false,
+	prior to allowing a connection (see Detector.io). (2) Extend
+	the idea that notary services provide a second opinion about
+	the correctness of key ownership assertions, by requiring CAs
+	to run such services (kuix.de/mecai).  (3) Implement protocol
+	extensions, where client software reports previously seen key
+	ownership assertions to the operators of services, allowing
+	the discovery of false ownership assertions.</p>
+</div>
+<div id="idm3609472" class="section">
+<h3>
+<span class="secno">Appendix C.50. </span>Mike O'Neill's Position Paper – Mike  O'Neill</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/50.pdf">50.pdf</a></p>
+</div>
+<div id="idm3607616" class="section">
+<h3>
+<span class="secno">Appendix C.51. </span>Detecting MITM Attacks on Ephemeral  Diffie-Hellman without Relying on a PKI in Real-Time  Communications – Alan Johnston</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/51.pdf">51.pdf</a> –
+	With the recent revelations about pervasive surveillance on
+	the Internet, there is renewed interest in techniques that
+	protect against passive eavesdropping without relying on a
+	Public Key Infrastructure (PKI). An ephemeral Diffie-Hellman
+	(DH) key agreement can provide such protection, but (without
+	authentication) the exchange is vulnerable to a Man in the
+	Middle (MitM) attack. An example of a protocol that has MitM
+	protection for a DH key agreement is ZRTP, RFC 6189, "ZRTP:
+	Media Path Key Agreement for Unicast Secure RTP." ZRTP
+	provides pervasive surveillance resistant security for Voice
+	over IP (VoIP), video communication, and other real-time
+	communication services. This paper describes the techniques
+	used by ZRTP to detect MitM attacks, and explores whether
+	these techniques could be used to develop a general MitM
+	detection protocol to be used by other non-real-time
+	communication protocols. An example of how ZRTP can provide
+	MitM detection for another protocol, DTLS-SRTP, Datagram
+	Transport Layer Security – Secure Real-time Transport
+	Protocol, is given.</p>
+</div>
+<div id="idm3604528" class="section">
+<h3>
+<span class="secno">Appendix C.52. </span>Trust &amp; Usability on the Web, a  Social/Legal perspective – Rigo Wenning, Bert Bos</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/52.pdf">52.pdf</a> –
+	(1) The browsers' UIs for security are very technical and
+	seem to avoid saying anything useful, maybe so that the
+	browsers and CAs cannot be held responsible. (2) A user
+	wanting to configure security has difficulty finding the UI
+	and then often discovers that settings are hard-coded or
+	unclear. (3) The security model is based on trusting a few
+	commercial entities and mistrusting the user, who ends up
+	without control over his software if one of those entities is
+	compromised or doesn't share his goals.  Conclusion: We need
+	better UIs, which in turn requires a PKI that has the metadata
+	and social aspects that help users understand and explore the
+	keys and the organizations behind them.</p>
+</div>
+<div id="idm3601840" class="section">
+<h3>
+<span class="secno">Appendix C.53. </span>Hardening Operations and Management Against  Passive Eavesdropping – Bernard Aboba</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/53.pdf">53.pdf</a> –
+	Today within service providers protocols used for
+	operations and management frequently send data in the clear,
+	enabling the data to be collected by passive
+	eavesdroppers. Examples of operations and management protocols
+	include Authentication, Authorization and Accounting (AAA),
+	syslog and Simple Networking Monitoring Protocol (SNMP). Since
+	the publication of “Operational Security Current Practices in
+	Internet Service Provider Environments” [RFC4778], the IETF
+	has developed specifications that enable per-packet
+	confidentiality to be applied to operations and management
+	protocols. By developing updated operational guidance
+	recommending deployment of per-packet confidentiality based on
+	recent IETF Request for Comments (RFCs) and work-in-progress,
+	the IETF can assist in bringing customer and regulatory
+	pressure to bear in improving operational practices.</p>
+</div>
+<div id="idm3598976" class="section">
+<h3>
+<span class="secno">Appendix C.54. </span>A few theses regarding privacy and security  – Andreas Kuckartz</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/54.pdf">54.pdf</a></p>
+</div>
+<div id="idm3597216" class="section">
+<h3>
+<span class="secno">Appendix C.55. </span>Meet the new threat model, same as the old  threat model – Eric Rescorla</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/55.pdf">55.pdf</a> –
+	The Internet environment has a fairly well understood
+	threat model. In general, we assume that the end-systems
+	engaging in a protocol exchange have not themselves been
+	compromised. Protecting against an attack when one of the
+	end-systems has been compromised is extraordinarily
+	difficult. It is, however, possible to design protocols which
+	minimize the extent of the damage done under these
+	circumstances.</p>
+<p>By contrast, we assume that the attacker has nearly
+	complete control of the communications channel over which the
+	end-systems communicate. This means that the attacker can read
+	any PDU (Protocol Data Unit) on the network and undetectably
+	remove, change, or inject forged packets onto the wire. This
+	includes being able to generate packets that appear to be from
+	a trusted machine. Thus, even if the end-system with which you
+	wish to communicate is itself secure, the Internet environment
+	provides no assurance that packets which claim to be from that
+	system in fact are. – <a href="#RFC3552">[RFC3552]</a></p>
+</div>
+<div id="idm3592768" class="section">
+<h3>
+<span class="secno">Appendix C.56. </span>It's Time for Application-Centric Security –  Yuan Gu, Harold Johnson</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/56.pdf">56.pdf</a> –
+	An 'application' is an organized data/executable-code
+	compound performing a specific function or service. We hold
+	that applications should be protected intrinsically (by
+	obfuscated, tamper-resistant code and data), as well as
+	extrinsically (by encrypted communication, hardened hardware
+	platforms, authenticated access). (1) Cloud-based applications
+	are vulnerable to their hosting services or neighbors. (2)
+	Peripheral-based applications (on phones, pads, PDAs, or more
+	generally in the Internet of Things) are vulnerable because
+	hardware security is inconsistent and very expensive to
+	repair. (3) Browser-based applications are vulnerable because
+	they run on potentially hostile or malware-infected browsers
+	or platforms which we don't control.  Application obfuscations
+	such as homomorphic transforms on data and computation (motto:
+	avoid data or computation in plain form) and increased
+	interdependency (motto: aggressive fragility under tampering)
+	can effectively address these vulnerabilities.</p>
+</div>
+<div id="idm3589712" class="section">
+<h3>
+<span class="secno">Appendix C.57. </span>Sabatini Monatesti position paper – Sabatine  Monatesti</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/57.pdf">57.pdf</a></p>
+</div>
+<div id="idm3587952" class="section">
+<h3>
+<span class="secno">Appendix C.58. </span>Trust problems in pervasive monitoring –  Melinda Shore, Karen O'Donoghue</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/58.pdf">58.pdf</a></p>
+</div>
+<div id="idm3585840" class="section">
+<h3>
+<span class="secno">Appendix C.59. </span>Beyond "Just TLS Everywhere": From  Client-encrypted Messaging to Defending the Social Graph –  Harry Halpin, George Danezis</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/59.pdf">59.pdf</a></p>
+</div>
+<div id="idm3584176" class="section">
+<h3>
+<span class="secno">Appendix C.60. </span>Network Security as a Public Good – Wendy  Seltzer</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/60.pdf">60.pdf</a> –
+	Network security depends on cooperation of multiple actors
+	in the Internet ecosystem. Standards consortia should support
+	and help coordinate activity to protect the commons.</p>
+</div>
+<div id="idm3581984" class="section">
+<h3>
+<span class="secno">Appendix C.61. </span>Statement of Interest on behalf of the W3C  TAG – Dan Appelquist</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/61.pdf">61.pdf</a></p>
+</div>
+<div id="idm3580224" class="section">
+<h3>
+<span class="secno">Appendix C.62. </span>Improving Security on the Internet – Hannes  Tschofenig</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/62.pdf">62.pdf</a> –
+	Securing the Internet has been an on-going activity since
+	the early days of the IETF and a variety of technical
+	specifications have been standardized. Someone reading through
+	IETF RFCs might easily get the impression that the Internet
+	should be very secure. This is, however, not the entire story
+	as the never-ending series of breaches and recently the
+	Snowden revelations have illustrated. While on paper
+	everything looks pretty good many problems can be found in
+	implementations and with deployments.</p>
+<p>In this position paper the author makes the argument that
+	improving the collaboration between different communities in
+	the Internet software development life-cycle will be crucial
+	for improving security on the Internet.</p>
+</div>
+<div id="idm3577056" class="section">
+<h3>
+<span class="secno">Appendix C.63. </span>Protecting customer data from government  snooping – Orit Levin</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/63.pdf">63.pdf</a></p>
+</div>
+<div id="idm3575296" class="section">
+<h3>
+<span class="secno">Appendix C.64. </span>Privacy Aware Internet Development  Initiative 2014 – Achim Klabunde</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/64.pdf">64.pdf</a> –
+	Protecting privacy on the Internet requires more than using
+	encryption. Protocols, implementations and applications must
+	minimise the amount of personal data that is distributed and
+	collected. Work is required to develop and disseminate privacy
+	aware design and impmementation techniques to the actual
+	developers. The paper is a call for interest for an initiative
+	aiming to address this need, supported by privacy and
+	technology experts.</p>
+</div>
+<div id="idm3572704" class="section">
+<h3>
+<span class="secno">Appendix C.65. </span>The Internet is Broken: Idealistic Ideas for  Building a NEWGNU Network – Christian Grothoff, Bartlomiej  Polot, Carlo von Loesch</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/65.pdf">65.pdf</a> –
+	This paper describes issues for security and privacy at all
+	layers of the Internet stack and proposes radical changes to
+	the architecture to build a network that offers strong
+	security and privacy by default.</p>
+</div>
+<div id="idm3570560" class="section">
+<h3>
+<span class="secno">Appendix C.66. </span>Opportunistic Keying as a Countermeasure to  Pervasive Monitoring – Stephen Kent</h3>
+<p><a href="https://www.w3.org/2014/strint/papers/66.pdf">66.pdf</a> –
+	This document was prepared as part of the IETF response to
+	concerns about “pervasive monitoring” as articulated in
+	[draft-farrell-perpass-attack]. It begins by exploring
+	terminology that has been used in IETF standards (and in
+	academic publications) to describe encryption and key
+	management techniques, with a focus on authentication
+	vs. anonymity. Based on this analysis, it propose a new term,
+	“opportunistic keying” (OK) to describe a goal for IETF
+	security protocols, one possible countermeasure to pervasive
+	monitoring. It reviews key management mechanisms used in IETF
+	security protocol standards, with respect to these properties,
+	to identify what changes might be needed to offer OK with
+	minimal changes. The document ends by examining possible
+	impediments to and potential adverse effects associated with
+	deployment and use of techniques that would increase the use
+	of encryption, even when keys are distributed in an
+	unauthenticated manner.</p>
+</div>
+</div>
+<div id="committee" class="section">
+<h2>
+<span class="secno">Appendix D. </span>Workshop chairs &amp; program committee</h2>
+<p>The workshop chairs were three: <a href="https://www.cs.tcd.ie/Stephen.Farrell/">Stephen
+      Farrell</a> (TCD) and <a href="http://www.w3.org/People/Rigo/">Rigo Wenning</a>
+      (W3C) from the STREWS project, and <a href="http://www.tschofenig.priv.at/wp/?page_id=5">Hannes
+      Tschofenig</a> (ARM) from the STREWS Interest Group.</p>
+<p>A program committee (PC) was charged with evaluating the
+      submitted papers. It was made up of the members of the STREWS
+      project, the members of the STREWS Interest Group, plus invited
+      experts: Bernard Aboba (Microsoft), Dan Appelquist
+      (Telefónica &amp; W3C TAG), Richard Barnes (Mozilla),
+      Bert Bos (W3C), Lieven Desmet (KU Leuven), Karen O'Donoghue
+      (ISOC), Russ Housley (Vigil Security), Martin Johns (SAP), Ben
+      Laurie (Google), Eliot Lear (Cisco), Kenny Paterson (Royal
+      Holloway), Eric Rescorla (RTFM), Wendy Seltzer (W3C), Dave
+      Thaler (Microsoft) and Sean Turner (IECA).</p>
+</div>
+<div id="participants" class="section">
+<h2>
+<span class="secno">Appendix E. </span>Participants</h2>
+<p>The participants to the workshop were: </p>
+<ul>
+<li>
+<strong>Bernard Aboba</strong> (Microsoft Corporation)</li>
+<li>
+<strong>Thijs Alkemade</strong> (Adium)</li>
+<li>
+<strong>Daniel Appelquist</strong> (Telefónica Digital)</li>
+<li>
+<strong>Jari Arkko</strong> (Ericsson)</li>
+<li>
+<strong>Alia Atlas</strong> (Juniper Networks)</li>
+<li>
+<strong>Emmanuel Baccelli</strong> (INRIA)</li>
+<li><strong>Mary Barnes</strong></li>
+<li>
+<strong>Richard Barnes</strong> (Mozilla)</li>
+<li>
+<strong>Steve Bellovin</strong> (Columbia University)</li>
+<li>
+<strong>Andrea Bittau</strong> (Stanford University)</li>
+<li>
+<strong>Marc Blanchet</strong> (Viagenie)</li>
+<li>
+<strong>Carsten Bormann</strong> (Uni Bremen TZI)</li>
+<li>
+<strong>Bert Bos</strong> (W3C)</li>
+<li>
+<strong>Ian Brown</strong> (Oxford University)</li>
+<li>
+<strong>Stewart Bryant</strong> (Cisco Systems)</li>
+<li>
+<strong>Randy Bush</strong> (IIJ / Dragon Research Labs)</li>
+<li>
+<strong>Kelsey Cairns</strong> (Washington State University)</li>
+<li>
+<strong>Stuart Cheshire</strong> (Apple)</li>
+<li>
+<strong>Vincent Cheval</strong> (University of Birmingham)</li>
+<li>
+<strong>Benoit Claise</strong> (Cisco)</li>
+<li>
+<strong>Alissa Cooper</strong> (Cisco)</li>
+<li>
+<strong>Dave Crocker</strong> (Brandenburg InternetWorking)</li>
+<li>
+<strong>Leslie Daigle</strong> (Internet Society)</li>
+<li>
+<strong>George Danezis</strong> (University College London)</li>
+<li>
+<strong>Spencer Dawkins</strong> (Huawei)</li>
+<li>
+<strong>Mark Donnelly</strong> (Painless Security)</li>
+<li>
+<strong>Nick Doty</strong> (W3C)</li>
+<li>
+<strong>Dan Druta</strong> (AT&amp;T)</li>
+<li>
+<strong>Peter Eckersley</strong> (Electronic Frontier Foundation)</li>
+<li>
+<strong>Lars Eggert</strong> (NetApp)</li>
+<li>
+<strong>Kai Engert</strong> (Red Hat)</li>
+<li><strong>Monika Ermert</strong></li>
+<li>
+<strong>Stephen Farrell</strong> (Trinity College Dublin)</li>
+<li>
+<strong>Barbara Fraser</strong> (Cisco)</li>
+<li>
+<strong>Virginie Galindo</strong> (gemalto)</li>
+<li>
+<strong>Stefanie Gerdes</strong> (Uni Bremen TZI)</li>
+<li>
+<strong>Daniel Kahn Gillmor</strong> (ACLU)</li>
+<li><strong>Wendy M. Grossman</strong></li>
+<li>
+<strong>Christian Grothoff</strong> (The GNUnet Project)</li>
+<li>
+<strong>Oliver Hahm</strong> (INRIA)</li>
+<li>
+<strong>Joseph Lorenzo Hall</strong> (Center for Democracy &amp; Technology)</li>
+<li><strong>Phillip Hallam-Baker</strong></li>
+<li>
+<strong>Harry Halpin</strong> (W3C/MIT and IRI)</li>
+<li>
+<strong>Ted Hardie</strong> (Google)</li>
+<li>
+<strong>Joe Hildebrand</strong> (Cisco Systems)</li>
+<li>
+<strong>Russ Housley</strong> (Vigil Security, LLC)</li>
+<li>
+<strong>Cullen Jennings</strong> (CISCO)</li>
+<li>
+<strong>Leif Johansson</strong> (SUNET)</li>
+<li>
+<strong>Harold Johnson</strong> (Irdeto)</li>
+<li>
+<strong>Alan Johnston</strong> (Avaya)</li>
+<li>
+<strong>L. Aaron Kaplan</strong> (CERT.at)</li>
+<li>
+<strong>Steve Kent</strong> (BBN Technologies)</li>
+<li>
+<strong>Achim Klabunde</strong> (European Data Protection Supervisor)</li>
+<li>
+<strong>Hans Kuhn</strong> (NOC)</li>
+<li><strong>Christian de Larrinaga</strong></li>
+<li>
+<strong>Ben Laurie</strong> (Google)</li>
+<li>
+<strong>Eliot Lear</strong> (Cisco Ssytems)</li>
+<li>
+<strong>Barry Leiba</strong> (Huawei Technologies)</li>
+<li>
+<strong>Sebastian Lekies</strong> (SAP AG)</li>
+<li>
+<strong>Orit Levin</strong> (Microsoft Corporation)</li>
+<li>
+<strong>carlo von lynX</strong> (#youbroketheinternet)</li>
+<li>
+<strong>Xavier Marjou</strong> (Orange)</li>
+<li>
+<strong>Larry Masinter</strong> (Adobe)</li>
+<li>
+<strong>John Mattsson</strong> (Ericsson)</li>
+<li>
+<strong>Patrick McManus</strong> (Mozilla)</li>
+<li>
+<strong>Doug Montgomery</strong> (NIST)</li>
+<li>
+<strong>Kathleen Moriarty</strong> (EMC)</li>
+<li>
+<strong>Alec Muffett</strong> (Facebook)</li>
+<li>
+<strong>Suhas Nandakumar</strong> (Cisco Systems)</li>
+<li>
+<strong>Linh Nguyen</strong> (ERCIM/W3C)</li>
+<li>
+<strong>Linus Nordberg</strong> (NORDUnet)</li>
+<li><strong>Mark Nottingham</strong></li>
+<li>
+<strong>Karen O'Donoghue</strong> (Internet Society)</li>
+<li>
+<strong>Piers O'Hanlon</strong> (Oxford Internet Institute)</li>
+<li>
+<strong>Kenny Paterson</strong> (Royal Holloway, University of London)</li>
+<li>
+<strong>Jon Peterson</strong> (Neustar)</li>
+<li>
+<strong>Joshua Phillips</strong> (University of Birmingham)</li>
+<li>
+<strong>Alfredo Pironti</strong> (INRIA)</li>
+<li>
+<strong>Dana Polatin-Reuben</strong> (University of Oxford)</li>
+<li>
+<strong>Prof. Johan Pouwelse</strong> (Delft University of Technology)</li>
+<li>
+<strong>Max Pritikin</strong> (Cisco)</li>
+<li>
+<strong>Eric Rescorla</strong> (Mozilla)</li>
+<li>
+<strong>Pete Resnick</strong> (Qualcomm Technologies, Inc.)</li>
+<li>
+<strong>Tom Ristenpart</strong> (University of Wisconsin)</li>
+<li>
+<strong>Andrei Robachevsky</strong> (Internet Society)</li>
+<li>
+<strong>David Rogers</strong> (Copper Horse)</li>
+<li>
+<strong>Scott Rose</strong> (NIST)</li>
+<li>
+<strong>Christine Runnegar</strong> (Internet Society)</li>
+<li>
+<strong>Philippe De Ryck</strong> (DistriNet - KU Leuven)</li>
+<li>
+<strong>Peter Saint-Andre</strong> (&amp;yet)</li>
+<li>
+<strong>Runa A. Sandvik</strong> (Center for Democracy and Technology)</li>
+<li>
+<strong>Jakob Schlyter</strong> (キレイ)</li>
+<li>
+<strong>Dr. Jan Seedorf</strong> (NEC Laboratories Europe)</li>
+<li>
+<strong>Wendy Seltzer</strong> (W3C)</li>
+<li>
+<strong>Melinda Shore</strong> (No Mountain Software)</li>
+<li>
+<strong>Dave Thaler</strong> (Microsoft)</li>
+<li>
+<strong>Brian Trammell</strong> (ETH Zurich)</li>
+<li>
+<strong>Hannes Tschofenig</strong> (ARM Limited)</li>
+<li>
+<strong>Sean Turner</strong> (IECA, Inc.)</li>
+<li>
+<strong>Matthias Wählisch</strong> (Freie Universität Berlin)</li>
+<li>
+<strong>Greg Walton</strong> (Oxford University)</li>
+<li>
+<strong>Rigo Wenning</strong> (W3C)</li>
+<li>
+<strong>Tara Whalen</strong> (Apple Inc.)</li>
+<li>
+<strong>Greg Wood</strong> (Internet Society)</li>
+<li>
+<strong>Jiangshan Yu</strong> (University of Birmingham)</li>
+<li><strong>Aaron Zauner</strong></li>
+<li>
+<strong>Dacheng Zhang</strong> (Huawei)</li>
+<li>
+<strong>Phil Zimmermann</strong> (Silent Circle LLC)</li>
+<li>
+<strong>Juan-Carlos Zuniga</strong> (InterDigital)</li>
+</ul>
+</div>
+<div class="section" id="authors">
+<h2>Authors' addresses</h2>
+<address>Stephen Farrell<br>Trinity College, Dublin<br><a href="mailto:stephen.farrell@cs.tcd.ie">&lt;stephen.farrell@cs.tcd.ie&gt;</a>
+</address>
+<address>Rigo Wenning<br><abbr title="World Wide Web Consortium">W3C</abbr><br>2004, route des Lucioles<br>B.P. 93<br>06902 Sophia-Antipolis<br>France<br><a href="mailto:rigo@w3.org">&lt;rigo@w3.org&gt;</a>
+</address>
+<address>Bert Bos<br><abbr title="World Wide Web Consortium">W3C</abbr><br>2004, route des Lucioles<br>B.P. 93<br>06902 Sophia-Antipolis<br>France<br><a href="mailto:bert@w3org">&lt;bert@w3org&gt;</a>
+</address>
+<address>
+<a href="http://viagenie.ca">Marc Blanchet</a><br>Viagenie<br>246 Aberdeen<br>Quebec<br>QC G1R 2E1<br>Canada<br><a href="mailto:Marc.Blanchet@viagenie.ca">&lt;Marc.Blanchet@viagenie.ca&gt;</a>http://viagenie.ca</address>
+<address>
+<a href="http://www.tschofenig.priv.at">Hannes Tschofenig </a><br>ARM Ltd.<br>110 Fulbourn Rd<br>Cambridge  CB1 9NJ <br>Great Britain<br><a href="mailto:Hannes.tschofenig@gmx.net%20">&lt;Hannes.tschofenig@gmx.net &gt;</a>http://www.tschofenig.priv.at</address>
+</div>
+<!--include footer.inc-->
+</body>
+</html>

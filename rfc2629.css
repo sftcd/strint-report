@@ -1,0 +1,33 @@
+rfc, front, middle, back, title, author, date, area, workgroup, abstract, note, section, appendix, t, list, figure, preamble, postamble, artwork {display: block}
+rfc {margin: 2em 2em 4em 4em}
+front {font-size: 0; word-spacing: -0.33em} /* w-s if there is a min font size */
+front > * {font-size: medium; word-spacing: 0}
+title {text-align: center; font-size: xx-large; font-weight: bold;
+  margin: 2em 0 1em}
+author::before {content: attr(initials) " " attr(surname)}
+organization::before {content: " ("}
+organization::after {content: ") "}
+email::before {content: " <"}
+email::after {content: "> "}
+keyword::before {content: "Keywords: "; font-weight: bold}
+keyword + keyword::before {content: ", "}
+abstract::before {content: "Abstract"}
+abstract::before, section::before {display: block; font-weight: bold;
+  font-size: x-large; margin: 2rem 0 1rem -2rem}
+section::before {content: attr(title)}
+section > t {margin-top: 1.2em}
+cref::before {content: "Issue \"" attr(anchor) "\" by " attr(source) ": ";
+  font-weight: bold}
+cref {color: white; background: red; padding: 0.1em 0.3em}
+list {margin-left: 2em}
+list > t {display: list-item}
+list[style=symbols] {list-style: disc}
+list[style=numbers] {list-style: decimal}
+list[style=letters] {list-style: lower-latin}
+list[style=hanging] {margin-left: 6em}
+list[style=hanging] > t {display: block}
+list[style=hanging] > t[hangText]:before {clear: left; float: left;
+  content: attr(hangText); margin: 0 1em 0 -6em; font-weight: bold}
+[src] {-o-replace: attr(src); content: attr(src); content: attr(src url);
+  -o-link: attr(src); -o-link-source: current}
+[target] {-o-link: attr(target); -o-link-source: current}
