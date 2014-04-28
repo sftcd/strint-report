@@ -138,7 +138,9 @@ postamble if the artwork cannot be shown... -->
 	<t>[[Editorial note: This version was produced from the minutes,
 	and then edited. It quite likely has some inaccuracies, so the
 	authors would welcome corrections from those who attended the
-	workshop.]]</t>
+	workshop. If you're a github person, we're using 
+	https://github.com/sftcd/strint-report for this so you can
+	contribute there.]]</t>
 
       <t>The Vancouver IETF plenary concluded <xref target='vancouverplenary'/> that Pervasive
       Monitoring (PM)

@@ -90,7 +90,9 @@ Table of Contents
 
    [[Editorial note: This version was produced from the minutes, and
    then edited.  It quite likely has some inaccuracies, so the authors
-   would welcome corrections from those who attended the workshop.]]
+   would welcome corrections from those who attended the workshop.  If
+   you're a github person, we're using https://github.com/sftcd/strint-
+   report for this so you can contribute there.]]
 
    The Vancouver IETF plenary concluded [vancouverplenary] that
    Pervasive Monitoring (PM) represents an attack on the Internet, and
@@ -104,8 +106,6 @@ Table of Contents
    Monitoring" before IETF 89 [4] in London in March 2014.  The
    FP7-funded STREWS [5] project organised the STRINT workshop on behalf
    of the IAB and W3C.
-
-
 
 
 
