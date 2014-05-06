@@ -387,7 +387,13 @@ postamble if the artwork cannot be shown... -->
 	different. And unlike someone motivated to make money, 
 	a PM attacker may not be concerned at the cost of the
 	attack (or may even prefer a higher cost, for "empire
-	building" reasons). </t>
+	building" reasons).
+
+        Additionally, the cost to a pervasive attacker of ubiquitous
+        collection may actually be less than the cost of selective
+        collection, since sorting and filtering at the time of
+        collection are associated with their own costs. </t>
+        
 
 	<t>The terminology used to talk about threats has to be chosen
 	carefully (this was a common theme in several sessions),
@@ -484,8 +490,9 @@ postamble if the artwork cannot be shown... -->
 	  target="draft-ietf-websec-key-pinning"/> for an HTTP header introduces an aspect of
 	  TOFU into HTTP: Key pinning tells HTTP clients that for a
 	  certain time after receiving this certificate, they should
-	  not expect the certificate to change. If it does, even if
-	  the new certificate looks valid, the client should assume a
+	  only expect to see a certain set of keys used by the site. 
+          If the site presents new certificates which do not use the pinned keys, even if
+	  the new certificate chain looks valid, the client should assume a
 	  security breach. </t>
 
 	<!--
@@ -527,7 +534,7 @@ postamble if the artwork cannot be shown... -->
 	and authentication, and the OTR (&ldquo;off the record&rdquo;)
 	extension even
 	provides what is called Perfect Forward Secrecy (PFS, compromising
-	the current communication never gives an attacker enough
+	the current communication or long-term keys never gives an attacker enough
 	information to decrypt past communications that he may have
 	recorded). But, in practice, many people don't use XMPP at
 	all, but rather Skype, WhatsApp or other instant-messaging
@@ -575,6 +582,7 @@ postamble if the artwork cannot be shown... -->
 
 	<!--
 	I (SF) have no idea what this means.
+        dkg: i think it means you can make $$ based on surveillance of your "users"
 	<t>Economics may be partly to blame, as economic success has
 	often been the result of carefully monitoring the clients. It
 	is difficult to make that illegal.</t>
