@@ -145,13 +145,13 @@
 <tr><td class="header">Network Working Group</td><td class="header">S. Farrell</td></tr>
 <tr><td class="header">Internet-Draft</td><td class="header">Trinity College, Dublin</td></tr>
 <tr><td class="header">Intended status: Informational</td><td class="header">R. Wenning</td></tr>
-<tr><td class="header">Expires: October 30, 2014</td><td class="header">B. Bos</td></tr>
+<tr><td class="header">Expires: November 7, 2014</td><td class="header">B. Bos</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">W3C</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">M. Blanchet</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">Viagenie</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">H. Tschofenig</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">ARM Ltd.</td></tr>
-<tr><td class="header">&nbsp;</td><td class="header">April 28, 2014</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">May 6, 2014</td></tr>
 </table></td></tr></table>
 <h1><br />STRINT workshop report<br />draft-iab-strint-report-00</h1>
 
@@ -184,7 +184,7 @@ and may be updated, replaced, or obsoleted by other documents at any time.
 It is inappropriate to use Internet-Drafts as reference material or to cite
 them other than as &ldquo;work in progress.&rdquo;</p>
 <p>
-This Internet-Draft will expire on October 30, 2014.</p>
+This Internet-Draft will expire on November 7, 2014.</p>
 
 <h3>Copyright Notice</h3>
 <p>
@@ -314,10 +314,11 @@ Summary</h3>
 	mitigate PM and how to reflect that in IETF work.
 </li>
 <li>The term "Opportunistic" has been widely used 
-		to refer to a possible mitigation strategy for PM. We need
+		to refer to a possible mitigation strategy for PM.
+		The IETF needs
 		to document definition(s) for this term, as it is being
 		used differently by different people and in different
-		contexts. We may also be able to develop a
+		contexts. It may also be possible to develop a
 	  cookbook-like set of related protocol techniques for developers. 
 		Since the workshop, the IETF's security area has taken up
 		this work, most recently favouring the generic term "Opportunistic
@@ -478,11 +479,16 @@ Threats</h3>
 	different. And unlike someone motivated to make money, 
 	a PM attacker may not be concerned at the cost of the
 	attack (or may even prefer a higher cost, for "empire
-	building" reasons). 
+	building" reasons).
+
+        Additionally, the cost to a pervasive attacker of ubiquitous
+        collection may actually be less than the cost of selective
+        collection, since sorting and filtering at the time of
+        collection are associated with their own costs. 
 </p>
 <p>The terminology used to talk about threats has to be chosen
 	carefully (this was a common theme in several sessions),
-	because we need to explain to people outside the technical
+	because the experts need to explain to people outside the technical
 	community what they need to do or not do. For example, authentication
 	of endpoints doesn't so much &ldquo;protect against&rdquo;
 	man-in-the-middle (MITM) attacks as make them visible. The
@@ -568,8 +574,9 @@ Increase usage of security tools</h3>
 <p>A similar proposal <a class='info' href='#draft-ietf-websec-key-pinning'>[draft&#8209;ietf&#8209;websec&#8209;key&#8209;pinning]<span> (</span><span class='info'>Evans, C., Palmer, C., and R. Sleevi, &ldquo;Public Key Pinning Extension for HTTP,&rdquo; February&nbsp;2014.</span><span>)</span></a> for an HTTP header introduces an aspect of
 	  TOFU into HTTP: Key pinning tells HTTP clients that for a
 	  certain time after receiving this certificate, they should
-	  not expect the certificate to change. If it does, even if
-	  the new certificate looks valid, the client should assume a
+	  only expect to see a certain set of keys used by the site. 
+          If the site presents new certificates which do not use the pinned keys, even if
+	  the new certificate chain looks valid, the client should assume a
 	  security breach. 
 </p>
 <p>SIP <a class='info' href='#RFC3261'>[RFC3261]<span> (</span><span class='info'>Rosenberg, J., Schulzrinne, H., Camarillo, G., Johnston, A., Peterson, J., Sparks, R., Handley, M., and E. Schooler, &ldquo;SIP: Session Initiation Protocol,&rdquo; June&nbsp;2002.</span><span>)</span></a> is a complex protocol, in part because it potentially
@@ -601,7 +608,7 @@ Increase usage of security tools</h3>
 	and authentication, and the OTR (&ldquo;off the record&rdquo;)
 	extension even
 	provides what is called Perfect Forward Secrecy (PFS, compromising
-	the current communication never gives an attacker enough
+	the current communication or long-term keys never gives an attacker enough
 	information to decrypt past communications that he may have
 	recorded). But, in practice, many people don't use XMPP at
 	all, but rather Skype, WhatsApp or other instant-messaging
@@ -748,16 +755,16 @@ discussed by the IETF security area. <a class='info' href='#saag'>[saag]<span> (
 </p>
 <p>The people working on encryption are mathematicians and
 	engineers, and typically not the same people who know about
-	UI. We need to involve the experts. We also need to
+	UI. They need to involve the experts. It is also necessary to
 	distinguish between usability of the UI, user understanding,
 	and user experience. For an e-commerce site, e.g., it is not
 	just important that the user's data is technically safe, but
 	also that he feels secure. Otherwise he still won't buy
 	anything.
 </p>
-<p>When talking about users, we also need to distinguish the
-	end user (who we typically think about when we talk about UI)
-	from the server administrators and other technical people
+<p>There are different kinds of &ldquo;users&rdquo;: the
+	end users (who you typically think about when you talk about UI)
+	but also the server administrators and other technical people
 	involved in enabling a connection. When something goes wrong
 	(e.g., the user's software detects an invalid certificate),
 	the message usually goes to the end user. But he isn't
@@ -926,7 +933,7 @@ Hiding metadata</h3>
 	issue, e.g., if the conversation is limited by the speed of a
 	human user anyway. HTTP/2 has a built-in padding
 	mechanism. However, it is not so easy to use these techniques
-	well, and not actually make messages easier to recognise
+	well. Incorrect use can actually make messages easier to recognise
 	rather than harder.
 </p>
 <p>Different users in different contexts may have different
@@ -1220,7 +1227,7 @@ these notes resulted.
 The LEDBAT <a class='info' href='#RFC6817'>[RFC6817]<span> (</span><span class='info'>Shalunov, S., Hazel, G., Iyengar, J., and M. Kuehlewind, &ldquo;Low Extra Delay Background Transport (LEDBAT),&rdquo; December&nbsp;2012.</span><span>)</span></a> 
 protocol was targeted towards a
 bulk-transfer service that is reordering and delay insensitive.  Use of
-LDEBAT could offer the following benefits for an application:
+LEDBAT could offer the following benefits for an application:
 </p>
 <blockquote class="text"><dl>
 <dt>a.</dt>
@@ -1253,7 +1260,7 @@ signatures by varying the packet lengths and frequency.
 </dd>
 <dt>e.</dt>
 <dd>
-    If we could fix the reverse SPF check problem, perhaps the source
+    If  the reverse SPF check problem can be fixed, perhaps the source
 could be hidden - but that has assumptions on trusted perimeters.
 
 </dd>
@@ -1269,7 +1276,7 @@ transport protocol usage) to its users.
 
 </p>
 <p>
-We also discussed the idea of encrypting traffic from CE to CE as part of a
+The workshop also discussed the idea of encrypting traffic from CE to CE as part of a
 L3VPN or such.  This could allow hiding of addresses, including source, and
 headers.  From my further conversation with Ron Bonica, some customers
 already do encryption (though not hiding the source address) like this.
@@ -1278,7 +1285,7 @@ for encouraging deployment and use.
 
 </p>
 <p>
-Finally, we discussed whether it would be useful to have a means of
+Finally, teh workshop discussed whether it would be useful to have a means of
 communicating where and what layers are doing encryption on an
 application's traffic path.  The initial idea of augmenting ICMP has some
 issues (not visible to application, ICMP packets frequently filtered) as
@@ -1429,11 +1436,11 @@ Logistics</h3>
 </p>
 <p>The room held 100 people, which was thought to be
       sufficient. There turned out to be more interest than expected
-      and we could have filled a larger room, but 100 people is
+      and the workshop could have filled a larger room, but 100 people is
       probably an upper limit for good discussions anyway.
 </p>
 <p>Apart from the usual equipment in the room (projector, white
-      boards, microphones, coffee&hellip;), we also set up some extra
+      boards, microphones, coffee&hellip;), there were also some extra
       communication channels:
 	</p>
 <ul class="text">
@@ -1491,7 +1498,7 @@ Friday 28 February</h3>
 	  opening/overview <a href='http://down.dsg.cs.tcd.ie/strint-slides/s0-welcome.pdf'>[slides]</a>
 	    
 <ul class="text">
-<li>Goal is to plan how we respond to PM threats
+<li>Goal is to plan how to respond to PM threats
 </li>
 <li>Specific questions to be discussed in sessions
 </li>
@@ -1704,7 +1711,8 @@ The submitted papers</h3>
 <p><a class='info' href='#comment.sort-papers'>[sort-papers]<span> (</span><span class='info'>Bert: Group the papers by (rough) topic?</span><span>)</span></a><a name='sort-papers'></a>
 </p>
 <p>The following papers were submitted to the workshop. The
-      abstracts were provided by the authors themselves. (We set up an
+      abstracts were provided by the authors themselves. (Thanks to
+      Kai Engert, who set up an
       <a href='https://strint.pads.ccc.de/1'>editable page
       (&ldquo;Etherpad&rdquo;)</a> where the authors could insert them.)
 </p>
