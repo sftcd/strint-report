@@ -218,10 +218,11 @@ postamble if the artwork cannot be shown... -->
 	mitigate PM and how to reflect that in IETF work.</t>
 
 	  <t>The term "Opportunistic" has been widely used 
-		to refer to a possible mitigation strategy for PM. We need
+		to refer to a possible mitigation strategy for PM.
+		The IETF needs
 		to document definition(s) for this term, as it is being
 		used differently by different people and in different
-		contexts. We may also be able to develop a
+		contexts. It may also be possible to develop a
 	  cookbook-like set of related protocol techniques for developers. 
 		Since the workshop, the IETF's security area has taken up
 		this work, most recently favouring the generic term "Opportunistic
@@ -397,7 +398,7 @@ postamble if the artwork cannot be shown... -->
 
 	<t>The terminology used to talk about threats has to be chosen
 	carefully (this was a common theme in several sessions),
-	because we need to explain to people outside the technical
+	because the experts need to explain to people outside the technical
 	community what they need to do or not do. For example, authentication
 	of endpoints doesn't so much &ldquo;protect against&rdquo;
 	man-in-the-middle (MITM) attacks as make them visible. The
@@ -736,16 +737,16 @@ discussed by the IETF security area. <xref target="saag"/>
 
 	<t>The people working on encryption are mathematicians and
 	engineers, and typically not the same people who know about
-	UI. We need to involve the experts. We also need to
+	UI. They need to involve the experts. It is also necessary to
 	distinguish between usability of the UI, user understanding,
 	and user experience. For an e-commerce site, e.g., it is not
 	just important that the user's data is technically safe, but
 	also that he feels secure. Otherwise he still won't buy
 	anything.</t>
 
-	<t>When talking about users, we also need to distinguish the
-	end user (who we typically think about when we talk about UI)
-	from the server administrators and other technical people
+	<t>There are different kinds of &ldquo;users&rdquo;: the
+	end users (who you typically think about when you talk about UI)
+	but also the server administrators and other technical people
 	involved in enabling a connection. When something goes wrong
 	(e.g., the user's software detects an invalid certificate),
 	the message usually goes to the end user. But he isn't
@@ -925,7 +926,7 @@ discussed by the IETF security area. <xref target="saag"/>
 	issue, e.g., if the conversation is limited by the speed of a
 	human user anyway. HTTP/2 has a built-in padding
 	mechanism. However, it is not so easy to use these techniques
-	well, and not actually make messages easier to recognise
+	well. Incorrect use can actually make messages easier to recognise
 	rather than harder.</t>
 
 	<t>Different users in different contexts may have different
@@ -1221,7 +1222,7 @@ these notes resulted.</t>
 The LEDBAT <xref target="RFC6817"/> 
 protocol was targeted towards a
 bulk-transfer service that is reordering and delay insensitive.  Use of
-LDEBAT could offer the following benefits for an application:
+LEDBAT could offer the following benefits for an application:
 <list style="letters">
 <t>
     Because it is reordering insensitive, traffic can be sprayed across
@@ -1244,7 +1245,7 @@ signatures by varying the packet lengths and frequency.
     This can also hide the transport header (for IP in UDP).
 </t>
 <t>
-    If we could fix the reverse SPF check problem, perhaps the source
+    If  the reverse SPF check problem can be fixed, perhaps the source
 could be hidden - but that has assumptions on trusted perimeters.
 </t>
 <t>
@@ -1257,7 +1258,7 @@ transport protocol usage) to its users.
 </t>
 
 <t>
-We also discussed the idea of encrypting traffic from CE to CE as part of a
+The workshop also discussed the idea of encrypting traffic from CE to CE as part of a
 L3VPN or such.  This could allow hiding of addresses, including source, and
 headers.  From my further conversation with Ron Bonica, some customers
 already do encryption (though not hiding the source address) like this.
@@ -1266,7 +1267,7 @@ for encouraging deployment and use.
 </t>
 
 <t>
-Finally, we discussed whether it would be useful to have a means of
+Finally, teh workshop discussed whether it would be useful to have a means of
 communicating where and what layers are doing encryption on an
 application's traffic path.  The initial idea of augmenting ICMP has some
 issues (not visible to application, ICMP packets frequently filtered) as
@@ -1644,7 +1645,7 @@ needed and what the requirements would be.
       Saturday, just minutes away from the IETF's location.</t>
       <t>The room held 100 people, which was thought to be
       sufficient. There turned out to be more interest than expected
-      and we could have filled a larger room, but 100 people is
+      and the workshop could have filled a larger room, but 100 people is
       probably an upper limit for good discussions anyway.</t>
 <!--
       <figure title="ASCII-art rendering of https://www.w3.org/2014/strint/lib/workshop-2">
@@ -1657,7 +1658,7 @@ needed and what the requirements would be.
       </figure>
 -->
       <t>Apart from the usual equipment in the room (projector, white
-      boards, microphones, coffee&hellip;), we also set up some extra
+      boards, microphones, coffee&hellip;), there were also some extra
       communication channels:
 	<list style="symbols">
 	  <t>A mailing list where participants could discuss the
@@ -1715,7 +1716,7 @@ needed and what the requirements would be.
 	  target="http://down.dsg.cs.tcd.ie/strint-slides/s0-welcome.pdf"
 	  >[slides]</eref>
 	    <list style="symbols">
-	      <t>Goal is to plan how we respond to PM threats</t>
+	      <t>Goal is to plan how to respond to PM threats</t>
 	      <t>Specific questions to be discussed in sessions</t>
 	      <t>Outcomes are actions for IETF, W3C, IRTF, etc.</t>
 	    </list></t>
@@ -1864,7 +1865,8 @@ needed and what the requirements would be.
       (rough) topic?</cref></t>
 
       <t>The following papers were submitted to the workshop. The
-      abstracts were provided by the authors themselves. (We set up an
+      abstracts were provided by the authors themselves. (Thanks to
+      Kai Engert, who set up an
       <eref target="https://strint.pads.ccc.de/1">editable page
       (&ldquo;Etherpad&rdquo;)</eref> where the authors could insert them.)</t>
 
